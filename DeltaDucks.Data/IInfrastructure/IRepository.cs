@@ -1,9 +1,9 @@
-﻿namespace DeltaDucks.Data.Infrastructure
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq.Expressions;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 
+namespace DeltaDucks.Data.IInfrastructure
+{
     public interface IRepository<T> where T : class
     {
         void Add(T entity);

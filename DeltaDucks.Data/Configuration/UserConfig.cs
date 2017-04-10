@@ -1,8 +1,9 @@
-﻿namespace DeltaDucks.Data.Configuration
+﻿using DeltaDucks.Models;
+
+namespace DeltaDucks.Data.Configuration
 {
 
     using System.Data.Entity.ModelConfiguration;
-    using Models;
 
     public class UserConfig : EntityTypeConfiguration<User>
     {

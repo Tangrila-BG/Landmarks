@@ -1,4 +1,6 @@
-﻿namespace DeltaDucks.Data.Infrastructure
+﻿using DeltaDucks.Data.IInfrastructure;
+
+namespace DeltaDucks.Data.Infrastructure
 {
     public class DbFactory : Disposable, IDbFactory
     {

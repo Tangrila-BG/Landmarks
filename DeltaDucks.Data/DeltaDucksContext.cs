@@ -1,9 +1,9 @@
 using DeltaDucks.Data.Configuration;
+using DeltaDucks.Models;
 
 namespace DeltaDucks.Data
 {
     using System.Data.Entity;
-    using Models;
 
     public class DeltaDucksContext : DbContext
     {

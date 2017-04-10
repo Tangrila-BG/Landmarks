@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DeltaDucks.Models;
-using DeltaDucks.Service.Interfaces;
+using DeltaDucks.Service.IServices;
 using DeltaDucks.Service.Services;
 using DeltaDucks.Web.Models;
 using DeltaDucks.Web.ViewModels;

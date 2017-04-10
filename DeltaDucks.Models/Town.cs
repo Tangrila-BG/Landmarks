@@ -1,7 +1,7 @@
-﻿namespace DeltaDucks.Models
-{
-    using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
+namespace DeltaDucks.Models
+{
     public class Town
     {
         public int TownId { get; set; }

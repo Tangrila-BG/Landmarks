@@ -1,8 +1,10 @@
-﻿namespace DeltaDucks.Data.Repositories
+﻿using DeltaDucks.Data.IInfrastructure;
+using DeltaDucks.Models;
+
+namespace DeltaDucks.Data.Repositories
 {
     using System.Linq;
     using Infrastructure;
-    using Models;
 
     public class LandmarkRepository : RepositoryBase<Landmark>, ILandmarkRepository
     {

@@ -1,4 +1,6 @@
 ﻿using System;
+using DeltaDucks.Data.IInfrastructure;
+
 namespace DeltaDucks.Data.Infrastructure
 {
     public class UnitOfWork : IUnitOfWork

@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
+using DeltaDucks.Data.IInfrastructure;
 using DeltaDucks.Data.Infrastructure;
 using DeltaDucks.Data.Repositories;
 using DeltaDucks.Models;
-using DeltaDucks.Service.Interfaces;
+using DeltaDucks.Service.IServices;
 
 namespace DeltaDucks.Service.Services
 {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using DeltaDucks.Models;
 
-namespace DeltaDucks.Service.Interfaces
+namespace DeltaDucks.Service.IServices
 {
     public interface IUserService
     {

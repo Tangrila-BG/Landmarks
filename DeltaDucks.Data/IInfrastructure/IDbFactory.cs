@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DeltaDucks.Data.Infrastructure
+namespace DeltaDucks.Data.IInfrastructure
 {
     public interface IDbFactory : IDisposable
     {
