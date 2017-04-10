@@ -1,4 +1,5 @@
 ﻿using DeltaDucks.Data.IInfrastructure;
+using DeltaDucks.Data.IRepositories;
 using DeltaDucks.Models;
 
 namespace DeltaDucks.Data.Repositories
@@ -22,10 +23,5 @@ namespace DeltaDucks.Data.Repositories
             entity.Number = 34;
             base.Update(entity);
         }
-    }
-
-    public interface ILandmarkRepository : IRepository<Landmark>
-    {
-        Landmark GetLandmarkByName(string landmarkName);
     }
 }
