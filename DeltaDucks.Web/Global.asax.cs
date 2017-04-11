@@ -15,9 +15,6 @@ namespace DeltaDucks.Web
     {
         protected void Application_Start()
         {
-            //Initialize database 
-            new DeltaDucksContext().Database.Initialize(true);
-            // Database.SetInitializer(new DropCreateDatabaseIfModelChanges<DeltaDucksContext>());
 
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

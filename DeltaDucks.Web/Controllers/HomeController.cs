@@ -6,7 +6,6 @@ using System.Web.Mvc;
 using DeltaDucks.Models;
 using DeltaDucks.Service.IServices;
 using DeltaDucks.Service.Services;
-using DeltaDucks.Web.Models;
 using DeltaDucks.Web.ViewModels;
 
 namespace DeltaDucks.Web.Controllers
@@ -26,13 +25,13 @@ namespace DeltaDucks.Web.Controllers
         public ActionResult Index()
         {
 
-            Landmark landmark = _landmarkService.GetLandmarkById(1);
+            //Landmark landmark = _landmarkService.GetLandmarkById(1);
 
-            LandmarkViewModel landmarkViewModel = new LandmarkViewModel
-            {
-                Name = landmark.Name
-            };
-            return View(landmarkViewModel);
+            //LandmarkViewModel landmarkViewModel = new LandmarkViewModel
+            //{
+            //    Name = landmark.Name
+            //};
+            return View(); //landmarkViewModel);
         }
     }
 }

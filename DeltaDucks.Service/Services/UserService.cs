@@ -19,7 +19,7 @@ namespace DeltaDucks.Service.Services
             this._unitOfWork = unitOfWork;
         }
 
-        public IEnumerable<User> GetUsers()
+        public IEnumerable<ApplicationUser> GetUsers()
         {
             return _userRepository.GetAll();
         }
@@ -28,7 +28,7 @@ namespace DeltaDucks.Service.Services
 
         public void LoginUser(string username, string password) { }
 
-        public void RegisterUser(User user)
+        public void RegisterUser(ApplicationUser user)
         {
             _userRepository.Add(user);
         }

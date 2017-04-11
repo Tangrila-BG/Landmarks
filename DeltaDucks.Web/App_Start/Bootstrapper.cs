@@ -1,5 +1,6 @@
 using DeltaDucks.Data.IInfrastructure;
 using DeltaDucks.Service.Services;
+using DeltaDucks.Web.Mappings;
 
 namespace DeltaDucks.Web
 {
@@ -15,6 +16,9 @@ namespace DeltaDucks.Web
         public static void Run()
         {
             SetAutofacContainer();
+
+            //Automapper
+            AutomapperConfig.Config();
         }
 
         private static void SetAutofacContainer()
