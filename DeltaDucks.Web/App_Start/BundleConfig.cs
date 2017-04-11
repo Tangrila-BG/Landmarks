@@ -8,6 +8,13 @@ namespace DeltaDucks.Web
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+            bundles.Add(new ScriptBundle("~/bundles/app").Include(
+                "~/Scripts/app/app.js",
+                "~/Scripts/app/landmarks-map.js",
+                "~/Scripts/app/IMap.js",
+                "~/Scripts/app/services/mapService.js"
+            ));
+
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
