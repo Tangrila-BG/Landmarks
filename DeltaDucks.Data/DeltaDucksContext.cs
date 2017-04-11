@@ -19,6 +19,7 @@ namespace DeltaDucks.Data
         public virtual DbSet<Location> Locations { get; set; }
 
 
+
         public virtual void Commit()
         {
             base.SaveChanges();

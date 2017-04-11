@@ -10,7 +10,7 @@ namespace DeltaDucks.Data.Configuration
         public UserConfig()
         {
             ToTable("Users");
-            Property(u => u.Name).IsRequired().HasMaxLength(20);
+            Property(u => u.Username).IsRequired().HasMaxLength(20);
         }
     }
 }

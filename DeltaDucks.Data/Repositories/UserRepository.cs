@@ -13,8 +13,9 @@ namespace DeltaDucks.Data.Repositories
 
         public User GetUserByUsername(string username)
         {
-            return this.DbContext.Users.FirstOrDefault(u => u.Name == username);
+            return this.DbContext.Users.FirstOrDefault(u => u.Username == username);
         }
+
     }
 
     public interface IUserRepository : IRepository<User>
