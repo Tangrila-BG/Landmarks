@@ -69,7 +69,7 @@
     <Compile Include="Infrastructure\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IRepositories\ILandmarkRepository.cs" />
-    <Compile Include="IRepositories\IUserRepository.cs" />
+    <Compile Include="IRepositories\IApplicationUserRepository.cs" />
     <Compile Include="Repositories\LandmarkRepository.cs" />
     <Compile Include="Repositories\UserApplicationRepository.cs" />
     <Compile Include="SeedData.cs" />

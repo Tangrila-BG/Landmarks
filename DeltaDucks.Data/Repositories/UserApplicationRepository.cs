@@ -7,7 +7,7 @@ namespace DeltaDucks.Data.Repositories
     using System.Linq;
     using Infrastructure;
 
-    public class UserApplicationRepository : RepositoryBase<ApplicationUser>, IUserRepository
+    public class UserApplicationRepository : RepositoryBase<ApplicationUser>, IApplicationUserRepository
     {
         public ApplicationUser GetUserByUsername(string username)
         {
