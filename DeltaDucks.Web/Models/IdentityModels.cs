@@ -1,6 +1,8 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using DeltaDucks.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -16,15 +18,18 @@ namespace DeltaDucks.Web.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base(".", throwIfV1Schema: false)
         {
         }
 
+      
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
