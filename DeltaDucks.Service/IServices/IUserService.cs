@@ -5,8 +5,8 @@ namespace DeltaDucks.Service.IServices
 {
     public interface IUserService
     {
-        IEnumerable<User> GetUsers();
-        void RegisterUser(User user);
+        IEnumerable<ApplicationUser> GetUsers();
+        void RegisterUser(ApplicationUser user);
         void UpdateUserPassword(string password);
         void LoginUser(string username, string password);
         void SaveUser();
