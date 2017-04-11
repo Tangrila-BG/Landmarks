@@ -1,4 +1,5 @@
 ﻿using DeltaDucks.Data.IInfrastructure;
+using DeltaDucks.Data.IRepositories;
 using DeltaDucks.Models;
 
 namespace DeltaDucks.Data.Repositories
@@ -16,10 +17,5 @@ namespace DeltaDucks.Data.Repositories
             return this.DbContext.Users.FirstOrDefault(u => u.UserName == username);
         }
 
-    }
-
-    public interface IUserRepository : IRepository<ApplicationUser>
-    {
-        ApplicationUser GetUserByUsername(string username);
     }
 }
