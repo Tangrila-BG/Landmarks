@@ -166,6 +166,7 @@ namespace DeltaDucks.Web.Controllers
             return RedirectToAction("ManageLogins", new { Message = message });
         }
 
+
         //
         // GET: /Manage/AddPhoneNumber
         public ActionResult AddPhoneNumber()
@@ -314,6 +315,11 @@ namespace DeltaDucks.Web.Controllers
         //
         // GET: /Manage/SetPassword
         public ActionResult SetPassword()
+        {
+            return View();
+        }
+
+        public ActionResult Test()
         {
             return View();
         }
