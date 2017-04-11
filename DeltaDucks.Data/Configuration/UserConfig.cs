@@ -5,12 +5,12 @@ namespace DeltaDucks.Data.Configuration
 
     using System.Data.Entity.ModelConfiguration;
 
-    public class UserConfig : EntityTypeConfiguration<User>
+    public class UserConfig : EntityTypeConfiguration<ApplicationUser>
     {
         public UserConfig()
         {
-            ToTable("Users");
-            Property(u => u.Username).IsRequired().HasMaxLength(20);
+            // TODO:  to table ? 
+            Property(u => u.UserName).IsRequired().HasMaxLength(20);
         }
     }
 }

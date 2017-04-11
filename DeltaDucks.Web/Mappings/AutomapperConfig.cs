@@ -11,15 +11,15 @@ namespace DeltaDucks.Web.Mappings
             // TODO : Add more mappings
             Mapper.Initialize(cfg =>
             {
-                cfg.CreateMap<RegisterViewModel, User>()
-                .ForMember(u => u.Username, map => map.MapFrom(vm => vm.Username))
-                .ForMember(u => u.FirstName, map => map.MapFrom(vm => vm.FirstName))
-                .ForMember(u => u.LastName, map => map.MapFrom(vm => vm.LastName))
-                .ForMember(u => u.Email, map => map.MapFrom(vm => vm.Email))
-                .ForMember(u => u.Password, map => map.MapFrom(vm => vm.Password)); ;
-                cfg.CreateMap<User, RegisterViewModel>();
-                cfg.CreateMap<User, LoginViewModel>();
-                cfg.CreateMap<LoginViewModel, User>();
+                cfg.CreateMap<RegisterViewModel, ApplicationUser>()
+                    .ForMember(u => u.UserName, map => map.MapFrom(vm => vm.UserName))
+                    .ForMember(u => u.FirstName, map => map.MapFrom(vm => vm.FirstName))
+                    .ForMember(u => u.LastName, map => map.MapFrom(vm => vm.LastName))
+                    .ForMember(u => u.Email, map => map.MapFrom(vm => vm.Email));
+
+                cfg.CreateMap<ApplicationUser, RegisterViewModel>();
+                cfg.CreateMap<ApplicationUser, LoginViewModel>();
+                cfg.CreateMap<LoginViewModel, ApplicationUser>();
             });
         }
     }

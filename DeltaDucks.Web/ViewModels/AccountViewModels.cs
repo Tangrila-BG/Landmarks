@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using DeltaDucks.Web.Models;
 
 namespace DeltaDucks.Web.ViewModels
 {
@@ -50,9 +49,8 @@ namespace DeltaDucks.Web.ViewModels
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
-        [EmailAddress]
-        public string Email { get; set; }
+        [Display(Name = "Username")]
+        public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
@@ -66,14 +64,18 @@ namespace DeltaDucks.Web.ViewModels
     public class RegisterViewModel
     {
         [Required]
+        [Display(Name = "Username")]
         [StringLength(20, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 5)]
-        public string Username { get; set; }
+
+        public string UserName { get; set; }
 
         [Required]
+        [Display(Name = "First name")]
         [StringLength(20, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 3)]
         public string FirstName { get; set; }
 
         [Required]
+        [Display(Name = "Last name")]
         [StringLength(20, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 3)]
         public string LastName { get; set; }
 

@@ -6,20 +6,20 @@ namespace DeltaDucks.Data.Repositories
     using System.Linq;
     using Infrastructure;
 
-    public class UserRepository : RepositoryBase<User>, IUserRepository
+    public class UserRepository : RepositoryBase<ApplicationUser>, IUserRepository
     {
         public UserRepository(IDbFactory dbFactory)
             : base(dbFactory) { }
 
-        public User GetUserByUsername(string username)
+        public ApplicationUser GetUserByUsername(string username)
         {
-            return this.DbContext.Users.FirstOrDefault(u => u.Username == username);
+            return this.DbContext.Users.FirstOrDefault(u => u.UserName == username);
         }
 
     }
 
-    public interface IUserRepository : IRepository<User>
+    public interface IUserRepository : IRepository<ApplicationUser>
     {
-        User GetUserByUsername(string username);
+        ApplicationUser GetUserByUsername(string username);
     }
 }
