@@ -71,7 +71,7 @@
     <Compile Include="IRepositories\ILandmarkRepository.cs" />
     <Compile Include="IRepositories\IUserRepository.cs" />
     <Compile Include="Repositories\LandmarkRepository.cs" />
-    <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Repositories\UserApplicationRepository.cs" />
     <Compile Include="SeedData.cs" />
   </ItemGroup>
   <ItemGroup>

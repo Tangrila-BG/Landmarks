@@ -3,8 +3,8 @@ using DeltaDucks.Models;
 
 namespace DeltaDucks.Data.IRepositories
 {
-    public interface IUserRepository : IRepository<User>
+    public interface IUserRepository : IRepository<ApplicationUser>
     {
-        User GetUserByUsername(string username);
+        ApplicationUser GetUserByUsername(string username);
     }
 }

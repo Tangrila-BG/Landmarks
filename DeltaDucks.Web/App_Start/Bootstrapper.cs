@@ -29,7 +29,7 @@ namespace DeltaDucks.Web
             builder.RegisterType<DbFactory>().As<IDbFactory>().InstancePerRequest();
 
             // Repositories
-            builder.RegisterAssemblyTypes(typeof(UserRepository).Assembly)
+            builder.RegisterAssemblyTypes(typeof(UserApplicationRepository).Assembly)
                 .Where(t => t.Name.EndsWith("Repository"))
                 .AsImplementedInterfaces().InstancePerRequest();
             // Services
