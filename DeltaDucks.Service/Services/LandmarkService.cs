@@ -13,9 +13,9 @@ namespace DeltaDucks.Service.Services
         // NOT USED YET 
         //private readonly IUnitOfWork _unitOfWork;
 
-        public LandmarkService(IRepository<Landmark> irepository , IUnitOfWork unitOfWork)
+        public LandmarkService(IRepository<Landmark> landmarkRepository) //,IUnitOfWork unitOfWork)
         {
-            this._landmarkRepository = irepository;
+            this._landmarkRepository = landmarkRepository;
             //this._unitOfWork = unitOfWork;
         }
 
