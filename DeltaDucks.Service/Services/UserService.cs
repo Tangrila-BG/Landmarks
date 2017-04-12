@@ -10,10 +10,10 @@ namespace DeltaDucks.Service.Services
 {
     public class UserService : IUserService
     {
-        private readonly IUserRepository _userRepository;
+        private readonly IApplicationUserRepository _userRepository;
         private readonly IUnitOfWork _unitOfWork;
 
-        public UserService(IUserRepository userRepository, IUnitOfWork unitOfWork)
+        public UserService(IApplicationUserRepository userRepository, IUnitOfWork unitOfWork)
         {
             this._userRepository = userRepository;
             this._unitOfWork = unitOfWork;

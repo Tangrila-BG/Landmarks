@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using DeltaDucks.Web.ViewModels;
+using DeltaDucks.Web.ViewModels.Account;
 
 namespace DeltaDucks.Web.Controllers
 {
@@ -114,17 +116,25 @@ namespace DeltaDucks.Web.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> RegisterAsync(RegisterViewModel model)
+        public async Task<ActionResult> RegisterAsync([Bind(Exclude = "UserPhoto")]RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser
+                // TODO : Check file content type 
+                byte[] imageData = null;
+                if (Request.Files.Count > 0)
                 {
-                    UserName = model.UserName,
-                    FirstName = model.FirstName,
-                    LastName = model.LastName,
-                    Email = model.Email
-                };
+                    HttpPostedFileBase poImgFile = Request.Files["UserPhoto"];
+
+                    using (var binary = new BinaryReader(poImgFile.InputStream))
+                    {
+                        imageData = binary.ReadBytes(poImgFile.ContentLength);
+                    }
+                }
+
+                var user = Mapper.Map<RegisterViewModel, ApplicationUser>(model);
+
+                user.UserPhoto = imageData;
 
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -176,7 +186,7 @@ namespace DeltaDucks.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await UserManager.FindByNameAsync(model.Email);
+                var user = await UserManager.FindByNameAsync(model.UserName);
                 if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
                 {
                     // Don't reveal that the user does not exist or is not confirmed
@@ -222,7 +232,7 @@ namespace DeltaDucks.Web.Controllers
             {
                 return View(model);
             }
-            var user = await UserManager.FindByNameAsync(model.Email);
+            var user = await UserManager.FindByNameAsync(model.UserName);
             if (user == null)
             {
                 // Don't reveal that the user does not exist
@@ -256,13 +266,6 @@ namespace DeltaDucks.Web.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        //
-        // GET: /Account/ExternalLoginFailure
-        [AllowAnonymous]
-        public ActionResult ExternalLoginFailure()
-        {
-            return View();
-        }
 
         protected override void Dispose(bool disposing)
         {

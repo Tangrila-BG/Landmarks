@@ -1,8 +1,15 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using DeltaDucks.Data;
+using DeltaDucks.Data.IInfrastructure;
+using DeltaDucks.Data.Infrastructure;
+using DeltaDucks.Data.IRepositories;
+using DeltaDucks.Data.Repositories;
+using DeltaDucks.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -15,9 +22,13 @@ namespace DeltaDucks.Web.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private readonly  IApplicationUserRepository _userRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public ManageController()
+        public ManageController(IApplicationUserRepository userRepository, IUnitOfWork unitOfWork)
         {
+            this._userRepository = userRepository;
+            this._unitOfWork = unitOfWork;
         }
 
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
@@ -32,9 +43,9 @@ namespace DeltaDucks.Web.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -56,6 +67,7 @@ namespace DeltaDucks.Web.Controllers
         {
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
+                 : message == ManageMessageId.ChangePictureSuccess ? "Your profile picture has been changed."
                 : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
                 : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
                 : message == ManageMessageId.Error ? "An error has occurred."
@@ -73,6 +85,61 @@ namespace DeltaDucks.Web.Controllers
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
             };
             return View(model);
+        }
+
+        public FileContentResult UserPhotos()
+        {
+                string userId = User.Identity.GetUserId();
+
+            ApplicationUser currentUser = _userRepository.GetById(userId);   
+
+                if (currentUser.UserPhoto.Length == 0)
+                {
+                    string fileName = HttpContext.Server.MapPath(@"~/Images/noImg.png");
+
+                    FileInfo fileInfo = new FileInfo(fileName);
+                    long imageFileLength = fileInfo.Length;
+                    FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                    BinaryReader br = new BinaryReader(fs);
+                    byte[] imageData = br.ReadBytes((int)imageFileLength);
+
+                    return new FileContentResult(imageData, "image/jpeg");
+                }
+
+                return new FileContentResult(currentUser.UserPhoto, "image/jpeg");   
+           
+        }
+
+        public ActionResult ChangePicture()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ChangePicture([Bind(Exclude = "UserPhoto")] ChangePictureViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                byte[] imageData = null;
+
+                if (Request.Files.Count > 0)
+                {
+                    HttpPostedFileBase poImgFile = Request.Files["UserPhoto"];
+
+                    using (var binary = new BinaryReader(poImgFile.InputStream))
+                    {
+                        imageData = binary.ReadBytes(poImgFile.ContentLength);
+                    }
+                }
+
+                string userId = User.Identity.GetUserId();
+                ApplicationUser currentUser = _userRepository.GetById(userId);
+                currentUser.UserPhoto = imageData;
+                _userRepository.Update(currentUser);
+                _unitOfWork.Commit();
+            }
+
+            return RedirectToAction("Index", "Manage", new { Message = ManageMessageId.ChangePictureSuccess });
         }
 
         //
@@ -333,7 +400,7 @@ namespace DeltaDucks.Web.Controllers
             base.Dispose(disposing);
         }
 
-#region Helpers
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -381,9 +448,10 @@ namespace DeltaDucks.Web.Controllers
             SetPasswordSuccess,
             RemoveLoginSuccess,
             RemovePhoneSuccess,
+            ChangePictureSuccess,
             Error
         }
 
-#endregion
+        #endregion
     }
 }

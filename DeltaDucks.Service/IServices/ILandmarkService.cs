@@ -4,6 +4,6 @@ namespace DeltaDucks.Service.IServices
 {
     public interface ILandmarkService
     {
-        Landmark GetLandmarkById(int id);
+       // Landmark GetLandmarkById(int id);
     }
 }
