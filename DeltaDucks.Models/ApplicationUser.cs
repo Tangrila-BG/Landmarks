@@ -1,5 +1,8 @@
-﻿using System.Security.Claims;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using System.Web;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -9,8 +12,20 @@ namespace DeltaDucks.Models
     public class ApplicationUser : IdentityUser
     {
         public string LastName { get; set; }
+
         public string FirstName { get; set; }
 
+        public int Score { get; set; }
+
+        public byte[] UserPhoto { get; set; }
+
+        public virtual ICollection<Landmark> VisitedLandmarks { get; set; }
+
+        public ApplicationUser()
+        {
+            this.VisitedLandmarks = new HashSet<Landmark>();
+            this.Score = 0;
+        }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

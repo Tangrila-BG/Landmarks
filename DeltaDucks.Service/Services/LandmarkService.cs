@@ -20,10 +20,10 @@ namespace DeltaDucks.Service.Services
         }
 
 
-        public Landmark GetLandmarkById(int id)
-        {
-            return _landmarkRepository.GetById(id);
-        }
+        //public Landmark GetLandmarkById(int id)
+        //{
+        //    return _landmarkRepository.GetById(id);
+        //}
 
     }
 }

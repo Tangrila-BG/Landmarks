@@ -58,6 +58,12 @@ namespace DeltaDucks.Web.ViewModels
         public string ConfirmPassword { get; set; }
     }
 
+    public class ChangePictureViewModel
+    {
+        [Display(Name = "Choose picture")]
+        public byte[] UserPhoto { get; set; } 
+    }
+
     public class AddPhoneNumberViewModel
     {
         [Required]

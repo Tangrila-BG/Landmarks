@@ -1,6 +1,5 @@
 using DeltaDucks.Data.IInfrastructure;
 using DeltaDucks.Service.Services;
-using DeltaDucks.Web.Mappings;
 
 namespace DeltaDucks.Web
 {
@@ -29,7 +28,7 @@ namespace DeltaDucks.Web
             builder.RegisterType<DbFactory>().As<IDbFactory>().InstancePerRequest();
 
             // Repositories
-            builder.RegisterAssemblyTypes(typeof(UserApplicationRepository).Assembly)
+            builder.RegisterAssemblyTypes(typeof(ApplicationUserRepository).Assembly)
                 .Where(t => t.Name.EndsWith("Repository"))
                 .AsImplementedInterfaces().InstancePerRequest();
             // Services

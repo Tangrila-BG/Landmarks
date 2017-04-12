@@ -49,7 +49,7 @@ namespace DeltaDucks.Data.Infrastructure
                 _dbSet.Remove(obj);
         }
 
-        public virtual T GetById(int id)
+        public virtual T GetById(string id)
         {
             return _dbSet.Find(id);
         }
