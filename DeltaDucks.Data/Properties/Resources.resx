@@ -120,7 +120,4 @@
   <data name="ImagesSeed" xml:space="preserve">
     <value>~/Images/</value>
   </data>
-  <data name="LandmarksMapData" xml:space="preserve">
-    <value>~/JsonData/landmarks-map.json</value>
-  </data>
 </root>

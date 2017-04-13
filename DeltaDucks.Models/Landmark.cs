@@ -7,7 +7,7 @@ namespace DeltaDucks.Models
     {
         public int LandmarkId { get; set; }
 
-        public int Number { get; set; }
+        public byte Number { get; set; }
 
         public string Name { get; set; }
 

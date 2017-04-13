@@ -17,6 +17,7 @@ namespace DeltaDucks.Data
         public virtual DbSet<Landmark> Landmarks { get; set; }
         public virtual DbSet<Town> Towns { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
+        public virtual DbSet<Picture> Pictures { get; set; }
 
         public virtual void Commit()
         {
@@ -32,6 +33,8 @@ namespace DeltaDucks.Data
         {
             modelBuilder.Configurations.Add(new UserConfig());
             modelBuilder.Configurations.Add(new LandmarkConfig());
+            modelBuilder.Configurations.Add(new PictureConfig());
+            modelBuilder.Configurations.Add(new TownConfig());
 
             base.OnModelCreating(modelBuilder);
         }

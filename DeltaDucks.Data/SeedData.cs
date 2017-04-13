@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
+using System.Web;
+using DeltaDucks.Data.Properties;
 using DeltaDucks.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -19,6 +22,7 @@ namespace DeltaDucks.Data
             //context.Commit();
             //AsignAdminRole().ForEach(ar => context.Roles.FirstOrDefault(r => r.Name == "Admin").Users.Add(ar));
             //context.Commit();
+            GetPictures().ForEach(p=> context.Pictures.Add(p));
         }
 
         private static List<Town> GetTowns()
@@ -237,6 +241,28 @@ namespace DeltaDucks.Data
                     Name = "Пещера \"Магурата\"",
                     Number = 20
                     // Стара планина
+                }
+            };
+        }
+
+        public static List<Picture> GetPictures()
+        {
+            return new List<Picture>
+            {
+                new Picture
+                {
+                    Name = "Магурата",
+                    ImageData = File.ReadAllBytes(HttpContext.Current.Server.MapPath(Resources.ImagesSeed+"Magurata.jpg"))
+                },
+                new Picture
+                {
+                    Name = "Крепост Баба Вида",
+                    ImageData = File.ReadAllBytes(HttpContext.Current.Server.MapPath(Resources.ImagesSeed+"baba-vida.jpg"))
+                },
+                new Picture
+                {
+                    Name = "Царевец",
+                    ImageData = File.ReadAllBytes(HttpContext.Current.Server.MapPath(Resources.ImagesSeed+"tsarevets.jpg"))
                 }
             };
         }
