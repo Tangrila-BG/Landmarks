@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
+using DeltaDucks.Data;
 using DeltaDucks.Models;
 using DeltaDucks.Service.IServices;
 using Microsoft.AspNet.Identity;
@@ -146,6 +147,22 @@ namespace DeltaDucks.Web.Controllers
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+
+                    // Hardcode addding of admin role
+                    // TODO: DELETE 
+                    if (model.UserName == "admin")
+                    {
+                        using (var context = new DeltaDucksContext())
+                        {
+                            SeedData.GetRoles().ForEach(r => context.Roles.Add(r));
+                            context.Commit();
+                            SeedData.AsignAdminRole().ForEach(ar => context.Roles.FirstOrDefault(r => r.Name == "Admin").Users.Add(ar));
+                            context.Commit();
+                        }
+                       
+                    }
+
 
                     return RedirectToAction("Index", "Home");
                 }

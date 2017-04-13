@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data.Entity;
+using System.Linq;
 using DeltaDucks.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace DeltaDucks.Data
 {
@@ -10,7 +13,12 @@ namespace DeltaDucks.Data
         {
             GetLandmarks().ForEach(l => context.Landmarks.Add(l));
             GetTowns().ForEach(t => context.Towns.Add(t));
-            context.Commit();
+            //GetAdminUsers().ForEach(u => context.Users.Add(u));
+            //context.Commit();
+            //GetRoles().ForEach(r => context.Roles.Add(r));
+            //context.Commit();
+            //AsignAdminRole().ForEach(ar => context.Roles.FirstOrDefault(r => r.Name == "Admin").Users.Add(ar));
+            //context.Commit();
         }
 
         private static List<Town> GetTowns()
@@ -231,6 +239,33 @@ namespace DeltaDucks.Data
                     // Стара планина
                 }
             };
+        }
+
+        public static List<IdentityRole> GetRoles()
+        {
+                return new List<IdentityRole>
+                {
+                    new IdentityRole
+                    {
+                        Name = "Admin"
+                    }
+                };
+
+        }
+
+        public static List<IdentityUserRole> AsignAdminRole()
+        {
+            using (var context = new DeltaDucksContext())
+            {
+                return new List<IdentityUserRole>
+                {
+                    new IdentityUserRole
+                    {
+                        UserId = context.Users.FirstOrDefault(u => u.UserName == "admin").Id,
+                        RoleId = context.Roles.FirstOrDefault(r => r.Name == "Admin").Id,
+                    }
+                };
+            }
         }
 
     }

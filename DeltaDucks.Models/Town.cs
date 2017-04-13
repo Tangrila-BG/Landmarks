@@ -8,11 +8,11 @@ namespace DeltaDucks.Models
 
         public string Name { get; set; }
 
-        public virtual ICollection<Landmark> Landmarks { get; set; }
+        public virtual ICollection<Location> Locations { get; set; }
 
         public Town()
         {
-            this.Landmarks = new HashSet<Landmark>();
+            this.Locations = new HashSet<Location>();
         }
     }
 }

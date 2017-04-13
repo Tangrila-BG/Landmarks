@@ -1,4 +1,5 @@
-﻿using DeltaDucks.Data.IInfrastructure;
+﻿using System.Collections.Generic;
+using DeltaDucks.Data.IInfrastructure;
 using DeltaDucks.Data.IRepositories;
 using DeltaDucks.Models;
 
@@ -11,6 +12,7 @@ namespace DeltaDucks.Data.Repositories
     {
         public LandmarkRepository(IDbFactory dbFactory)
             : base(dbFactory) { }
+
 
         public Landmark GetLandmarkByName(string landmarkName)
         {

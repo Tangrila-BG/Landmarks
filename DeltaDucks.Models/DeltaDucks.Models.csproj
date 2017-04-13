@@ -61,6 +61,7 @@
     <Compile Include="ApplicationUser.cs" />
     <Compile Include="Landmark.cs" />
     <Compile Include="Location.cs" />
+    <Compile Include="Picture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Town.cs" />
   </ItemGroup>

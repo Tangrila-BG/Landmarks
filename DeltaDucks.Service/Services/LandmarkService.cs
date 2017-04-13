@@ -1,4 +1,5 @@
-﻿using DeltaDucks.Data.IInfrastructure;
+﻿using System.Collections.Generic;
+using DeltaDucks.Data.IInfrastructure;
 using DeltaDucks.Data.Infrastructure;
 using DeltaDucks.Data.Repositories;
 using DeltaDucks.Models;
@@ -19,11 +20,10 @@ namespace DeltaDucks.Service.Services
             //this._unitOfWork = unitOfWork;
         }
 
-
-        //public Landmark GetLandmarkById(int id)
-        //{
-        //    return _landmarkRepository.GetById(id);
-        //}
+        public IEnumerable<Landmark> GetLandmarks()
+        {      
+                return _landmarkRepository.GetAll();    
+        }
 
     }
 }

@@ -1,9 +1,11 @@
-﻿using DeltaDucks.Models;
+﻿using System.Collections.Generic;
+using DeltaDucks.Models;
 
 namespace DeltaDucks.Service.IServices
 {
     public interface ILandmarkService
     {
-       // Landmark GetLandmarkById(int id);
+         IEnumerable<Landmark> GetLandmarks();
+        // Landmark GetLandmarkById(int id);
     }
 }

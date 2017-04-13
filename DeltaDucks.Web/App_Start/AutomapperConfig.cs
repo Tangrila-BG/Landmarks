@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DeltaDucks.Models;
+using DeltaDucks.Web.ViewModels;
 using DeltaDucks.Web.ViewModels.Account;
 
 namespace DeltaDucks.Web
@@ -21,6 +22,8 @@ namespace DeltaDucks.Web
                 cfg.CreateMap<ApplicationUser, LoginViewModel>();
                 cfg.CreateMap<LoginViewModel, ApplicationUser>();
                 cfg.CreateMap<ResetPasswordViewModel, ApplicationUser>();
+                cfg.CreateMap<Landmark, LandmarkViewModel>();
+                cfg.CreateMap<LandmarkViewModel, Landmark>();
             });
         }
     }
