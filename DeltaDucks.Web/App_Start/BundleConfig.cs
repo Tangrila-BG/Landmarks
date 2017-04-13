@@ -10,9 +10,9 @@ namespace DeltaDucks.Web
         {
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                 "~/Scripts/app/app.js",
-                "~/Scripts/app/landmarks-map.js",
-                "~/Scripts/app/IMap.js",
-                "~/Scripts/app/services/mapService.js"
+                "~/Scripts/app/landmarksMap.js",
+                "~/Scripts/app/services/mapService.js",
+                "~/Scripts/app/controllers/mapsController.js"
             ));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(

@@ -17,10 +17,6 @@ namespace DeltaDucks.Web
         protected void Application_Start()
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
-            //Initialize database 
-            new DeltaDucksContext().Database.Initialize(true);
-            // Database.SetInitializer(new DropCreateDatabaseIfModelChanges<DeltaDucksContext>());
-
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

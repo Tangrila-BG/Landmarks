@@ -4,8 +4,8 @@ var App;
     (function (Services) {
         class MapService {
             constructor() {
-                this.getStyles = () => {
-                    return $.get("/api/landmarks");
+                this.getOptions = () => {
+                    return $.get(`/api/maps/`);
                 };
             }
         }

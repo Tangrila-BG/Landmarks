@@ -61,11 +61,11 @@ namespace DeltaDucks.Web.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ~/JsonData/landmarks-map-styles.json.
+        ///   Looks up a localized string similar to ~/JsonData/landmarks-map.json.
         /// </summary>
-        public static string LandmarksMapStyles {
+        public static string LandmarksMapData {
             get {
-                return ResourceManager.GetString("LandmarksMapStyles", resourceCulture);
+                return ResourceManager.GetString("LandmarksMapData", resourceCulture);
             }
         }
     }
