@@ -524,6 +524,29 @@
         }
       ],
       "number": 6
+    },
+    {
+      "name": "Test name",
+      "description": "",
+      "places": [
+        {
+          "name": "Test",
+          "description": "",
+          "location": {
+            "lat": 2,
+            "lng": 2
+          }
+        },
+        {
+          "name": "Test",
+          "description": "",
+          "location": {
+            "lat": 2,
+            "lng": 2
+          }
+        }
+      ],
+      "number": 6
     }
   ]
 }
