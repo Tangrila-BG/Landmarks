@@ -38,6 +38,5 @@ namespace DeltaDucks.Data
 
             base.OnModelCreating(modelBuilder);
         }
-
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace DeltaDucks.Data.IInfrastructure
@@ -14,5 +15,6 @@ namespace DeltaDucks.Data.IInfrastructure
         T GetById(string id);
         IEnumerable<T> GetAll();
         IEnumerable<T> GetMany(Expression<Func<T, bool>> where);
+        IEnumerable<T> GetPageOfLendmarks(IOrderedEnumerable<T> contetnt, int skip, int take);
     }
 }

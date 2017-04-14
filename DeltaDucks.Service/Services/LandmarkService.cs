@@ -31,7 +31,8 @@ namespace DeltaDucks.Service.Services
             const int recordsOnPage = 10; 
             int skip = (page - 1)*recordsOnPage;
             int take = recordsOnPage;
-            return _landmarkRepository.GetAll().OrderBy(x => x.Number).Skip(skip).Take(take);
+            return _landmarkRepository
+                .GetPageOfLendmarks(_landmarkRepository.GetAll().OrderBy(x => x.Number), take, skip);
         }
 
         public int LandmarksCount()
