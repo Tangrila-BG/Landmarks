@@ -7,5 +7,9 @@ namespace DeltaDucks.Service.IServices
     {
          IEnumerable<Landmark> GetLandmarks();
         // Landmark GetLandmarkById(int id);
+
+        IEnumerable<Landmark> GetSinglePageLendmarks(int page);
+
+        int LandmarksCount();
     }
 }

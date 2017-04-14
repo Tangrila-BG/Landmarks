@@ -21,12 +21,28 @@ namespace DeltaDucks.Web.Controllers
             this._landmarkService = landmarkService;
         }
         // GET: Landmark
-        public ActionResult Index()
+//        public ActionResult Index()
+//        {
+//            IEnumerable<LandmarkViewModel> landmarksViewModel;
+//            IEnumerable<Landmark> landmarks;
+//
+//            landmarks = _landmarkService.GetLandmarks().ToList();
+//
+//            landmarksViewModel = Mapper.Map<IEnumerable<Landmark>, IEnumerable<LandmarkViewModel>>(landmarks);
+//            return View(landmarksViewModel);
+//        }
+
+        public ActionResult Index(int page = 1)
         {
             IEnumerable<LandmarkViewModel> landmarksViewModel;
             IEnumerable<Landmark> landmarks;
+            const int recordsOnPage = 10;
+            int landmarksCount = _landmarkService.LandmarksCount();
+            this.ViewBag.MaxPage = (landmarksCount/recordsOnPage) + (landmarksCount%recordsOnPage > 0 ? 1 : 0);
+            this.ViewBag.MinPage = 1;
+            this.ViewBag.Page = page;
 
-            landmarks = _landmarkService.GetLandmarks().ToList();
+            landmarks = _landmarkService.GetSinglePageLendmarks(page).ToList();
 
             landmarksViewModel = Mapper.Map<IEnumerable<Landmark>, IEnumerable<LandmarkViewModel>>(landmarks);
             return View(landmarksViewModel);
