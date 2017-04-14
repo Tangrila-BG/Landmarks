@@ -1,13 +1,22 @@
 ﻿@model DeltaDucks.Web.ViewModels.LandmarkViewModel
 
-<div class="panel-body">
+<div class="panel panel-default">
+    <div class="panel-heading">
+        @Html.Label(Model.Name)
+    </div>
+    <div class="panel-body">
         <div class="media-body">
-            <h3 class="media-heading">
-                @Model.Name
-            </h3>
+          
             <p>@Model.Number</p>
             <p>@Model.Description</p>
         </div>
+    </div>
+    <a href="@Url.Action("Details", new {number = Model.Number})" class="btn btn-default"
+       style="margin: 15px">Още</a>
+
+    @*TODO: Add pop-up for code *@
+    <a href="@Url.Action("Details", new { number = Model.Number })" class="btn btn-default"
+       style="margin: 15px; float: right">Въведи посещение</a>
 </div>
 
 

@@ -29,25 +29,43 @@ namespace DeltaDucks.Web.Controllers
         //}
         public ActionResult Visited()
         {
-            UserLandmarkViewModel userLandmarkViewModel;
+            VisitedLandmarksViewModel visitedLandmarksViewModel;
             IEnumerable<Landmark> userVisitedLandmarks;
-            IEnumerable<Landmark> userNotVisitedLandmarks;
 
             string userId = User.Identity.GetUserId();
             userVisitedLandmarks = _landmarkService.GetUserVisitedLandmarks(userId);
-            userNotVisitedLandmarks = _landmarkService.GetUserNotVisitedLandmarks(userId);
-     
+
             var userScore = _userService.GetUserScore(userId);
             var userVisitedLandmarkViewModels = Mapper.Map<IEnumerable<Landmark>, IEnumerable<LandmarkViewModel>>(userVisitedLandmarks);
-            var userNotVisitedLandmarkViewModels = Mapper.Map<IEnumerable<Landmark>, IEnumerable<LandmarkViewModel>>(userNotVisitedLandmarks);
 
-            userLandmarkViewModel = new UserLandmarkViewModel
+            visitedLandmarksViewModel = new VisitedLandmarksViewModel
             {
                 Score = userScore,
-                VisitedLandmarks = userVisitedLandmarkViewModels.ToList(),
+                VisitedLandmarks = userVisitedLandmarkViewModels.ToList()
+            };
+
+            return View(visitedLandmarksViewModel);
+        }
+
+        public ActionResult NotVisited()
+        {
+            NotVisitedLandmarksViewModel notVisitedLandmarksViewModel;
+            IEnumerable<Landmark> userNotVisitedLandmarks;
+
+            string userId = User.Identity.GetUserId();
+            userNotVisitedLandmarks = _landmarkService.GetUserNotVisitedLandmarks(userId);
+
+            var userScore = _userService.GetUserScore(userId);
+            var userNotVisitedLandmarkViewModels = Mapper.Map<IEnumerable<Landmark>, IEnumerable<LandmarkViewModel>>(userNotVisitedLandmarks);
+
+            notVisitedLandmarksViewModel = new NotVisitedLandmarksViewModel()
+            {
+                Score = userScore,
                 NotVisitedLandmarks = userNotVisitedLandmarkViewModels.ToList()
             };
-            return View(userLandmarkViewModel);
+
+            return View(notVisitedLandmarksViewModel);
         }
+
     }
 }
