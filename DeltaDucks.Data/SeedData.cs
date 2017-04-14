@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using DeltaDucks.Data.Properties;
 using DeltaDucks.Models;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace DeltaDucks.Data
@@ -21,6 +22,8 @@ namespace DeltaDucks.Data
             GetLandmarks().ForEach(landmark => context.Landmarks.Add(landmark));
             GetPictures().ForEach(picture => context.Pictures.Add(picture));
 
+            var users = GetUsers(context);
+            GetComments(users).ForEach(comment => context.Comments.Add(comment));
 
             // ADDITION OF ROLES 
             //GetAdminUsers().ForEach(u => context.Users.Add(u));
@@ -1594,6 +1597,81 @@ namespace DeltaDucks.Data
                     }
                 };
             }
+        }
+#endregion
+
+#region Users
+
+        public static List<ApplicationUser> GetUsers(DeltaDucksContext context)
+        {
+
+            var store = new UserStore<ApplicationUser>(context);
+            var manager = new UserManager<ApplicationUser>(store);
+            var users = new List<ApplicationUser>
+            {
+                new ApplicationUser
+                {
+                    UserName = "johnDoe",
+                    FirstName = "John",
+                    LastName = "Doe",
+                    Email = "johnDoe@yahoo.com"
+                },
+                new ApplicationUser
+                {
+                    UserName = "jimmy",
+                    FirstName = "Jim",
+                    LastName = "Roggers",
+                    Email = "jimmy@gmail.com"
+                }
+            };
+            users.ForEach(user => manager.Create(user,"asd123"));
+            return users;
+        }
+#endregion
+
+#region Comments
+
+        public static List<Comment> GetComments(List<ApplicationUser> users)
+        {
+            return new List<Comment>
+            {
+                new Comment
+                {
+                    Text = "Силно препоръчвам.",
+                    Author = users[0],
+                    LandmarkId = 1
+                },
+                new Comment
+                {
+                    Text = "Красиво.",
+                    Author = users[0],
+                    LandmarkId = 2
+                },
+                new Comment
+                {
+                    Text = "Прекрасна гледка.",
+                    Author = users[1],
+                    LandmarkId = 1
+                },
+                new Comment
+                {
+                    Text = "Силно препоръчвам",
+                    Author = users[1],
+                    LandmarkId = 10
+                },
+                new Comment
+                {
+                    Text = "C'est magnifique!",
+                    Author = users[1],
+                    LandmarkId = 2
+                },
+                new Comment
+                {
+                    Text = "Не мога да измисля коментар.",
+                    Author = users[0],
+                    LandmarkId = 10
+                },
+            };
         }
 #endregion
     }
