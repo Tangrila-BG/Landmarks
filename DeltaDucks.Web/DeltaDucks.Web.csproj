@@ -347,6 +347,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Landmark\Index.cshtml" />
     <Content Include="Views\Shared\Landmark.cshtml" />
+    <Content Include="Views\Landmark\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

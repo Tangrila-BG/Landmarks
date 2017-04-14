@@ -1,0 +1,14 @@
+﻿@model DeltaDucks.Web.ViewModels.LandmarkViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+<h2>@Model.Name</h2>
+<div>
+    <hr />
+    <h5>Номер: @Model.Number</h5>
+    <div><p>@Model.Information</p></div>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index", new { page = Model.Number/10 + (Model.Number%10 == 0 ? 0 : 1)})
+</p>

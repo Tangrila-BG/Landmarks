@@ -21,6 +21,7 @@
                     @Html.Label(item.Name)
                 </div>
                 @Html.Partial("Landmark", item)
+                <a href="@Url.Action("Details", new { number = item.Number })">Още</a>
             </div>
         }
         @if (ViewBag.Page > ViewBag.MinPage)
