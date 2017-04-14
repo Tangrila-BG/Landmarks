@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -57,7 +58,18 @@ namespace DeltaDucks.Web.Controllers
             landmark = _landmarkService.GetLandmarks().FirstOrDefault(x => x.Number == number);
 
             landmarkViewModel = Mapper.Map<Landmark, LandmarkViewModel>(landmark);
+            ViewBag.Pictures = RenderPicture(landmarkViewModel);
             return View(landmarkViewModel);
+        }
+
+        private ICollection<byte[]> RenderPicture(LandmarkViewModel viewModel)
+        {
+            List<byte[]> pictures = new List<byte[]>();
+            foreach (var picture in viewModel.Pictures)
+            {
+                pictures.Add(picture.ImageData);
+            }
+            return pictures;
         }
     }
 }
