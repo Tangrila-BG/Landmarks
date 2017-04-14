@@ -34,6 +34,16 @@ namespace DeltaDucks.Service.Services
             return _landmarkRepository.GetPageOfLendmarks(recordsOnPage, skip);
         }
 
+        public IEnumerable<Landmark> GetUserVisitedLandmarks(string id)
+        {
+            return _landmarkRepository.GetUserVisitedLandmarks(id);
+        }
+
+        public IEnumerable<Landmark> GetUserNotVisitedLandmarks(string id)
+        {
+            return _landmarkRepository.GetUserNotVisitedLandmarks(id);
+        }
+
         public int LandmarksCount()
         {
             return _landmarkRepository.GetCount();

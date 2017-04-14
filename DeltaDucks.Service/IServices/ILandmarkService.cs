@@ -9,6 +9,8 @@ namespace DeltaDucks.Service.IServices
         // Landmark GetLandmarkById(int id);
 
         IEnumerable<Landmark> GetSinglePageLendmarks(int page);
+        IEnumerable<Landmark> GetUserVisitedLandmarks(string id);
+        IEnumerable<Landmark> GetUserNotVisitedLandmarks(string id);
 
         int LandmarksCount();
     }

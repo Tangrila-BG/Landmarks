@@ -9,6 +9,7 @@ namespace DeltaDucks.Service.IServices
         void RegisterUser(ApplicationUser user);
         void UpdateUserPassword(string password);
         void LoginUser(string username, string password);
+        int GetUserScore(string id);
         void SaveUser();
     }
 }

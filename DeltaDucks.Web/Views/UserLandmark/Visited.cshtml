@@ -1,0 +1,14 @@
+﻿@model DeltaDucks.Web.ViewModels.UserLandmarkViewModel
+@{
+    ViewBag.Title = "Visited";
+}
+
+<h2>Събрани точки: @Model.Score</h2>
+
+@foreach (var item in Model.VisitedLandmarks)
+{
+    @Html.Partial("Landmark", item);
+}
+
+
+

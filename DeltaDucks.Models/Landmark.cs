@@ -17,6 +17,8 @@ namespace DeltaDucks.Models
 
         public int Visits { get; set; }
 
+        public int Points { get; set; }
+
         public int?  LocationId { get; set; }
 
         public virtual Location Location { get; set; }

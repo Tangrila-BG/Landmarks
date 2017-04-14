@@ -18,5 +18,11 @@ namespace DeltaDucks.Data.Repositories
             return this.DbContext.Users.FirstOrDefault(u => u.UserName == username);
         }
 
+        public int GetUserScore(string id)
+        {
+            return this.DbContext.Users.FirstOrDefault(u => u.Id == id).Score;
+        }
+
+
     }
 }

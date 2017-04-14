@@ -6,5 +6,6 @@ namespace DeltaDucks.Data.IRepositories
     public interface IApplicationUserRepository : IRepository<ApplicationUser>
     {
         ApplicationUser GetUserByUsername(string username);
+        int GetUserScore(string id);
     }
 }

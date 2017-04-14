@@ -24,6 +24,21 @@ namespace DeltaDucks.Data.Repositories
             return DbContext.Landmarks.OrderBy(x => x.Number).Skip(skip).Take(take);
         }
 
+        public IEnumerable<Landmark> GetUserVisitedLandmarks(string id)
+        {
+            return DbContext.Users.FirstOrDefault(u => u.Id == id).VisitedLandmarks;
+        }
+
+        public IEnumerable<Landmark> GetUserNotVisitedLandmarks(string id)
+        {
+            return DbContext.Landmarks
+                .Where(l =>
+                    !DbContext.Users.FirstOrDefault(u => u.Id == id)
+                        .VisitedLandmarks.Select(ul => ul.LandmarkId)
+                        .ToList().Contains(l.LandmarkId)
+                );
+        }
+
         // Hardcode number 
         public override void Update(Landmark entity)
         {

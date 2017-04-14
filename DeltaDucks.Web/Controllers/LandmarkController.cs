@@ -9,6 +9,7 @@ using DeltaDucks.Models;
 using DeltaDucks.Service.IServices;
 using DeltaDucks.Service.Services;
 using DeltaDucks.Web.ViewModels;
+using Microsoft.AspNet.Identity;
 
 namespace DeltaDucks.Web.Controllers
 {

@@ -16,19 +16,22 @@ namespace DeltaDucks.Data
         {
             GetTowns().ForEach(town => context.Towns.Add(town));
             context.Commit();
-            ;
-            GetLocations().ForEach(location => context.Locations.Add(location));
+            GetLocations(context).ForEach(location => context.Locations.Add(location));
             context.Commit();
             GetLandmarks().ForEach(landmark => context.Landmarks.Add(landmark));
+            GetPictures().ForEach(picture => context.Pictures.Add(picture));
+
+
+            // ADDITION OF ROLES 
             //GetAdminUsers().ForEach(u => context.Users.Add(u));
             //context.Commit();
             //GetRoles().ForEach(r => context.Roles.Add(r));
             //context.Commit();
             //AsignAdminRole().ForEach(ar => context.Roles.FirstOrDefault(r => r.Name == "Admin").Users.Add(ar));
             //context.Commit();
-            GetPictures().ForEach(picture => context.Pictures.Add(picture));
-        }
 
+        }
+#region Towns
         private static List<Town> GetTowns()
         {
             var list = new List<Town>
@@ -453,8 +456,10 @@ namespace DeltaDucks.Data
 
             return list.ToList();
         }
+        #endregion
 
-        private static List<Location> GetLocations()
+#region Locations
+        private static List<Location> GetLocations(DeltaDucksContext context)
         {
             return new List<Location>
             {
@@ -790,7 +795,9 @@ namespace DeltaDucks.Data
                 }
             };
         }
+        #endregion
 
+#region Landmarks
         private static List<Landmark> GetLandmarks()
         {
             return new List<Landmark>
@@ -1530,7 +1537,9 @@ namespace DeltaDucks.Data
                 },
             };
         }
+        #endregion
 
+#region Pictures
         public static List<Picture> GetPictures()
         {
             return new List<Picture>
@@ -1569,7 +1578,9 @@ namespace DeltaDucks.Data
                 }
             };
         }
+        #endregion
 
+#region UserRoles
         public static List<IdentityUserRole> AsignAdminRole()
         {
             using (var context = new DeltaDucksContext())
@@ -1584,5 +1595,6 @@ namespace DeltaDucks.Data
                 };
             }
         }
+#endregion
     }
 }

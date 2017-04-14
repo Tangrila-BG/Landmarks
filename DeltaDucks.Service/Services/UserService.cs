@@ -33,6 +33,12 @@ namespace DeltaDucks.Service.Services
             _userRepository.Add(user);
         }
 
+        public int GetUserScore(string id)
+        {
+            return _userRepository.GetUserScore(id);
+        }
+
+
         public void SaveUser()
         {
             _unitOfWork.Commit();
