@@ -74,11 +74,5 @@ namespace DeltaDucks.Data.Infrastructure
         {
             return _dbSet.Where(where).FirstOrDefault<T>();
         }
-
-        public virtual IEnumerable<T> GetPageOfLendmarks(IOrderedEnumerable<T> contetnt, int take, int skip)
-        {
-            return contetnt.Skip(skip).Take(take);
-        }
-
     }
 }

@@ -47,5 +47,16 @@ namespace DeltaDucks.Web.Controllers
             landmarksViewModel = Mapper.Map<IEnumerable<Landmark>, IEnumerable<LandmarkViewModel>>(landmarks);
             return View(landmarksViewModel);
         }
+
+        public ActionResult Details(int number)
+        {
+            LandmarkViewModel landmarkViewModel;
+            Landmark landmark;
+
+            landmark = _landmarkService.GetLandmarks().FirstOrDefault(x => x.Number == number);
+
+            landmarkViewModel = Mapper.Map<Landmark, LandmarkViewModel>(landmark);
+            return View(landmarkViewModel);
+        }
     }
 }

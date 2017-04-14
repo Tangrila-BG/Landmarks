@@ -2,6 +2,7 @@
 using System.Linq;
 using DeltaDucks.Data.IInfrastructure;
 using DeltaDucks.Data.Infrastructure;
+using DeltaDucks.Data.IRepositories;
 using DeltaDucks.Data.Repositories;
 using DeltaDucks.Models;
 using DeltaDucks.Service.IServices;
@@ -10,12 +11,12 @@ namespace DeltaDucks.Service.Services
 {
     public class LandmarkService : ILandmarkService
     {
-        private readonly IRepository<Landmark> _landmarkRepository;
+        private readonly ILandmarkRepository _landmarkRepository;
 
         // NOT USED YET 
         //private readonly IUnitOfWork _unitOfWork;
 
-        public LandmarkService(IRepository<Landmark> landmarkRepository) //,IUnitOfWork unitOfWork)
+        public LandmarkService(ILandmarkRepository landmarkRepository) //,IUnitOfWork unitOfWork)
         {
             this._landmarkRepository = landmarkRepository;
             //this._unitOfWork = unitOfWork;
@@ -30,9 +31,7 @@ namespace DeltaDucks.Service.Services
         {
             const int recordsOnPage = 10; 
             int skip = (page - 1)*recordsOnPage;
-            int take = recordsOnPage;
-            return _landmarkRepository
-                .GetPageOfLendmarks(_landmarkRepository.GetAll().OrderBy(x => x.Number), take, skip);
+            return _landmarkRepository.GetPageOfLendmarks(recordsOnPage, skip);
         }
 
         public int LandmarksCount()
