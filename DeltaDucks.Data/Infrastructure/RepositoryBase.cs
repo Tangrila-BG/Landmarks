@@ -26,6 +26,12 @@ namespace DeltaDucks.Data.Infrastructure
         }
 
         //Implementation
+        public virtual int GetCount()
+        {
+            return _dbSet.ToList().Count();
+        }
+
+
         public virtual void Add(T entity)
         {
             _dbSet.Add(entity);

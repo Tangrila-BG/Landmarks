@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using DeltaDucks.Data.IInfrastructure;
 using DeltaDucks.Data.Infrastructure;
 using DeltaDucks.Data.Repositories;
@@ -25,5 +26,17 @@ namespace DeltaDucks.Service.Services
                 return _landmarkRepository.GetAll();    
         }
 
+        public IEnumerable<Landmark> GetSinglePageLendmarks(int page)
+        {
+            const int recordsOnPage = 10; 
+            int skip = (page - 1)*recordsOnPage;
+            int take = recordsOnPage;
+            return _landmarkRepository.GetAll().OrderBy(x => x.Number).Skip(skip).Take(take);
+        }
+
+        public int LandmarksCount()
+        {
+            return _landmarkRepository.GetCount();
+        }
     }
 }

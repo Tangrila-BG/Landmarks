@@ -6,6 +6,7 @@ namespace DeltaDucks.Data.IInfrastructure
 {
     public interface IRepository<T> where T : class
     {
+        int GetCount();
         void Add(T entity);
         void Update(T entity);
         void Delete(T entity);
