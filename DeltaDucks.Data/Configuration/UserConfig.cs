@@ -17,6 +17,10 @@ namespace DeltaDucks.Data.Configuration
             Property(u => u.LastName).IsRequired().HasMaxLength(50);
             Property(u => u.Email).IsRequired();
             Property(u => u.UserPhoto).HasMaxLength(MegaBytePictureMaxLength);
+
+            this.HasMany(u => u.Comments)
+                .WithRequired(c => c.Author)
+                .WillCascadeOnDelete(true);
         }
     }
 }
