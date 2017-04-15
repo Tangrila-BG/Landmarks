@@ -45,6 +45,8 @@
     },
     "zoom": 7,
     "minZoom": 7,
+    "mapTypeId": "terrain",
+    "gesturHandling": "cooperative",
     "styles": [
       {
         "elementType": "geometry",

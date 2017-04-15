@@ -8,5 +8,6 @@ declare namespace App.GoogleMap {
         addMarker: (location: any) => void;
         private listenToMarker;
         private addCustomIcon;
+        private bindToLocation;
     }
 }
