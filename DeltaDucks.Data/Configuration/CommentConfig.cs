@@ -9,6 +9,7 @@ namespace DeltaDucks.Data.Configuration
         {
             ToTable("Comments");
             Property(c => c.Text).IsRequired().HasMaxLength(300);
+            Property(c => c.DateCreated).IsRequired();
         }
     }
 }
