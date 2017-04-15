@@ -24,6 +24,21 @@ namespace DeltaDucks.Service.Services
             return _userRepository.GetAll();
         }
 
+        public ApplicationUser GetUserByUserName(string username)
+        {
+            return _userRepository.GetUserByUsername(username);
+        }
+
+        public ApplicationUser GetUserById(string userId)
+        {
+            return _userRepository.GetById(userId);
+        }
+
+        public void DeleteUser(ApplicationUser user)
+        {
+            _userRepository.Delete(user);
+        }
+
         public void UpdateUserPassword(string pasword) { }
 
         public void LoginUser(string username, string password) { }
@@ -47,6 +62,13 @@ namespace DeltaDucks.Service.Services
         {
             _userRepository.AddVisit(id, landmarkId);
         }
+
+        public IEnumerable<ApplicationUser> GetSinglePageUsers(int page, int limit)
+        {
+            int skip = (page - 1) * limit;
+            return _userRepository.GetPageOfUsers(limit, skip);
+        }
+
         public void SaveUser()
         {
             _unitOfWork.Commit();

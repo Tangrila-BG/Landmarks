@@ -27,7 +27,9 @@ namespace DeltaDucks.Web
                 cfg.CreateMap<Landmark, LandmarkViewModel>();
                 cfg.CreateMap<LandmarkViewModel, Landmark>();
 
-                cfg.CreateMap<ApplicationUser, UsersViewModel>();
+                cfg.CreateMap<ApplicationUser, VisitedLandmarksViewModel>();
+                cfg.CreateMap<ApplicationUser, NotVisitedLandmarksViewModel>();
+
 
                 cfg.CreateMap<Landmark, LandmarkToMapDto>()
                     .ForMember(dest => dest.title,
