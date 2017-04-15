@@ -27,6 +27,8 @@ namespace DeltaDucks.Web
                 cfg.CreateMap<Landmark, LandmarkViewModel>();
                 cfg.CreateMap<LandmarkViewModel, Landmark>();
 
+                cfg.CreateMap<ApplicationUser, UsersViewModel>();
+
                 cfg.CreateMap<Landmark, LandmarkToMapDto>()
                     .ForMember(dest => dest.title,
                         opt => opt.MapFrom(src =>
@@ -44,6 +46,11 @@ namespace DeltaDucks.Web
                     .ForMember(dest => dest.Information, opt => opt.MapFrom(src => src.Information))
                     .ForMember(dest => dest.Code, opt => opt.MapFrom(src => src.Code))
                     .ForMember(dest => dest.Points, opt => opt.MapFrom(src => src.Points));
+
+                cfg.CreateMap<CreateLandmarkViewModel, Location>()
+                    .ForMember(dest => dest.Latitude, opt => opt.MapFrom(src => src.Latitude))
+                    .ForMember(dest => dest.Longitude, opt => opt.MapFrom(src => src.Longitude))
+                    .ForMember(dest => dest.Town, opt => opt.Ignore());
             });
         }
     }

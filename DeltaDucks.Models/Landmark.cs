@@ -21,7 +21,7 @@ namespace DeltaDucks.Models
 
         public string Code { get; set; }
 
-        public int?  LocationId { get; set; }
+        public int  LocationId { get; set; }
 
         public virtual Location Location { get; set; }
 

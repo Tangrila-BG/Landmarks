@@ -36,5 +36,17 @@
         [Column(TypeName = "nchar(5)")]
         [Display(Name = "Уникален код")]
         public string Code { get; set; }
+
+        [Required]
+        [Display(Name = "Географска ширина")]
+        public float Latitude { get; set; }
+
+        [Required]
+        [Display(Name = "Географска дължина")]
+        public float Longitude { get; set; }
+
+        [Required]
+        [Display(Name="Град")]
+        public string Town { get; set; }
     }
 }

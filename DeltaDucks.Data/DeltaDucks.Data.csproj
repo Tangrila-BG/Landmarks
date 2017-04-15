@@ -100,6 +100,7 @@
     <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
     <Compile Include="IRepositories\IPictureRepository.cs" />
+    <Compile Include="IRepositories\ITownRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IRepositories\ILandmarkRepository.cs" />
     <Compile Include="IRepositories\IApplicationUserRepository.cs" />
@@ -111,6 +112,7 @@
     <Compile Include="Repositories\LandmarkRepository.cs" />
     <Compile Include="Repositories\ApplicationUserRepository.cs" />
     <Compile Include="Repositories\PictureRepository.cs" />
+    <Compile Include="Repositories\TownRepository.cs" />
     <Compile Include="SeedData.cs" />
   </ItemGroup>
   <ItemGroup>

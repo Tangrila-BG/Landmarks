@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.Entity;
 using System.IO;
@@ -1639,37 +1640,43 @@ namespace DeltaDucks.Data
                 {
                     Text = "Силно препоръчвам.",
                     Author = users[0],
-                    LandmarkId = 1
+                    LandmarkId = 1,
+                    DateCreated = DateTime.Now
                 },
                 new Comment
                 {
                     Text = "Красиво.",
                     Author = users[0],
-                    LandmarkId = 2
+                    LandmarkId = 2,
+                    DateCreated = DateTime.Now
                 },
                 new Comment
                 {
                     Text = "Прекрасна гледка.",
                     Author = users[1],
-                    LandmarkId = 1
+                    LandmarkId = 1,
+                    DateCreated = DateTime.Now
                 },
                 new Comment
                 {
                     Text = "Силно препоръчвам",
                     Author = users[1],
-                    LandmarkId = 10
+                    LandmarkId = 10,
+                    DateCreated = DateTime.Now
                 },
                 new Comment
                 {
                     Text = "C'est magnifique!",
                     Author = users[1],
-                    LandmarkId = 2
+                    LandmarkId = 2,
+                    DateCreated = DateTime.Now
                 },
                 new Comment
                 {
                     Text = "Не мога да измисля коментар.",
                     Author = users[0],
-                    LandmarkId = 10
+                    LandmarkId = 10,
+                    DateCreated = DateTime.Now
                 },
             };
         }

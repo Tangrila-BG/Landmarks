@@ -14,6 +14,7 @@ namespace DeltaDucks.Data.Configuration
             Property(l => l.Code).IsRequired().IsFixedLength().HasMaxLength(5);
             Property(l => l.Description).HasMaxLength(500);
             Property(l => l.Information).HasMaxLength(5000);
+            HasRequired(x => x.Location);
 
             this.HasMany(l => l.UsersVisited)
                 .WithMany(u => u.VisitedLandmarks)
