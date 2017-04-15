@@ -55,6 +55,14 @@
         ]
       },
       {
+        "elementType": "labels",
+        "stylers": [
+          {
+            "visibility": "off"
+          }
+        ]
+      },
+      {
         "elementType": "labels.text.fill",
         "stylers": [
           {
@@ -71,20 +79,14 @@
         ]
       },
       {
-        "featureType": "administrative",
-        "elementType": "geometry.stroke",
-        "stylers": [
-          {
-            "color": "#c9b2a6"
-          }
-        ]
-      },
-      {
         "featureType": "administrative.country",
         "elementType": "geometry.stroke",
         "stylers": [
           {
             "color": "#000000"
+          },
+          {
+            "visibility": "on"
           }
         ]
       },
@@ -142,15 +144,6 @@
       },
       {
         "featureType": "poi",
-        "elementType": "labels.text",
-        "stylers": [
-          {
-            "visibility": "off"
-          }
-        ]
-      },
-      {
-        "featureType": "poi",
         "elementType": "labels.text.fill",
         "stylers": [
           {
@@ -194,36 +187,11 @@
         ]
       },
       {
-        "featureType": "road",
-        "elementType": "labels",
-        "stylers": [
-          {
-            "visibility": "off"
-          }
-        ]
-      },
-      {
-        "featureType": "road.arterial",
-        "stylers": [
-          {
-            "visibility": "off"
-          }
-        ]
-      },
-      {
         "featureType": "road.arterial",
         "elementType": "geometry",
         "stylers": [
           {
             "color": "#fdfcf8"
-          }
-        ]
-      },
-      {
-        "featureType": "road.highway",
-        "stylers": [
-          {
-            "visibility": "off"
           }
         ]
       },
@@ -242,15 +210,6 @@
         "stylers": [
           {
             "color": "#e9bc62"
-          }
-        ]
-      },
-      {
-        "featureType": "road.highway",
-        "elementType": "labels",
-        "stylers": [
-          {
-            "visibility": "off"
           }
         ]
       },
@@ -274,26 +233,10 @@
       },
       {
         "featureType": "road.local",
-        "stylers": [
-          {
-            "visibility": "off"
-          }
-        ]
-      },
-      {
-        "featureType": "road.local",
         "elementType": "labels.text.fill",
         "stylers": [
           {
             "color": "#806b63"
-          }
-        ]
-      },
-      {
-        "featureType": "transit.line",
-        "stylers": [
-          {
-            "visibility": "off"
           }
         ]
       },
@@ -326,14 +269,6 @@
       },
       {
         "featureType": "transit.station",
-        "stylers": [
-          {
-            "visibility": "off"
-          }
-        ]
-      },
-      {
-        "featureType": "transit.station",
         "elementType": "geometry",
         "stylers": [
           {
@@ -352,15 +287,6 @@
       },
       {
         "featureType": "water",
-        "elementType": "labels.text",
-        "stylers": [
-          {
-            "visibility": "off"
-          }
-        ]
-      },
-      {
-        "featureType": "water",
         "elementType": "labels.text.fill",
         "stylers": [
           {
@@ -369,185 +295,5 @@
         ]
       }
     ]
-  },
-  "markers": [
-    {
-      "name": "Град Банско",
-      "description": "Банско е богато място",
-      "places": [
-        {
-          "name": "Музей \"Никола Вапцаров\"",
-          "description": "",
-          "location": {
-            "lat": 2,
-            "lng": 2
-          }
-        },
-        {
-          "name": "Музей \"Неофит Рилски\"",
-          "description": "",
-          "location": {
-            "lat": 2,
-            "lng": 2
-          }
-        },
-        {
-          "name": "Велянова къща",
-          "description": "",
-          "location": {
-            "lat": 2,
-            "lng": 2
-          }
-        },
-        {
-          "name": "Постоянна иконна изложба \"Банска художествена школа\"",
-          "description": "",
-          "location": {
-            "lat": 2,
-            "lng": 2
-          }
-        },
-        {
-          "name": "Църква \"Св. Троица\"",
-          "description": "",
-          "location": {
-            "lat": 2,
-            "lng": 2
-          }
-        }
-      ],
-      "number": 1
-    },
-    {
-      "name": "Пирин",
-      "description": "",
-      "places": [
-        {
-          "name": "Връх Вихрен",
-          "description": "",
-          "location": {
-            "lat": 2,
-            "lng": 2
-          }
-        }
-      ],
-      "number": 2
-    },
-    {
-      "name": "Село Добърско",
-      "description": "",
-      "places": [
-        {
-          "name": "Църква \"Св.св. Теодор Тирон и Теодор Стратилат\"",
-          "descritpion": "",
-          "location": {
-            "lat": 2,
-            "lng": 2
-          }
-        }
-      ],
-      "number": 3
-    },
-    {
-      "name": "Град Мелник",
-      "description": "",
-      "places": [
-        {
-          "name": "Исторически музей",
-          "description": "",
-          "location": {
-            "lat": 2,
-            "lng": 2
-          }
-        },
-        {
-          "name": "Кордопулова къща",
-          "description": "",
-          "location": {
-            "lat": 2,
-            "lng": 2
-          }
-        },
-        {
-          "name": "Светороженски манастир \"Рождество Богородично\"",
-          "description": "",
-          "location": {
-            "lat": 2,
-            "lng": 2
-          }
-        }
-      ],
-      "number": 4
-    },
-    {
-      "name": "Град Петрич",
-      "description": "",
-      "places": [
-        {
-          "name": "Храм-паметник \"Света Петка Българска\"",
-          "description": "",
-          "location": {
-            "lat": 2,
-            "lng": 2
-          }
-        },
-        {
-          "name": "Самуилова крепост",
-          "description": "",
-          "location": {
-            "lat": 2,
-            "lng": 2
-          }
-        }
-      ],
-      "number": 5
-    },
-    {
-      "name": "",
-      "description": "",
-      "places": [
-        {
-          "name": "Архитектурно-исторически резерват - Архитектурен музей",
-          "description": "",
-          "location": {
-            "lat": 2,
-            "lng": 2
-          }
-        },
-        {
-          "name": "Самуилова крепост",
-          "description": "",
-          "location": {
-            "lat": 2,
-            "lng": 2
-          }
-        }
-      ],
-      "number": 6
-    },
-    {
-      "name": "Test name",
-      "description": "",
-      "places": [
-        {
-          "name": "Test",
-          "description": "",
-          "location": {
-            "lat": 2,
-            "lng": 2
-          }
-        },
-        {
-          "name": "Test",
-          "description": "",
-          "location": {
-            "lat": 2,
-            "lng": 2
-          }
-        }
-      ],
-      "number": 6
-    }
-  ]
+  }
 }
-

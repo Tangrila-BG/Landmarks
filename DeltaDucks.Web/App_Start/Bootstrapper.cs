@@ -1,3 +1,4 @@
+using System.Web.Http;
 using DeltaDucks.Data.IInfrastructure;
 using DeltaDucks.Service.Services;
 
@@ -9,6 +10,7 @@ namespace DeltaDucks.Web
     using Autofac.Integration.Mvc;
     using Data.Infrastructure;
     using Data.Repositories;
+    using Autofac.Integration.WebApi;
 
     public class Bootstrapper
     {
@@ -24,6 +26,7 @@ namespace DeltaDucks.Web
         {
             var builder = new ContainerBuilder();
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
+            builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerRequest();
             builder.RegisterType<DbFactory>().As<IDbFactory>().InstancePerRequest();
 
@@ -37,7 +40,11 @@ namespace DeltaDucks.Web
                .AsImplementedInterfaces().InstancePerRequest();
 
             IContainer container = builder.Build();
+
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+            var webApiResolver = new AutofacWebApiDependencyResolver(container);
+            GlobalConfiguration.Configuration.DependencyResolver = webApiResolver;
+
         }
     }
 }

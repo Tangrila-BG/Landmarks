@@ -10,6 +10,8 @@ var App;
                     this.mapService.getOptions()
                         .done((data) => {
                         landmarkMap = new LandmarkMap(container, data["options"]);
+                        for (var location of data["locations"])
+                            landmarkMap.addMarker(location);
                     });
                 };
                 this.mapService = mapService;
