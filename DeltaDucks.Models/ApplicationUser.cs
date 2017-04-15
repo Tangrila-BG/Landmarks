@@ -21,8 +21,11 @@ namespace DeltaDucks.Models
 
         public virtual ICollection<Landmark> VisitedLandmarks { get; set; }
 
+        public virtual ICollection<Comment> Comments { get; set; }
+
         public ApplicationUser()
         {
+            this.Comments = new HashSet<Comment>();
             this.VisitedLandmarks = new HashSet<Landmark>();
             this.Score = 0;
         }

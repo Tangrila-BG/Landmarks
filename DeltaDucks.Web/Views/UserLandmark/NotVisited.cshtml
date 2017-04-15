@@ -1,7 +1,12 @@
-﻿
+﻿@model DeltaDucks.Web.ViewModels.NotVisitedLandmarksViewModel
 @{
-    ViewBag.Title = "NotVisited";
+    ViewBag.Title = "Visited";
 }
 
-<h2>Непосетени</h2>
+<h2>Събрани точки: @Model.Score</h2>
+
+@foreach (var item in Model.NotVisitedLandmarks)
+{
+    @Html.Partial("Landmark", item);
+}
 

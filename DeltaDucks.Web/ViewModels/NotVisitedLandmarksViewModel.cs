@@ -2,11 +2,9 @@
 
 namespace DeltaDucks.Web.ViewModels
 {
-    public class UserLandmarkViewModel
+    public class NotVisitedLandmarksViewModel
     {
         public int Score { get; set; }
-
-        public List<LandmarkViewModel> VisitedLandmarks { get; set; }
 
         public List<LandmarkViewModel> NotVisitedLandmarks { get; set; }
     }

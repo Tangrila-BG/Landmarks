@@ -19,6 +19,8 @@ namespace DeltaDucks.Models
 
         public int Points { get; set; }
 
+        public string Code { get; set; }
+
         public int?  LocationId { get; set; }
 
         public virtual Location Location { get; set; }
@@ -27,11 +29,16 @@ namespace DeltaDucks.Models
 
         public virtual ICollection<Picture> Pictures { get; set; }
 
+        public virtual ICollection<Comment> Comments { get; set; }
+
         public Landmark()
         {
             this.Visits = 0;
             this.UsersVisited = new HashSet<ApplicationUser>();
             this.Pictures = new HashSet<Picture>();
+            this.Comments = new HashSet<Comment>();
+            this.Code = "1234a";
+            this.Points = 5;
         }
 
     }

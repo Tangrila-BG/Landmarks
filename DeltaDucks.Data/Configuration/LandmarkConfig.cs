@@ -11,6 +11,7 @@ namespace DeltaDucks.Data.Configuration
             ToTable("Landmarks");
             Property(l => l.Name).IsRequired().HasMaxLength(100);
             Property(l => l.Points).IsRequired();
+            Property(l => l.Code).IsRequired().IsFixedLength().HasMaxLength(5);
             Property(l => l.Description).HasMaxLength(500);
             Property(l => l.Information).HasMaxLength(5000);
 
