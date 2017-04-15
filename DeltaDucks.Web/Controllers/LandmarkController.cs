@@ -17,10 +17,12 @@ namespace DeltaDucks.Web.Controllers
     public class LandmarkController : Controller
     {
         private readonly ILandmarkService _landmarkService;
+        private readonly IUserService _userService;
 
-        public LandmarkController(ILandmarkService landmarkService)
+        public LandmarkController(ILandmarkService landmarkService, IUserService userService)
         {
             this._landmarkService = landmarkService;
+            this._userService = userService;
         }
         // GET: Landmark
 //        public ActionResult Index()
@@ -70,6 +72,22 @@ namespace DeltaDucks.Web.Controllers
                 pictures.Add(picture.ImageData);
             }
             return pictures;
+        }
+
+        [HttpPost]
+        public ActionResult CheckCode(int id, string code)
+        {
+            Landmark landmark = _landmarkService.GetLandmarkById(id);
+
+            if (landmark.Code != code)
+            {
+                return HttpNotFound();
+            }
+            string userId = User.Identity.GetUserId();
+            _userService.IncreaseScore(userId, landmark.Points);
+            _userService.AddVisit(userId, landmark.LandmarkId);
+
+            return  new EmptyResult();
         }
     }
 }

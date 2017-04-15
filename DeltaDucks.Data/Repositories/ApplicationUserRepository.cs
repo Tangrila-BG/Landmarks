@@ -11,7 +11,8 @@ namespace DeltaDucks.Data.Repositories
     {
 
         public ApplicationUserRepository(IDbFactory dbFactory)
-            : base(dbFactory) { }
+            : base(dbFactory)
+        { }
 
         public ApplicationUser GetUserByUsername(string username)
         {
@@ -20,9 +21,20 @@ namespace DeltaDucks.Data.Repositories
 
         public int GetUserScore(string id)
         {
-            return this.DbContext.Users.FirstOrDefault(u => u.Id == id).Score;
+            return this.GetById(id).Score;
         }
 
+        public void IncreaseScore(string id, int score)
+        {
+            this.GetById(id).Score += score;
+            DbContext.Commit();
+        }
 
+        public void AddVisit(string id, int landmarkId)
+        {
+            this.GetById(id).VisitedLandmarks
+                .Add(DbContext.Landmarks.FirstOrDefault(l => l.LandmarkId == landmarkId));
+            DbContext.Commit();
+        }
     }
 }

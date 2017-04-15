@@ -13,6 +13,10 @@ namespace DeltaDucks.Data.Repositories
         public LandmarkRepository(IDbFactory dbFactory)
             : base(dbFactory) { }
 
+        public Landmark GetLandmarkById(int id)
+        {
+            return DbContext.Landmarks.FirstOrDefault(l => l.LandmarkId == id);
+        }
 
         public Landmark GetLandmarkByName(string landmarkName)
         {
@@ -31,12 +35,11 @@ namespace DeltaDucks.Data.Repositories
 
         public IEnumerable<Landmark> GetUserNotVisitedLandmarks(string id)
         {
-            return DbContext.Landmarks
-                .Where(l =>
-                    !DbContext.Users.FirstOrDefault(u => u.Id == id)
-                        .VisitedLandmarks.Select(ul => ul.LandmarkId)
-                        .ToList().Contains(l.LandmarkId)
-                );
+            ApplicationUser user = DbContext.Users.FirstOrDefault(u => u.Id == id);
+            var visitedLandmarks = user.VisitedLandmarks.Select(l => l.LandmarkId);
+            var allLandmarks = this.GetAll();
+
+            return allLandmarks.Where(l => !visitedLandmarks.Contains(l.LandmarkId));
         }
 
         // Hardcode number 

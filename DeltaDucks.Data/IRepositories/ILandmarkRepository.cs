@@ -7,6 +7,7 @@ namespace DeltaDucks.Data.IRepositories
 {
     public interface ILandmarkRepository : IRepository<Landmark>
     {
+        Landmark GetLandmarkById(int id);
         Landmark GetLandmarkByName(string landmarkName);
         IEnumerable<Landmark> GetPageOfLendmarks(int take, int skip);
         IEnumerable<Landmark> GetUserVisitedLandmarks(string id);

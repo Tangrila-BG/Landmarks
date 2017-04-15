@@ -7,5 +7,7 @@ namespace DeltaDucks.Data.IRepositories
     {
         ApplicationUser GetUserByUsername(string username);
         int GetUserScore(string id);
+        void IncreaseScore(string id, int score);
+        void AddVisit(string id, int landmarkId);
     }
 }

@@ -22,6 +22,10 @@ namespace DeltaDucks.Service.Services
             //this._unitOfWork = unitOfWork;
         }
 
+        public Landmark GetLandmarkById(int id)
+        {
+            return _landmarkRepository.GetLandmarkById(id);
+        }
         public IEnumerable<Landmark> GetLandmarks()
         {      
                 return _landmarkRepository.GetAll();    
