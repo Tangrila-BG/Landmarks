@@ -384,6 +384,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\app\app.ts" />
     <TypeScriptCompile Include="Scripts\app\controllers\mapsController.ts" />
+    <TypeScriptCompile Include="Scripts\app\controlMap.ts" />
     <TypeScriptCompile Include="Scripts\app\landmarksMap.ts" />
     <TypeScriptCompile Include="Scripts\app\services\mapService.ts" />
     <TypeScriptCompile Include="Scripts\typings\google-maps\google-maps.d.ts" />

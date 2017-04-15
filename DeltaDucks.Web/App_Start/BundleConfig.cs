@@ -12,7 +12,8 @@ namespace DeltaDucks.Web
                 "~/Scripts/app/app.js",
                 "~/Scripts/app/landmarksMap.js",
                 "~/Scripts/app/services/mapService.js",
-                "~/Scripts/app/controllers/mapsController.js"
+                "~/Scripts/app/controllers/mapsController.js",
+                "~/Scripts/app/controlMap.js"
             ));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(

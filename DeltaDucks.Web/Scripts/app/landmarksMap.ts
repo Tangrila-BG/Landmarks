@@ -42,7 +42,7 @@
             // bounds of Bulgaria
             // south-west and north-east corners
             var allowedBounds = new google.maps.LatLngBounds(
-                new google.maps.LatLng(40.236022, 22.360067),
+                new google.maps.LatLng(41.236022, 22.360067),
                 new google.maps.LatLng(44.214555, 28.607050)
             );
             

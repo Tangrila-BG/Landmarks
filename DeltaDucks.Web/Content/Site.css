@@ -22,3 +22,13 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.map {
+    width: 800px;
+    height: 400px;
+}
+
+.map-fullsize {
+    width: 100vh;
+    height: 70vh;
+}

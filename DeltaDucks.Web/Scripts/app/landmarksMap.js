@@ -24,7 +24,7 @@ var App;
                 this.bindToLocation = () => {
                     // bounds of Bulgaria
                     // south-west and north-east corners
-                    var allowedBounds = new google.maps.LatLngBounds(new google.maps.LatLng(40.236022, 22.360067), new google.maps.LatLng(44.214555, 28.607050));
+                    var allowedBounds = new google.maps.LatLngBounds(new google.maps.LatLng(41.236022, 22.360067), new google.maps.LatLng(44.214555, 28.607050));
                     var lastValidCenter = this.map.getCenter();
                     google.maps.event.addListener(this.map, 'center_changed', () => {
                         if (allowedBounds.contains(this.map.getCenter())) {
