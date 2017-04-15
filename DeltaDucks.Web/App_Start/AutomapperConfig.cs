@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DeltaDucks.Models;
+using DeltaDucks.Web.Areas.Admin.ViewModels;
 using DeltaDucks.Web.Dtos;
 using DeltaDucks.Web.ViewModels;
 using DeltaDucks.Web.ViewModels.Account;
@@ -18,7 +19,7 @@ namespace DeltaDucks.Web
                     .ForMember(u => u.FirstName, map => map.MapFrom(vm => vm.FirstName))
                     .ForMember(u => u.LastName, map => map.MapFrom(vm => vm.LastName))
                     .ForMember(u => u.Email, map => map.MapFrom(vm => vm.Email));
-
+                
                 cfg.CreateMap<ApplicationUser, RegisterViewModel>();
                 cfg.CreateMap<ApplicationUser, LoginViewModel>();
                 cfg.CreateMap<LoginViewModel, ApplicationUser>();
@@ -36,6 +37,13 @@ namespace DeltaDucks.Web
                 cfg.CreateMap<Location, LocationToMapDto>()
                     .ForMember(dest => dest.lat, opt => opt.MapFrom(src => src.Latitude))
                     .ForMember(dest => dest.lng, opt => opt.MapFrom(src => src.Longitude));
+
+                cfg.CreateMap<CreateLandmarkViewModel, Landmark>()
+                    .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
+                    .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
+                    .ForMember(dest => dest.Information, opt => opt.MapFrom(src => src.Information))
+                    .ForMember(dest => dest.Code, opt => opt.MapFrom(src => src.Code))
+                    .ForMember(dest => dest.Points, opt => opt.MapFrom(src => src.Points));
             });
         }
     }
