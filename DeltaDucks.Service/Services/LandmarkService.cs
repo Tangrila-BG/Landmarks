@@ -48,5 +48,10 @@ namespace DeltaDucks.Service.Services
         {
             return _landmarkRepository.GetCount();
         }
+
+        public void Add(Landmark landmark)
+        {
+            _landmarkRepository.Add(landmark);
+        }
     }
 }

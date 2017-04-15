@@ -58,8 +58,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IServices\ILandmarkService.cs" />
+    <Compile Include="IServices\IPictureService.cs" />
     <Compile Include="IServices\IUserService.cs" />
     <Compile Include="Services\LandmarkService.cs" />
+    <Compile Include="Services\PictureService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

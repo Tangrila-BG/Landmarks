@@ -14,6 +14,7 @@ namespace DeltaDucks.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                namespaces: new[] { "DeltaDucks.Web.Controllers" },
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
