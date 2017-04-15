@@ -13,5 +13,6 @@ namespace DeltaDucks.Service.IServices
         IEnumerable<Landmark> GetUserNotVisitedLandmarks(string id);
         void Add(Landmark landmark);
         int LandmarksCount();
+        void SaveLandmark();
     }
 }

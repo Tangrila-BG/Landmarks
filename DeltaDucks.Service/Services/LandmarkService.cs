@@ -13,13 +13,12 @@ namespace DeltaDucks.Service.Services
     {
         private readonly ILandmarkRepository _landmarkRepository;
 
-        // NOT USED YET 
-        //private readonly IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public LandmarkService(ILandmarkRepository landmarkRepository) //,IUnitOfWork unitOfWork)
+        public LandmarkService(ILandmarkRepository landmarkRepository,IUnitOfWork unitOfWork)
         {
             this._landmarkRepository = landmarkRepository;
-            //this._unitOfWork = unitOfWork;
+            this._unitOfWork = unitOfWork;
         }
 
         public IEnumerable<Landmark> GetLandmarks()
@@ -52,6 +51,11 @@ namespace DeltaDucks.Service.Services
         public void Add(Landmark landmark)
         {
             _landmarkRepository.Add(landmark);
+        }
+
+        public void SaveLandmark()
+        {
+            _unitOfWork.Commit();
         }
     }
 }

@@ -163,6 +163,11 @@ namespace DeltaDucks.Web.Controllers
                        
                     }
 
+//                    if (User.IsInRole("Admin"))
+//                    {
+//                        return RedirectToAction("")
+//                    }
+
 
                     return RedirectToAction("Index", "Home");
                 }
