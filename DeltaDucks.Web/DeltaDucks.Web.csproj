@@ -244,8 +244,11 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LandmarkController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\Admin\ViewModels\CreateLandmarkViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\UsersViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\LandmarkCodeController.cs" />
     <Compile Include="Controllers\Api\MapsController.cs" />
@@ -315,6 +318,9 @@
     <Content Include="Content\sweetalert\sweet-alert-animations.less" />
     <Content Include="Content\bootstrap\variables.less" />
     <Content Include="Content\bootstrap\mixins.less" />
+    <Content Include="Areas\Admin\Views\Users\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
