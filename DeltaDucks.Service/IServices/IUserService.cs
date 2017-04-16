@@ -17,5 +17,6 @@ namespace DeltaDucks.Service.IServices
         void IncreaseScore(string id, int score);
         void AddVisit(string id, int landmarkId);
         void SaveUser();
+        void UpdateUser(ApplicationUser user);
     }
 }

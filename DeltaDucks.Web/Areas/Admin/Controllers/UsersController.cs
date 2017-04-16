@@ -64,5 +64,38 @@ namespace DeltaDucks.Web.Areas.Admin.Controllers
             _userService.SaveUser();
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public ActionResult Edit(string Id)
+        {
+            if (Id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ApplicationUser user = _userService.GetUserById(Id);
+            UsersViewModel mappedUser = Mapper.Map<ApplicationUser, UsersViewModel>(user);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            return View(mappedUser);
+        }
+
+        [HttpPost,ActionName("Edit")]
+        public ActionResult Edit(UsersViewModel user)
+        {
+            ApplicationUser editedUser = _userService.GetUserById(user.Id);
+            if (ModelState.IsValid)
+            {
+                editedUser.FirstName = user.FirstName;
+                editedUser.LastName = user.LastName;
+                editedUser.UserName = user.UserName;
+                editedUser.Email = user.Email;
+                _userService.UpdateUser(editedUser);
+                _userService.SaveUser();
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
     }
 }
