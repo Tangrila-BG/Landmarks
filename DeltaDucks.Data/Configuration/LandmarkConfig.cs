@@ -15,6 +15,13 @@ namespace DeltaDucks.Data.Configuration
             Property(l => l.Description).HasMaxLength(500);
             Property(l => l.Information).HasMaxLength(5000);
             HasRequired(x => x.Location);
+            HasMany(x => x.Comments)
+                .WithRequired(x => x.Landmark)
+                .WillCascadeOnDelete(true);
+
+            HasMany(x => x.Pictures)
+                .WithRequired(x => x.Landmark)
+                .WillCascadeOnDelete(true);
 
             this.HasMany(l => l.UsersVisited)
                 .WithMany(u => u.VisitedLandmarks)

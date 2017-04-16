@@ -57,7 +57,7 @@ namespace DeltaDucks.Web.Controllers
             LandmarkViewModel landmarkViewModel;
             Landmark landmark;
 
-            landmark = _landmarkService.GetLandmarks().FirstOrDefault(x => x.Number == number);
+            landmark = _landmarkService.GetLandmarkByNumber(number);
 
             landmarkViewModel = Mapper.Map<Landmark, LandmarkViewModel>(landmark);
             ViewBag.Pictures = RenderPicture(landmarkViewModel);

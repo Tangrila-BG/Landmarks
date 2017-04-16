@@ -1,0 +1,20 @@
+﻿@model DeltaDucks.Web.ViewModels.LandmarkViewModel
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        @Html.Label(Model.Name)
+    </div>
+    <div class="panel-body">
+        <div class="media-body">
+
+            <p>@Model.Number</p>
+            <p>@Model.Description</p>
+        </div>
+    </div>
+    <a href="@Url.Action("Details", new {number = Model.Number})" class="btn btn-warning"
+       style="margin: 15px">Редактирай</a>
+    <a href="@Url.Action("Delete", "Landmark",new {number = Model.Number})" class="btn btn-danger"
+       style="margin: 15px; float: right">Изтрий</a>
+
+    @*TODO: Add pop-up for code *@
+</div>
