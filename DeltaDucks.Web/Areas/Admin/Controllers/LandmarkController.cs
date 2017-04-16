@@ -61,8 +61,8 @@ namespace DeltaDucks.Web.Areas.Admin.Controllers
                 return View(model);
             }
             _landmarkService.Add(landmark);
-            _landmarkService.SaveLandmark();            
-            return View();
+            _landmarkService.SaveLandmark();
+            return RedirectToAction("Index", "Home");
         }
 
         private Picture CreatePictures(byte[] picture, string name)
@@ -72,7 +72,6 @@ namespace DeltaDucks.Web.Areas.Admin.Controllers
                 Name = name,
                 ImageData = picture
             };
-
             return image;
         }
 
@@ -83,7 +82,6 @@ namespace DeltaDucks.Web.Areas.Admin.Controllers
             {
                 return town;
             }
-
             return new Town(){Name = name};
         }
     }
