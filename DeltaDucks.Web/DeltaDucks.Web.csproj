@@ -255,8 +255,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LandmarkController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\SweetController.cs" />
     <Compile Include="Controllers\UserLandmarkController.cs" />
+    <Compile Include="Controllers\UserRankingController.cs" />
     <Compile Include="Dtos\LandmarkToMapDto.cs" />
     <Compile Include="Dtos\LocationToMapDto.cs" />
     <Compile Include="Global.asax.cs">
@@ -279,6 +279,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\NotVisitedLandmarksViewModel.cs" />
+    <Compile Include="ViewModels\UserRankingViewModel.cs" />
     <Compile Include="ViewModels\VisitedLandmarksViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -387,6 +388,7 @@
     <Content Include="Views\UserLandmark\Visited.cshtml" />
     <Content Include="Views\UserLandmark\NotVisited.cshtml" />
     <Content Include="Views\Manage\ChangePicture.cshtml" />
+    <Content Include="Views\UserRanking\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
