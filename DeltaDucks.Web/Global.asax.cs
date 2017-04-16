@@ -24,7 +24,7 @@ namespace DeltaDucks.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
+            DeltaDucksContext.Create();
             //Autofac Config 
             Bootstrapper.Run();
         }

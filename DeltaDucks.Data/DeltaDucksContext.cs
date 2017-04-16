@@ -11,7 +11,8 @@ namespace DeltaDucks.Data
         public DeltaDucksContext()
             : base("name=DeltaDucksContext")
         {
-            Database.SetInitializer(new SeedData());
+            //Database.SetInitializer(new SeedData());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<DeltaDucksContext,Migrations.Configuration>());
         }
 
         public virtual DbSet<Landmark> Landmarks { get; set; }

@@ -1,0 +1,19 @@
+﻿@model IEnumerable<DeltaDucks.Web.ViewModels.UserRankingViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Класация на потребителите</h2>
+
+@{
+    int cnt = 1; 
+    foreach (var item in Model)
+    {
+
+        <p>@cnt.      Username : @item.Username</p>
+        <p>Score : @item.Score </p>
+        <br>
+        cnt++;
+    }
+
+}
