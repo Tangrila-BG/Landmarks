@@ -27,7 +27,26 @@ namespace DeltaDucks.Web.Controllers
         //{
         //    return View();
         //}
+
         public ActionResult Visited()
+        {
+            var visitedLandmarksViewModel = GetVisitedLandmarks();
+            return View(visitedLandmarksViewModel);
+        }
+
+        public ActionResult NotVisited()
+        {
+            var notVisitedLandmarksViewModel = GetNotVisitedLandmarks();
+            return View(notVisitedLandmarksViewModel);
+        }
+
+        public ActionResult Recommended()
+        {
+            var recommended = GetRecommended();
+            return View(recommended);
+        }
+
+        public VisitedLandmarksViewModel GetVisitedLandmarks()
         {
             VisitedLandmarksViewModel visitedLandmarksViewModel;
             IEnumerable<Landmark> userVisitedLandmarks;
@@ -44,10 +63,10 @@ namespace DeltaDucks.Web.Controllers
                 VisitedLandmarks = userVisitedLandmarkViewModels.ToList()
             };
 
-            return View(visitedLandmarksViewModel);
+            return visitedLandmarksViewModel;
         }
 
-        public ActionResult NotVisited()
+        public NotVisitedLandmarksViewModel GetNotVisitedLandmarks()
         {
             NotVisitedLandmarksViewModel notVisitedLandmarksViewModel;
             IEnumerable<Landmark> userNotVisitedLandmarks;
@@ -64,7 +83,15 @@ namespace DeltaDucks.Web.Controllers
                 NotVisitedLandmarks = userNotVisitedLandmarkViewModels.ToList()
             };
 
-            return View(notVisitedLandmarksViewModel);
+            return notVisitedLandmarksViewModel;
+        }
+
+        public NotVisitedLandmarksViewModel GetRecommended()
+        {
+            var notVisitedLandmarks = GetNotVisitedLandmarks();
+            notVisitedLandmarks.NotVisitedLandmarks 
+                = notVisitedLandmarks.NotVisitedLandmarks.OrderBy(x => Guid.NewGuid()).Take(10).ToList();
+            return notVisitedLandmarks;
         }
 
     }

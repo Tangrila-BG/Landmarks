@@ -1,0 +1,13 @@
+﻿@model DeltaDucks.Web.ViewModels.NotVisitedLandmarksViewModel
+
+@{
+    ViewBag.Title = "Recommended";
+}
+
+<h2>Recommended</h2>
+
+@foreach (var item in Model.NotVisitedLandmarks)
+{
+    @Html.Partial("Landmark", item);
+}
+

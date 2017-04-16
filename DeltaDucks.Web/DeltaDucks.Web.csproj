@@ -389,6 +389,7 @@
     <Content Include="Views\UserLandmark\NotVisited.cshtml" />
     <Content Include="Views\Manage\ChangePicture.cshtml" />
     <Content Include="Views\UserRanking\Index.cshtml" />
+    <Content Include="Views\UserLandmark\Recommended.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
