@@ -322,6 +322,9 @@
     <Content Include="Areas\Admin\Views\Users\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Users\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Users\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Landmark\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\Landmark.cshtml" />
+    <Content Include="Areas\Admin\Views\Landmark\Delete.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

@@ -1,0 +1,72 @@
+﻿@model DeltaDucks.Web.ViewModels.LandmarkViewModel
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <h3>Симпатяго, сигурен ли си, че искаш да изтриеш тази забележителност?</h3>
+    <div>
+        <h4>@Model.Name</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Number)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Number)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Code)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Code)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Information)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Information)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+</body>
+</html>

@@ -61,5 +61,15 @@ namespace DeltaDucks.Service.Services
         {
             _unitOfWork.Commit();
         }
+
+        public Landmark GetLandmarkByNumber(int number)
+        {
+           return _landmarkRepository.GetLandmarkByNumber(number);
+        }
+
+        public void DeleteLandmark(Landmark landmark)
+        {
+            _landmarkRepository.Delete(landmark);
+        }
     }
 }

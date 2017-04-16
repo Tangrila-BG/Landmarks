@@ -8,6 +8,7 @@ using AutoMapper;
 using DeltaDucks.Models;
 using DeltaDucks.Service.IServices;
 using DeltaDucks.Web.Areas.Admin.ViewModels;
+using DeltaDucks.Web.ViewModels;
 
 namespace DeltaDucks.Web.Areas.Admin.Controllers
 {
@@ -26,12 +27,23 @@ namespace DeltaDucks.Web.Areas.Admin.Controllers
             this._pictureService = pictureService;
             this._townService = townService;
         }
-//
-//        // GET: Admin/Landmark
-//        public ActionResult Index()
-//        {
-//            return View();
-//        }
+        //
+        //        // GET: Admin/Landmark
+        public ActionResult Index(int page = 1)
+        {
+            IEnumerable<LandmarkViewModel> landmarksViewModel;
+            IEnumerable<Landmark> landmarks;
+            const int recordsOnPage = 10;
+            int landmarksCount = _landmarkService.LandmarksCount();
+            this.ViewBag.MaxPage = (landmarksCount / recordsOnPage) + (landmarksCount % recordsOnPage > 0 ? 1 : 0);
+            this.ViewBag.MinPage = 1;
+            this.ViewBag.Page = page;
+
+            landmarks = _landmarkService.GetSinglePageLendmarks(page).ToList();
+
+            landmarksViewModel = Mapper.Map<IEnumerable<Landmark>, IEnumerable<LandmarkViewModel>>(landmarks);
+            return View(landmarksViewModel);
+        }
 
         public ActionResult Create()
         {
@@ -83,6 +95,28 @@ namespace DeltaDucks.Web.Areas.Admin.Controllers
                 return town;
             }
             return new Town(){Name = name};
+        }
+
+        [HttpGet]
+        public ActionResult Delete(int number)
+        {
+            Landmark landmark = _landmarkService.GetLandmarkByNumber(number);
+            if (landmark == null)
+            {
+                return HttpNotFound();
+            }
+            LandmarkViewModel model = Mapper.Map<Landmark, LandmarkViewModel>(landmark);
+            
+            return View(model);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirm(int number)
+        {
+            Landmark landmark = _landmarkService.GetLandmarkByNumber(number);
+            _landmarkService.DeleteLandmark(landmark);
+            _landmarkService.SaveLandmark();
+             return RedirectToAction("Index");
         }
     }
 }

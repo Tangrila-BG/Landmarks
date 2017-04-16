@@ -9,6 +9,7 @@ namespace DeltaDucks.Data.IRepositories
     {
         Landmark GetLandmarkById(int id);
         Landmark GetLandmarkByName(string landmarkName);
+        Landmark GetLandmarkByNumber(int number);
         IEnumerable<Landmark> GetPageOfLendmarks(int take, int skip);
         IEnumerable<Landmark> GetUserVisitedLandmarks(string id);
         IEnumerable<Landmark> GetUserNotVisitedLandmarks(string id);

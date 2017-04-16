@@ -1,0 +1,36 @@
+﻿@model IEnumerable<DeltaDucks.Web.ViewModels.LandmarkViewModel>
+@{
+    ViewBag.Title = "Landmarks";
+}
+
+<h2>Забележителности</h2>
+
+<div class="container">
+    <div class="jumbotron">
+        @*TODO : PAGING *@
+
+        @*TODO : NAME , NUMBER, TOWN*@
+        @*TODO : PARTIAL VIEW WITH MORE INFORMATION AND PEOPLE VISITED AND ACTION LINK(TO PAGE)
+            ---- BUTTON FOR CODE --- SCORE WHICH THIS PLACE GIVES  *@
+        @*TODO : ADD PICTURE TABLE *@
+
+        @foreach (var item in Model)
+        {
+            @Html.Partial("Landmark", item)
+        }
+        @if (ViewBag.Page > ViewBag.MinPage)
+        {
+            <a href="@Url.Action("Index", new { page = ViewBag.Page - 1 })"
+               class="btn btn-default">
+                &laquo; Prev
+            </a>
+        }
+        @if (ViewBag.Page < ViewBag.MaxPage)
+        {
+            <a href="@Url.Action("Index", new { page = ViewBag.Page + 1 })"
+               class="btn btn-default">
+                Next &raquo;
+            </a>
+        }
+    </div>
+</div>

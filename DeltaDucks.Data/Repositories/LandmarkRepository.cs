@@ -42,6 +42,11 @@ namespace DeltaDucks.Data.Repositories
             return allLandmarks.Where(l => !visitedLandmarks.Contains(l.LandmarkId));
         }
 
+        public Landmark GetLandmarkByNumber(int number)
+        {
+            return DbContext.Landmarks.FirstOrDefault(x => x.Number == number);
+        }
+
         // Hardcode number 
         public override void Update(Landmark entity)
         {
