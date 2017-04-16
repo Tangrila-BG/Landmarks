@@ -48,6 +48,11 @@ namespace DeltaDucks.Service.Services
             _userRepository.Add(user);
         }
 
+        public void UpdateUser(ApplicationUser user)
+        {
+            _userRepository.Update(user);
+        }
+
         public int GetUserScore(string id)
         {
             return _userRepository.GetUserScore(id);

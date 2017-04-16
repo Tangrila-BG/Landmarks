@@ -1,4 +1,5 @@
-﻿@model IEnumerable<DeltaDucks.Web.Areas.Admin.ViewModels.UsersViewModel>
+﻿@using Microsoft.AspNet.Identity
+@model IEnumerable<DeltaDucks.Web.Areas.Admin.ViewModels.UsersViewModel>
 
 @{
     ViewBag.Title = "Users";
@@ -19,7 +20,7 @@
         <th>
             @Html.DisplayNameFor(model => model.Email)
         </th>
-        <th></th>
+        <th>Actions</th>
     </tr>
 
 @foreach (var item in Model) {
@@ -37,9 +38,14 @@
             @Html.DisplayFor(modelItem => item.Email)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new {  id=item.Id },new {@class = "btn btn-danger"})
+            @if (item.UserName != User.Identity.GetUserName())
+            {
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-warning" })
+            }
+            @if (item.UserName != User.Identity.GetUserName())
+            {
+                @Html.ActionLink("Delete", "Delete", new {id = item.Id}, new {@class = "btn btn-danger"})
+            }
         </td>
     </tr>
 }
