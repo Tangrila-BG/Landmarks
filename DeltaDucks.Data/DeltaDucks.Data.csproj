@@ -100,6 +100,7 @@
     <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
     <Compile Include="IRepositories\ICommentRepository.cs" />
+    <Compile Include="IRepositories\ILocationRepository.cs" />
     <Compile Include="IRepositories\IPictureRepository.cs" />
     <Compile Include="IRepositories\ITownRepository.cs" />
     <Compile Include="Migrations\201704161234382_InitialCreate.cs" />
@@ -122,6 +123,7 @@
     <Compile Include="Repositories\CommentRepository.cs" />
     <Compile Include="Repositories\LandmarkRepository.cs" />
     <Compile Include="Repositories\ApplicationUserRepository.cs" />
+    <Compile Include="Repositories\LocationRepository.cs" />
     <Compile Include="Repositories\PictureRepository.cs" />
     <Compile Include="Repositories\TownRepository.cs" />
     <Compile Include="SeedData.cs" />

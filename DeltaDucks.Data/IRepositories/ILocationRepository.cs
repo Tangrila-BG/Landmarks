@@ -8,10 +8,8 @@ using DeltaDucks.Models;
 
 namespace DeltaDucks.Data.IRepositories
 {
-    public interface IPictureRepository : IRepository<Picture>
+    public interface ILocationRepository : IRepository<Location>
     {
-        void AddPicture(Picture picture);
-        Picture GetPictureById(int id);
-        void DeletePictutes(IEnumerable<Picture> pictures);
+        Location GetLocationByCoordinates(double latitude, double longitude);
     }
 }

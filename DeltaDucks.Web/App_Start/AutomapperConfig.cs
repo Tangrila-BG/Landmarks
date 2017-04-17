@@ -60,6 +60,20 @@ namespace DeltaDucks.Web
                 cfg.CreateMap<Comment, CommentViewModel>()
                     .ForMember(dest => dest.LandmarkNumber, opt => opt.MapFrom(src => src.Landmark.Number));
                 cfg.CreateMap<CommentViewModel, Comment>();
+                cfg.CreateMap<Landmark, UpdateLandmarksViewModel>()
+                    .ForMember(dest => dest.Number, opt => opt.MapFrom(src => src.Number))
+                    .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
+                    .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
+                    .ForMember(dest => dest.Information, opt => opt.MapFrom(src => src.Information))
+                    .ForMember(dest => dest.Pictures, opt => opt.MapFrom(src => src.Pictures))
+                    .ForMember(dest => dest.Longitude, opt => opt.MapFrom(src => src.Location.Longitude))
+                    .ForMember(dest => dest.Latitude, opt => opt.MapFrom(src => src.Location.Latitude))
+                    .ForMember(dest => dest.Town, opt => opt.MapFrom(src => src.Location.Town.Name));
+
+                cfg.CreateMap<UpdateLandmarksViewModel, Location>()
+                    .ForMember(dest => dest.Latitude, opt => opt.MapFrom(src => src.Latitude))
+                    .ForMember(dest => dest.Longitude, opt => opt.MapFrom(src => src.Longitude))
+                    .ForMember(dest => dest.Town, opt => opt.Ignore());
             });
         }
     }
