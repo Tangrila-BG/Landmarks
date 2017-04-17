@@ -141,6 +141,10 @@ namespace DeltaDucks.Web.Areas.Admin.Controllers
             for (int i = 0; i < Request.Files.Count; i++)
             {
                 var file = Request.Files[i];
+                if (file.ContentLength == 0)
+                {
+                    break;
+                }
                 byte[] imageBytes = null;
                 using (var binary = new BinaryReader(file.InputStream))
                 {
