@@ -10,5 +10,8 @@ namespace DeltaDucks.Service.IServices
     public interface IPictureService
     {
         void AddPicture(Picture picture);
+        Picture GetPictureById(int id);
+        void DeletePictures(IEnumerable<Picture> pictures);
+        void SavePictures();
     }
 }

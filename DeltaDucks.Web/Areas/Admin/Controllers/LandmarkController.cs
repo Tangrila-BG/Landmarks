@@ -20,12 +20,14 @@ namespace DeltaDucks.Web.Areas.Admin.Controllers
         private readonly ILandmarkService _landmarkService;
         private readonly IPictureService _pictureService;
         private readonly ITownService _townService;
+        private readonly ILocationService _locationService;
 
-        public LandmarkController(ILandmarkService landmarkService, IPictureService pictureService, ITownService townService)
+        public LandmarkController(ILandmarkService landmarkService, IPictureService pictureService, ITownService townService, ILocationService locationService)
         {
             this._landmarkService = landmarkService;
             this._pictureService = pictureService;
             this._townService = townService;
+            this._locationService = locationService;
         }
         //
         //        // GET: Admin/Landmark
@@ -117,6 +119,89 @@ namespace DeltaDucks.Web.Areas.Admin.Controllers
             _landmarkService.DeleteLandmark(landmark);
             _landmarkService.SaveLandmark();
              return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult Update(int number)
+        {
+            Landmark landmark = _landmarkService.GetLandmarkByNumber(number);
+            if (landmark == null)
+            {
+                return HttpNotFound();
+            }
+            UpdateLandmarksViewModel model = Mapper.Map<Landmark, UpdateLandmarksViewModel>(landmark);
+            return View(model);
+        }
+
+        [HttpPost, ActionName("Update")]
+        public ActionResult UpdateConfirm(UpdateLandmarksViewModel model)
+        {
+            var landmark = _landmarkService.GetLandmarkById(model.LandmarkId);
+            DeletePictures(landmark.Pictures);
+            for (int i = 0; i < Request.Files.Count; i++)
+            {
+                var file = Request.Files[i];
+                byte[] imageBytes = null;
+                using (var binary = new BinaryReader(file.InputStream))
+                {
+                    imageBytes = binary.ReadBytes(file.ContentLength);
+                    landmark.Pictures.Add(CreatePictures(imageBytes, model.Name + "u" + i));
+                }
+            }
+            SetLandmarkProps(landmark, model);
+            Location location = GetLocation(model.Latitude, model.Longitude);
+            var town = GetTown(model.Town);
+            location.Town = town;
+            landmark.Location = location;
+//            if (!ModelState.IsValid)
+//            {
+//                return View(model);
+//            }
+            _landmarkService.SaveLandmark();
+            return RedirectToAction("Index");
+        }
+
+        private void SetLandmarkProps(Landmark landmark, UpdateLandmarksViewModel model)
+        {
+            landmark.Code = model.Code;
+            landmark.Number = model.Number;
+            landmark.Name = model.Name;
+            landmark.Description = model.Description;
+            landmark.Information = model.Information;
+            landmark.Points = model.Points;
+        }
+
+        private void DeletePictures(ICollection<Picture> pictures)
+        {
+            
+            List<Picture> picturesForDelete = new List<Picture>();
+            foreach (var picture in pictures)
+            {
+                var id = picture.PictureId;
+                var result = Request.Form[id.ToString()];
+                if (result == "true,false")
+                {
+                    var pictureForDelete = _pictureService.GetPictureById(id);
+                    picturesForDelete.Add(pictureForDelete);
+                }
+            }
+            _pictureService.DeletePictures(picturesForDelete);
+            _pictureService.SavePictures();
+        }
+
+        private Location GetLocation(double latitude, double longitude)
+        {
+            Location location = _locationService.GetLocationByCoordinates(latitude, longitude);
+            if (location != null)
+            {
+                return location;
+            }
+
+            return new Location()
+            {
+                Longitude = longitude,
+                Latitude = latitude
+            };
         }
     }
 }

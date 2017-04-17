@@ -11,7 +11,7 @@
             <p>@Model.Description</p>
         </div>
     </div>
-    <a href="@Url.Action("Details", new {number = Model.Number})" class="btn btn-warning"
+    <a href="@Url.Action("Update", "Landmark", new {number = Model.Number})" class="btn btn-warning"
        style="margin: 15px">Редактирай</a>
     <a href="@Url.Action("Delete", "Landmark",new {number = Model.Number})" class="btn btn-danger"
        style="margin: 15px; float: right">Изтрий</a>

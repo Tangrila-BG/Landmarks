@@ -20,5 +20,15 @@ namespace DeltaDucks.Data.Repositories
         {
             this.DbContext.Pictures.Add(picture);
         }
+
+        public Picture GetPictureById(int id)
+        {
+            return this.DbContext.Pictures.FirstOrDefault(x => x.PictureId == id);
+        }
+
+        public void DeletePictutes(IEnumerable<Picture> pictures)
+        {
+            this.DbContext.Pictures.RemoveRange(pictures);
+        }
     }
 }
