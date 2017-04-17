@@ -99,6 +99,7 @@
     <Compile Include="IInfrastructure\IUnitOfWork.cs" />
     <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
+    <Compile Include="IRepositories\ICommentRepository.cs" />
     <Compile Include="IRepositories\IPictureRepository.cs" />
     <Compile Include="IRepositories\ITownRepository.cs" />
     <Compile Include="Migrations\201704161234382_InitialCreate.cs" />
@@ -118,6 +119,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Repositories\CommentRepository.cs" />
     <Compile Include="Repositories\LandmarkRepository.cs" />
     <Compile Include="Repositories\ApplicationUserRepository.cs" />
     <Compile Include="Repositories\PictureRepository.cs" />

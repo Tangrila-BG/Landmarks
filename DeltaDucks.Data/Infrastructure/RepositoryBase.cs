@@ -60,6 +60,11 @@ namespace DeltaDucks.Data.Infrastructure
             return _dbSet.Find(id);
         }
 
+        public virtual T GetById(int id)
+        {
+            return _dbSet.Find(id);
+        }
+
         public virtual IEnumerable<T> GetAll()
         {
             return _dbSet.ToList();

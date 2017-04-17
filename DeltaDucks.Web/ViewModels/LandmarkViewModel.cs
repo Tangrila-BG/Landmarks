@@ -5,6 +5,8 @@ namespace DeltaDucks.Web.ViewModels
 {
     public class LandmarkViewModel
     {
+        public int LandmarkId { get; set; }
+
         public int Number { get; set; }
 
         public string Name { get; set; }
@@ -16,5 +18,7 @@ namespace DeltaDucks.Web.ViewModels
         public string Information { get; set; }
 
         public ICollection<Picture> Pictures { get; set; }
+
+        public ICollection<Comment> Comments { get; set; }
     }
 }

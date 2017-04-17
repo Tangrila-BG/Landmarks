@@ -18,23 +18,25 @@ namespace DeltaDucks.Web.Controllers
     {
         private readonly ILandmarkService _landmarkService;
         private readonly IUserService _userService;
+        private readonly ICommentService _commentService;
 
-        public LandmarkController(ILandmarkService landmarkService, IUserService userService)
+        public LandmarkController(ILandmarkService landmarkService, IUserService userService, ICommentService commentService)
         {
             this._landmarkService = landmarkService;
             this._userService = userService;
+            this._commentService = commentService;
         }
         // GET: Landmark
-//        public ActionResult Index()
-//        {
-//            IEnumerable<LandmarkViewModel> landmarksViewModel;
-//            IEnumerable<Landmark> landmarks;
-//
-//            landmarks = _landmarkService.GetLandmarks().ToList();
-//
-//            landmarksViewModel = Mapper.Map<IEnumerable<Landmark>, IEnumerable<LandmarkViewModel>>(landmarks);
-//            return View(landmarksViewModel);
-//        }
+        //        public ActionResult Index()
+        //        {
+        //            IEnumerable<LandmarkViewModel> landmarksViewModel;
+        //            IEnumerable<Landmark> landmarks;
+        //
+        //            landmarks = _landmarkService.GetLandmarks().ToList();
+        //
+        //            landmarksViewModel = Mapper.Map<IEnumerable<Landmark>, IEnumerable<LandmarkViewModel>>(landmarks);
+        //            return View(landmarksViewModel);
+        //        }
 
         public ActionResult Index(int page = 1)
         {
@@ -42,7 +44,7 @@ namespace DeltaDucks.Web.Controllers
             IEnumerable<Landmark> landmarks;
             const int recordsOnPage = 10;
             int landmarksCount = _landmarkService.LandmarksCount();
-            this.ViewBag.MaxPage = (landmarksCount/recordsOnPage) + (landmarksCount%recordsOnPage > 0 ? 1 : 0);
+            this.ViewBag.MaxPage = (landmarksCount / recordsOnPage) + (landmarksCount % recordsOnPage > 0 ? 1 : 0);
             this.ViewBag.MinPage = 1;
             this.ViewBag.Page = page;
 
@@ -58,7 +60,7 @@ namespace DeltaDucks.Web.Controllers
             Landmark landmark;
 
             landmark = _landmarkService.GetLandmarkByNumber(number);
-
+            landmark.Comments = _commentService.GetCommentsByLandmarkId(landmark.LandmarkId);
             landmarkViewModel = Mapper.Map<Landmark, LandmarkViewModel>(landmark);
             ViewBag.Pictures = RenderPicture(landmarkViewModel);
             return View(landmarkViewModel);
@@ -87,7 +89,7 @@ namespace DeltaDucks.Web.Controllers
             _userService.IncreaseScore(userId, landmark.Points);
             _userService.AddVisit(userId, landmark.LandmarkId);
 
-            return  new EmptyResult();
+            return new EmptyResult();
         }
     }
 }

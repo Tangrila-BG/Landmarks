@@ -19,7 +19,7 @@ namespace DeltaDucks.Web
                     .ForMember(u => u.FirstName, map => map.MapFrom(vm => vm.FirstName))
                     .ForMember(u => u.LastName, map => map.MapFrom(vm => vm.LastName))
                     .ForMember(u => u.Email, map => map.MapFrom(vm => vm.Email));
-                
+
                 cfg.CreateMap<ApplicationUser, RegisterViewModel>();
                 cfg.CreateMap<ApplicationUser, LoginViewModel>();
                 cfg.CreateMap<LoginViewModel, ApplicationUser>();
@@ -56,6 +56,10 @@ namespace DeltaDucks.Web
                     .ForMember(dest => dest.Town, opt => opt.Ignore());
 
                 cfg.CreateMap<ApplicationUser, UserRankingViewModel>();
+
+                cfg.CreateMap<Comment, CommentViewModel>()
+                    .ForMember(dest => dest.LandmarkNumber, opt => opt.MapFrom(src => src.Landmark.Number));
+                cfg.CreateMap<CommentViewModel, Comment>();
             });
         }
     }

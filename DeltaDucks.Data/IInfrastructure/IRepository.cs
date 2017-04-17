@@ -13,6 +13,7 @@ namespace DeltaDucks.Data.IInfrastructure
         void Delete(T entity);
         void Delete(Expression<Func<T, bool>> where);
         T GetById(string id);
+        T GetById(int id);
         IEnumerable<T> GetAll();
         IEnumerable<T> GetMany(Expression<Func<T, bool>> where);
     }
