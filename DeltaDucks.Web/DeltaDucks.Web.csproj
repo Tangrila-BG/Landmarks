@@ -248,6 +248,7 @@
     <Compile Include="Areas\Admin\Controllers\LandmarkController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\Admin\ViewModels\CreateLandmarkViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\UpdateLandmarksViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\UsersViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\LandmarkCodeController.cs" />
@@ -326,6 +327,7 @@
     <Content Include="Areas\Admin\Views\Landmark\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\Landmark.cshtml" />
     <Content Include="Areas\Admin\Views\Landmark\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Landmark\Update.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
