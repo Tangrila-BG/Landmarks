@@ -21,13 +21,22 @@ namespace DeltaDucks.Web.Areas.Admin.Controllers
         private readonly IPictureService _pictureService;
         private readonly ITownService _townService;
         private readonly ILocationService _locationService;
+        private readonly INotificationService _notificationService;
+        private readonly IUserNotificationService _userNotificationService;
+        private readonly IUserService _userService;
 
-        public LandmarkController(ILandmarkService landmarkService, IPictureService pictureService, ITownService townService, ILocationService locationService)
+        public LandmarkController(ILandmarkService landmarkService, IPictureService pictureService,
+            ITownService townService, ILocationService locationService,
+            INotificationService notificationService,IUserNotificationService userNotificationService,
+            IUserService userService)
         {
             this._landmarkService = landmarkService;
             this._pictureService = pictureService;
             this._townService = townService;
             this._locationService = locationService;
+            this._notificationService = notificationService;
+            this._userNotificationService = userNotificationService;
+            this._userService = userService;
         }
         //
         //        // GET: Admin/Landmark
@@ -76,6 +85,28 @@ namespace DeltaDucks.Web.Areas.Admin.Controllers
             }
             _landmarkService.Add(landmark);
             _landmarkService.SaveLandmark();
+
+            var notification = new Notification()
+            {
+                DateTime = DateTime.Now,
+                Landmark = landmark,
+                Type = NotificationType.Created
+            };
+            _notificationService.Add(notification);
+            _notificationService.Save();
+
+            var users = _userService.GetUsers();
+            foreach (var user in users)
+            {
+                var userNotification = new UserNotification()
+                {
+                    Notification = notification,
+                    User = user,
+                    IsRead = false
+                };
+                _userNotificationService.Add(userNotification);
+            }
+            _userNotificationService.Save();
             return RedirectToAction("Index", "Home");
         }
 
@@ -118,7 +149,28 @@ namespace DeltaDucks.Web.Areas.Admin.Controllers
             Landmark landmark = _landmarkService.GetLandmarkByNumber(number);
             _landmarkService.DeleteLandmark(landmark);
             _landmarkService.SaveLandmark();
-             return RedirectToAction("Index");
+            var notification = new Notification()
+            {
+                DateTime = DateTime.Now,
+                Landmark = landmark,
+                Type = NotificationType.Deleted
+            };
+            _notificationService.Add(notification);
+            _notificationService.Save();
+
+            var users = _userService.GetUsers();
+            foreach (var user in users)
+            {
+                var userNotification = new UserNotification()
+                {
+                    Notification = notification,
+                    User = user,
+                    IsRead = false
+                };
+                _userNotificationService.Add(userNotification);
+            }
+            _userNotificationService.Save();
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
@@ -158,6 +210,27 @@ namespace DeltaDucks.Web.Areas.Admin.Controllers
 //                return View(model);
 //            }
             _landmarkService.SaveLandmark();
+            var notification = new Notification()
+            {
+                DateTime = DateTime.Now,
+                Landmark = landmark,
+                Type = NotificationType.Updated
+            };
+            _notificationService.Add(notification);
+            _notificationService.Save();
+
+            var users = _userService.GetUsers();
+            foreach (var user in users)
+            {
+                var userNotification = new UserNotification()
+                {
+                    Notification = notification,
+                    User = user,
+                    IsRead = false
+                };
+                _userNotificationService.Add(userNotification);
+            }
+            _userNotificationService.Save();
             return RedirectToAction("Index");
         }
 

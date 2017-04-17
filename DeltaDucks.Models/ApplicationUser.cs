@@ -20,6 +20,8 @@ namespace DeltaDucks.Models
         public byte[] UserPhoto { get; set; }
 
         public virtual ICollection<Landmark> VisitedLandmarks { get; set; }
+        
+        public virtual ICollection<UserNotification> Notifications { get; set; }
 
         public virtual ICollection<Comment> Comments { get; set; }
 
@@ -28,6 +30,7 @@ namespace DeltaDucks.Models
             this.Comments = new HashSet<Comment>();
             this.VisitedLandmarks = new HashSet<Landmark>();
             this.Score = 0;
+            this.Notifications= new HashSet<UserNotification>();
         }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
