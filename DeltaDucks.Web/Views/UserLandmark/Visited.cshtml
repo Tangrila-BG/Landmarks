@@ -7,7 +7,10 @@
 
 @foreach (var item in Model.VisitedLandmarks)
 {
-    @Html.Partial("Landmark", item);
+    <p class="btn btn-default"
+       style="margin: 15px; float: right; color: green">Посетено</p>
+
+    @Html.Partial("LandmarkPartial", item);
 }
 
 

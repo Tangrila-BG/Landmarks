@@ -400,7 +400,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Landmark\Index.cshtml" />
-    <Content Include="Views\Shared\Landmark.cshtml" />
+    <Content Include="Views\Shared\LandmarkPartial.cshtml" />
     <Content Include="Views\Landmark\Details.cshtml" />
     <Content Include="Views\UserLandmark\Visited.cshtml" />
     <Content Include="Views\UserLandmark\NotVisited.cshtml" />
