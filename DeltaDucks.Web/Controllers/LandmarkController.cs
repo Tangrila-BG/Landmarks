@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using DeltaDucks.Models;
 using DeltaDucks.Service.IServices;
 using DeltaDucks.Service.Services;
@@ -41,8 +42,6 @@ namespace DeltaDucks.Web.Controllers
 
         public ActionResult Index(int? page)
         {
-            IEnumerable<LandmarkViewModel> landmarksViewModel;
-            IEnumerable<Landmark> landmarks;
             const int recordsOnPage = 10;
 
             //int landmarksCount = _landmarkService.LandmarksCount();
@@ -52,23 +51,25 @@ namespace DeltaDucks.Web.Controllers
 
             //landmarks = _landmarkService.GetSinglePageLendmarks(page).ToList();
 
-            landmarks = _landmarkService.GetLandmarks().ToList();
-            landmarksViewModel = Mapper.Map<IEnumerable<Landmark>, IEnumerable<LandmarkViewModel>>(landmarks);
+            var landmarks = _landmarkService.GetLandmarks()
+                .ProjectTo<LandmarkViewModel>()
+                .ToList();
 
             int pageNumber = (page ?? 1);
-            return View(landmarksViewModel.ToPagedList(pageNumber, recordsOnPage));
+            return View(landmarks.ToPagedList(pageNumber, recordsOnPage));
         }
 
         public ActionResult Details(int number)
         {
-            LandmarkViewModel landmarkViewModel;
-            Landmark landmark;
+            var landmark = Mapper.Map<Landmark, LandmarkViewModel>(
+                    _landmarkService.GetLandmarkByNumber(number));
 
-            landmark = _landmarkService.GetLandmarkByNumber(number);
-            landmark.Comments = _commentService.GetCommentsByLandmarkId(landmark.LandmarkId);
-            landmarkViewModel = Mapper.Map<Landmark, LandmarkViewModel>(landmark);
-            ViewBag.Pictures = RenderPicture(landmarkViewModel);
-            return View(landmarkViewModel);
+            landmark.Comments = _commentService
+                .GetCommentsByLandmarkId(landmark.LandmarkId)
+                .ToList();
+                
+            ViewBag.Pictures = RenderPicture(landmark);
+            return View(landmark);
         }
 
         private ICollection<byte[]> RenderPicture(LandmarkViewModel viewModel)

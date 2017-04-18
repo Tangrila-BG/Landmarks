@@ -10,6 +10,6 @@ namespace DeltaDucks.Data.IRepositories
 {
     public interface ICommentRepository : IRepository<Comment>
     {
-        ICollection<Comment> GetCommentsByLandmarkId(int id);
+        IQueryable<Comment> GetCommentsByLandmarkId(int id);
     }
 }

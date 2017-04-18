@@ -5,6 +5,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using DeltaDucks.Models;
 using DeltaDucks.Service.IServices;
 using DeltaDucks.Web.Areas.Admin.ViewModels;
@@ -26,18 +27,20 @@ namespace DeltaDucks.Web.Areas.Admin.Controllers
         // GET: Admin/User
         public ActionResult Index(int page = 1)
         {
-            IEnumerable<UsersViewModel> usersViewModels;
-            IEnumerable<ApplicationUser> users;
+            
             const int recordsperPage = 20;
-            int usersCount = _userService.GetUsers().Count();
+            int usersCount = _userService.GetUsers()
+                .Select(u => u.Id)
+                .Count();
             this.ViewBag.MaxPage = (usersCount / recordsperPage) + (usersCount % recordsperPage > 0 ? 1 : 0);
             this.ViewBag.MinPage = 1;
             this.ViewBag.Page = page;
 
-            users = _userService.GetSinglePageUsers(page,recordsperPage).ToList();
+            var users = _userService.GetSinglePageUsers(page,recordsperPage)
+                .ProjectTo<UsersViewModel>()
+                .ToList();
 
-            usersViewModels = Mapper.Map<IEnumerable<ApplicationUser>, IEnumerable<UsersViewModel>>(users);
-            return View(usersViewModels);
+            return View(users);
         }
 
         [HttpGet]
