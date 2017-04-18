@@ -93,7 +93,7 @@ namespace DeltaDucks.Web.Controllers
 
             ApplicationUser currentUser = _userRepository.GetById(userId);   
 
-                if (currentUser.UserPhoto.Length == 0)
+                if (currentUser.UserPhoto == null)
                 {
                     string fileName = HttpContext.Server.MapPath(@"~/Images/noImg.png");
 
