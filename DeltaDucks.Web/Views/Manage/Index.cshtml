@@ -30,9 +30,18 @@
                                       -moz-border-radius: 60px;
                                       border-radius: 100px;
                                       padding: 6px;
-                                      box-shadow: 0px 0px 20px #888;"/>
+                                      box-shadow: 0px 0px 20px #888;" />
 
         </dd>
-        @Html.ActionLink("Change your profile picture", "ChangePicture")
+        <dd>
+            @Html.ActionLink("Change your profile picture", "ChangePicture")
+        </dd>
+        @if (User.IsInRole("Admin"))
+        {
+            <dd>
+                @Html.ActionLink("Admin panel", "GoToAdmin", "Account")
+            </dd>
+        }
+
     </dl>
 </div>
