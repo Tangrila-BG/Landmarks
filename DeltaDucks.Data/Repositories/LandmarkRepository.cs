@@ -23,17 +23,19 @@ namespace DeltaDucks.Data.Repositories
             return DbContext.Landmarks.FirstOrDefault(l => l.Name == landmarkName);
         }
 
-        public IEnumerable<Landmark> GetPageOfLendmarks(int take, int skip)
+        //public IEnumerable<Landmark> GetPageOfLendmarks(int take, int skip)
+        //{
+        //    return DbContext.Landmarks.OrderBy(x => x.Number).Skip(skip).Take(take);
+        //}
+
+        public IQueryable<Landmark> GetUserVisitedLandmarks(string id)
         {
-            return DbContext.Landmarks.OrderBy(x => x.Number).Skip(skip).Take(take);
+            return DbContext.Users.FirstOrDefault(u => u.Id == id)
+                .VisitedLandmarks
+                .AsQueryable();
         }
 
-        public IEnumerable<Landmark> GetUserVisitedLandmarks(string id)
-        {
-            return DbContext.Users.FirstOrDefault(u => u.Id == id).VisitedLandmarks;
-        }
-
-        public IEnumerable<Landmark> GetUserNotVisitedLandmarks(string id)
+        public IQueryable<Landmark> GetUserNotVisitedLandmarks(string id)
         {
             ApplicationUser user = DbContext.Users.FirstOrDefault(u => u.Id == id);
             var visitedLandmarks = user.VisitedLandmarks.Select(l => l.LandmarkId);
@@ -45,6 +47,12 @@ namespace DeltaDucks.Data.Repositories
         public Landmark GetLandmarkByNumber(int number)
         {
             return DbContext.Landmarks.FirstOrDefault(x => x.Number == number);
+        }
+
+        public void IncreaseVisits(int id)
+        {
+            this.GetLandmarkById(id).Visits++;
+            DbContext.Commit();
         }
 
         // Hardcode number 

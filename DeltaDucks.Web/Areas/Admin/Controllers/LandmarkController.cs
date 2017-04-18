@@ -5,11 +5,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using DeltaDucks.Models;
 using DeltaDucks.Service.IServices;
 using DeltaDucks.Web.Areas.Admin.ViewModels;
 using DeltaDucks.Web.ViewModels;
 using WebGrease.Css.Extensions;
+using PagedList;
 
 namespace DeltaDucks.Web.Areas.Admin.Controllers
 {
@@ -41,20 +43,22 @@ namespace DeltaDucks.Web.Areas.Admin.Controllers
         }
         //
         //        // GET: Admin/Landmark
-        public ActionResult Index(int page = 1)
+        public ActionResult Index(int? page)  // int page = 1
         {
-            IEnumerable<LandmarkViewModel> landmarksViewModel;
-            IEnumerable<Landmark> landmarks;
             const int recordsOnPage = 10;
-            int landmarksCount = _landmarkService.LandmarksCount();
-            this.ViewBag.MaxPage = (landmarksCount / recordsOnPage) + (landmarksCount % recordsOnPage > 0 ? 1 : 0);
-            this.ViewBag.MinPage = 1;
-            this.ViewBag.Page = page;
+            //int landmarksCount = _landmarkService.LandmarksCount();
+            //this.ViewBag.MaxPage = (landmarksCount / recordsOnPage) + (landmarksCount % recordsOnPage > 0 ? 1 : 0);
+            //this.ViewBag.MinPage = 1;
+            //this.ViewBag.Page = page;
 
-            landmarks = _landmarkService.GetSinglePageLendmarks(page).ToList();
+            //landmarks = _landmarkService.GetSinglePageLendmarks(page).ToList();
 
-            landmarksViewModel = Mapper.Map<IEnumerable<Landmark>, IEnumerable<LandmarkViewModel>>(landmarks);
-            return View(landmarksViewModel);
+            var landmarks = _landmarkService.GetLandmarks()
+                .ProjectTo<LandmarkViewModel>()
+                .ToList();
+
+            int pageNumber = (page ?? 1);
+            return View(landmarks.ToPagedList(pageNumber, recordsOnPage));
         }
 
         public ActionResult Create()
@@ -69,6 +73,10 @@ namespace DeltaDucks.Web.Areas.Admin.Controllers
             for (int i = 0; i < Request.Files.Count; i++)
             {
                 var file = Request.Files[i];
+                if (file.ContentLength == 0)
+                {
+                    break;
+                }
                 byte[] imageBytes = null;
                 using (var binary = new BinaryReader(file.InputStream))
                 {
@@ -176,6 +184,10 @@ namespace DeltaDucks.Web.Areas.Admin.Controllers
             for (int i = 0; i < Request.Files.Count; i++)
             {
                 var file = Request.Files[i];
+                if (file.ContentLength == 0)
+                {
+                    break;
+                }
                 byte[] imageBytes = null;
                 using (var binary = new BinaryReader(file.InputStream))
                 {

@@ -14,12 +14,12 @@ namespace DeltaDucks.Data.Repositories
     {
         public CommentRepository(IDbFactory dbFactory) : base(dbFactory) { }
 
-        public ICollection<Comment> GetCommentsByLandmarkId(int id)
+        public IQueryable<Comment> GetCommentsByLandmarkId(int id)
         {
             return DbContext
                 .Comments
                 .Where(comment => comment.Landmark.LandmarkId == id)
-                .OrderByDescending(comment => comment.DateCreated).ToList();
+                .OrderByDescending(comment => comment.DateCreated);
         }
     }
 }

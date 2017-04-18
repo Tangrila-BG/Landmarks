@@ -6,11 +6,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using DeltaDucks.Models;
 using DeltaDucks.Service.IServices;
 using DeltaDucks.Service.Services;
 using DeltaDucks.Web.ViewModels;
 using Microsoft.AspNet.Identity;
+using PagedList;
 
 namespace DeltaDucks.Web.Controllers
 {
@@ -38,32 +40,36 @@ namespace DeltaDucks.Web.Controllers
         //            return View(landmarksViewModel);
         //        }
 
-        public ActionResult Index(int page = 1)
+        public ActionResult Index(int? page)
         {
-            IEnumerable<LandmarkViewModel> landmarksViewModel;
-            IEnumerable<Landmark> landmarks;
             const int recordsOnPage = 10;
-            int landmarksCount = _landmarkService.LandmarksCount();
-            this.ViewBag.MaxPage = (landmarksCount / recordsOnPage) + (landmarksCount % recordsOnPage > 0 ? 1 : 0);
-            this.ViewBag.MinPage = 1;
-            this.ViewBag.Page = page;
 
-            landmarks = _landmarkService.GetSinglePageLendmarks(page).ToList();
+            //int landmarksCount = _landmarkService.LandmarksCount();
+            //this.ViewBag.MaxPage = (landmarksCount / recordsOnPage) + (landmarksCount % recordsOnPage > 0 ? 1 : 0);
+            //this.ViewBag.MinPage = 1;
+            //this.ViewBag.Page = page;
 
-            landmarksViewModel = Mapper.Map<IEnumerable<Landmark>, IEnumerable<LandmarkViewModel>>(landmarks);
-            return View(landmarksViewModel);
+            //landmarks = _landmarkService.GetSinglePageLendmarks(page).ToList();
+
+            var landmarks = _landmarkService.GetLandmarks()
+                .ProjectTo<LandmarkViewModel>()
+                .ToList();
+
+            int pageNumber = (page ?? 1);
+            return View(landmarks.ToPagedList(pageNumber, recordsOnPage));
         }
 
         public ActionResult Details(int number)
         {
-            LandmarkViewModel landmarkViewModel;
-            Landmark landmark;
+            var landmark = Mapper.Map<Landmark, LandmarkViewModel>(
+                    _landmarkService.GetLandmarkByNumber(number));
 
-            landmark = _landmarkService.GetLandmarkByNumber(number);
-            landmark.Comments = _commentService.GetCommentsByLandmarkId(landmark.LandmarkId);
-            landmarkViewModel = Mapper.Map<Landmark, LandmarkViewModel>(landmark);
-            ViewBag.Pictures = RenderPicture(landmarkViewModel);
-            return View(landmarkViewModel);
+            landmark.Comments = _commentService
+                .GetCommentsByLandmarkId(landmark.LandmarkId)
+                .ToList();
+                
+            ViewBag.Pictures = RenderPicture(landmark);
+            return View(landmark);
         }
 
         private ICollection<byte[]> RenderPicture(LandmarkViewModel viewModel)
@@ -87,7 +93,8 @@ namespace DeltaDucks.Web.Controllers
             }
             string userId = User.Identity.GetUserId();
             _userService.IncreaseScore(userId, landmark.Points);
-            _userService.AddVisit(userId, landmark.LandmarkId);
+            _userService.AddVisit(userId, id);
+            _landmarkService.IncreaseVisits(id);
 
             return new EmptyResult();
         }

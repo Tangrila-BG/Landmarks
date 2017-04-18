@@ -35,7 +35,7 @@ namespace DeltaDucks.Web
                 cfg.CreateMap<Landmark, LandmarkToMapDto>()
                     .ForMember(dest => dest.title,
                         opt => opt.MapFrom(src =>
-                            $"<a href=\"/Landmark/Details?number={src.Number}\">" + src.Name + "</a>"))
+                            "<a href=\"/Landmark/Details?number="+ src.Number+ "\">" + src.Name + "</a>"))
                     .ForMember(dest => dest.position,
                         opt => opt.MapFrom(src => src.Location));
 

@@ -13,7 +13,7 @@ namespace DeltaDucks.Service.IServices
         void Delete(Comment comment);
         void Save();
         void Update(Comment comment);
-        ICollection<Comment> GetCommentsByLandmarkId(int id);
+        IQueryable<Comment> GetCommentsByLandmarkId(int id);
         Comment GetCommentById(int id);
     }
 }

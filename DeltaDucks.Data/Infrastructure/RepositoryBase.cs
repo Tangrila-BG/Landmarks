@@ -65,14 +65,14 @@ namespace DeltaDucks.Data.Infrastructure
             return _dbSet.Find(id);
         }
 
-        public virtual IEnumerable<T> GetAll()
+        public virtual IQueryable<T> GetAll()
         {
-            return _dbSet.ToList();
+            return _dbSet;
         }
 
-        public virtual IEnumerable<T> GetMany(Expression<Func<T, bool>> where)
+        public virtual IQueryable<T> GetMany(Expression<Func<T, bool>> where)
         {
-            return _dbSet.Where(where).ToList();
+            return _dbSet.Where(where);
         }
 
         public T Get(Expression<Func<T, bool>> where)

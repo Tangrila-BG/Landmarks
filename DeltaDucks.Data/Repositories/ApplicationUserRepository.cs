@@ -25,7 +25,7 @@ namespace DeltaDucks.Data.Repositories
             return this.GetById(id).Score;
         }
 
-        public IEnumerable<ApplicationUser> GetPageOfUsers(int take, int skip)
+        public IQueryable<ApplicationUser> GetPageOfUsers(int take, int skip)
         {
             return DbContext.Users.OrderBy(x => x.UserName).Skip(skip).Take(take);
         }

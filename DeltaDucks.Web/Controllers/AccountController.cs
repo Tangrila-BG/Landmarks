@@ -288,6 +288,23 @@ namespace DeltaDucks.Web.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        public ActionResult GoToAdmin()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                if (User.IsInRole("Admin"))
+                {
+                    //Redirect to admin's home page
+                    return RedirectToAction("Index", "Home", new { area = "Admin" });
+                }
+
+                //Redirect to default home page
+                return RedirectToAction("Index", "Home");
+            }
+
+            return RedirectToAction("Login", "Account");
+        }
+
 
         protected override void Dispose(bool disposing)
         {

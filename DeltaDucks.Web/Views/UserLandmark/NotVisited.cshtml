@@ -7,6 +7,14 @@
 
 @foreach (var item in Model.NotVisitedLandmarks)
 {
-    @Html.Partial("Landmark", item);
+    <button onclick="enterCode(@item.Number)" id="enterCodeBtn"
+            class="btn btn-default"
+            style="margin: 15px; float: right; display: inherit">
+        Въведи посещение
+    </button>
+
+    @Html.Partial("LandmarkPartial", item);
+
+   
 }
 
