@@ -33,20 +33,26 @@ textarea {
     height: 70vh;
 }
 
-.popover-notifications .popover-content .highlighted {
-    font-weight: 600;
+.popover-notifications .popover-content {
+    padding: 0;
 }
 
-.popover-notifications .popover-content ul.notifications {
+.popover-notifications ul.notifications {
     list-style: none;
     padding-left: 0;
 }
 
-.popover-notifications .popover-content ul.notifications >li {
+.popover-notifications ul.notifications > li {
+    line-height: 20px;
     border-bottom: 1px solid #ddd;
+    font-size: 16px;
     padding: 10px;
 }
 
-.popover-notifications .popover-content ul.notifications >li:last-child {
+.popover-notifications ul.notifications > li:last-child {
     border-bottom: none;
+}
+
+.popover-notifications ul.notifications .highlighted {
+    font-weight: bold;
 }
