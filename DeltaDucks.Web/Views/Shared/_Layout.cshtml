@@ -62,9 +62,80 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/lib")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/app")
     @RenderSection("scripts", required: false)
+
+<script type="text/notification-template" id="notification-template">
+    <ul class="notifications">
+        <%
+            _.each(notifications,(notification) => {
+                if(notification.type === 1){ %>
+                    <li>
+                        <span>
+                            Нова забележителност с име <span class="highlighted"><%= notification.landmark.name %></span>
+                            <span class="label label-success">създадена</span> на <%= moment(notification.dateTime).format('D.MM.YYYY') %>,
+                             носеща <%= notification.landmark.points %> точки.
+                        </span>
+                    </li>
+               <% }
+            else if(notification.type === 2){ %>
+                    <li>
+                        <span>
+                            Забележителността с име <span class="highlighted"><%= notification.landmark.name %></span>
+                            беше <span class="label label-danger">изтрита</span> на <%= moment(notification.dateTime).format('D.MM.YYYY') %>.
+                        </span>
+                    </li>
+               <% }
+             else if(notification.type === 3){ %>
+                  <li>
+                      <span>
+                          Забележителност с име <span class="highlighted"><%= notification.landmark.name %></span>
+                          беше <span class="label label-warning">обновена</span> на <%= moment(notification.dateTime).format('D.MM.YYYY') %>.
+                      </span>
+                  </li>
+                  <% }
+            })
+        %>
+    </ul>
+</script>
+<script>
+    
+    $(document).ready(() => {
+        $.getJSON("/Api/Notifications", (notifications) => {
+            if (notifications.length === 0) {
+                return 
+            }
+            $(".js-notifications-count")
+                .text(notifications.length)
+                .removeClass("hide")
+                .addClass("animated swing")
+            $(".notifications")
+                .popover({
+                    html: true,
+                    title: "Известия",
+                    content: () => {
+                        var compile = _.template($("#notification-template").html())
+                        return compile({notifications:notifications})
+                    },
+                    placement: "bottom",
+                    template:
+                    '<div class="popover popover-notifications" role="tooltip">' +
+                        '<div class="arrow"></div>' +
+                        '<h3 class="popover-title"></h3>' +
+                        '<div class="popover-content"></div>' +
+                    '</div>'
+                }).on("shown.bs.popover",() => {
+                    $.post("/Api/Notifications").done(() => {
+                        $(".js-notifications-count")
+                         .text("")
+                         .addClass("hide")
+                         .addClass("animated swing")
+                    })
+                })
+        })
+    })
+</script>
 </body>
 </html>
