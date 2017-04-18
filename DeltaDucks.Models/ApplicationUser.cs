@@ -40,5 +40,10 @@ namespace DeltaDucks.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+        public void Notify(Notification notification)
+        {
+            this.Notifications.Add(new UserNotification(this,notification));
+        }
     }
 }

@@ -36,11 +36,7 @@ namespace DeltaDucks.Web.Controllers.Api
                 .GetAll()
                 .Where(n => n.UserId == userId && !n.IsRead)
                 .ToList();
-            foreach (var notification in userNotifications)
-            {
-                notification.IsRead = true;
-                _userNotificationService.Update(notification);
-            }
+            userNotifications.ForEach(un=>un.Read());
             _userNotificationService.Save();
             return Ok();
         }

@@ -9,6 +9,7 @@ using DeltaDucks.Models;
 using DeltaDucks.Service.IServices;
 using DeltaDucks.Web.Areas.Admin.ViewModels;
 using DeltaDucks.Web.ViewModels;
+using WebGrease.Css.Extensions;
 
 namespace DeltaDucks.Web.Areas.Admin.Controllers
 {
@@ -96,16 +97,7 @@ namespace DeltaDucks.Web.Areas.Admin.Controllers
             _notificationService.Save();
 
             var users = _userService.GetUsers();
-            foreach (var user in users)
-            {
-                var userNotification = new UserNotification()
-                {
-                    Notification = notification,
-                    User = user,
-                    IsRead = false
-                };
-                _userNotificationService.Add(userNotification);
-            }
+            users.ForEach(u => u.Notify(notification));
             _userNotificationService.Save();
             return RedirectToAction("Index", "Home");
         }
@@ -159,16 +151,7 @@ namespace DeltaDucks.Web.Areas.Admin.Controllers
             _notificationService.Save();
 
             var users = _userService.GetUsers();
-            foreach (var user in users)
-            {
-                var userNotification = new UserNotification()
-                {
-                    Notification = notification,
-                    User = user,
-                    IsRead = false
-                };
-                _userNotificationService.Add(userNotification);
-            }
+            users.ForEach(u => u.Notify(notification));
             _userNotificationService.Save();
             return RedirectToAction("Index");
         }
@@ -220,16 +203,7 @@ namespace DeltaDucks.Web.Areas.Admin.Controllers
             _notificationService.Save();
 
             var users = _userService.GetUsers();
-            foreach (var user in users)
-            {
-                var userNotification = new UserNotification()
-                {
-                    Notification = notification,
-                    User = user,
-                    IsRead = false
-                };
-                _userNotificationService.Add(userNotification);
-            }
+            users.ForEach(u=>u.Notify(notification));
             _userNotificationService.Save();
             return RedirectToAction("Index");
         }
