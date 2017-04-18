@@ -17,6 +17,10 @@ namespace DeltaDucks.Web.ViewModels
 
         public string Information { get; set; }
 
+        public int Visits { get; set; }
+
+        public int Points { get; set; }
+
         public ICollection<Picture> Pictures { get; set; }
 
         public ICollection<Comment> Comments { get; set; }

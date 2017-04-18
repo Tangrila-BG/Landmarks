@@ -30,12 +30,14 @@ namespace DeltaDucks.Service.Services
                 return _landmarkRepository.GetAll();    
         }
 
-        public IEnumerable<Landmark> GetSinglePageLendmarks(int page)
-        {
-            const int recordsOnPage = 10; 
-            int skip = (page - 1)*recordsOnPage;
-            return _landmarkRepository.GetPageOfLendmarks(recordsOnPage, skip);
-        }
+
+        // NOT USED
+        //public IEnumerable<Landmark> GetSinglePageLendmarks(int page)
+        //{
+        //    const int recordsOnPage = 10; 
+        //    int skip = (page - 1)*recordsOnPage;
+        //    return _landmarkRepository.GetPageOfLendmarks(recordsOnPage, skip);
+        //}
 
         public IEnumerable<Landmark> GetUserVisitedLandmarks(string id)
         {
@@ -60,6 +62,11 @@ namespace DeltaDucks.Service.Services
         public void SaveLandmark()
         {
             _unitOfWork.Commit();
+        }
+
+        public void IncreaseVisits(int id)
+        {
+            _landmarkRepository.IncreaseVisits(id);
         }
 
         public Landmark GetLandmarkByNumber(int number)

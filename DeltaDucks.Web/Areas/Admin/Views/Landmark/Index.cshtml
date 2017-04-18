@@ -1,4 +1,5 @@
-﻿@model IEnumerable<DeltaDucks.Web.ViewModels.LandmarkViewModel>
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<DeltaDucks.Web.ViewModels.LandmarkViewModel>
 @{
     ViewBag.Title = "Landmarks";
 }
@@ -18,7 +19,7 @@
         {
             @Html.Partial("Landmark", item)
         }
-        @if (ViewBag.Page > ViewBag.MinPage)
+        @*@if (ViewBag.Page > ViewBag.MinPage)
         {
             <a href="@Url.Action("Index", new { page = ViewBag.Page - 1 })"
                class="btn btn-default">
@@ -31,6 +32,11 @@
                class="btn btn-default">
                 Next &raquo;
             </a>
-        }
+        }*@
+
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+        @Html.PagedListPager(Model, page => Url.Action("Index",
+                 new { page }))
     </div>
 </div>

@@ -53,9 +53,7 @@
     }
 </div>
 
-<a href="
-   @Url.Action("Create", "Comment", new { id = Model.LandmarkId, number = Model.Number })
-   " class="btn btn-default">Add new comment</a>
+<a href="@Url.Action("Create", "Comment", new { id = Model.LandmarkId, number = Model.Number })" class="btn btn-default">Add new comment</a>
 <p style="margin: 15px" class="btn btn-default">
     @Html.ActionLink("Назад", "Index", new { page = Model.Number / 10 + (Model.Number % 10 == 0 ? 0 : 1) })
 </p>

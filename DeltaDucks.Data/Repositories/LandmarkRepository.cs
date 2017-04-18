@@ -23,10 +23,10 @@ namespace DeltaDucks.Data.Repositories
             return DbContext.Landmarks.FirstOrDefault(l => l.Name == landmarkName);
         }
 
-        public IEnumerable<Landmark> GetPageOfLendmarks(int take, int skip)
-        {
-            return DbContext.Landmarks.OrderBy(x => x.Number).Skip(skip).Take(take);
-        }
+        //public IEnumerable<Landmark> GetPageOfLendmarks(int take, int skip)
+        //{
+        //    return DbContext.Landmarks.OrderBy(x => x.Number).Skip(skip).Take(take);
+        //}
 
         public IEnumerable<Landmark> GetUserVisitedLandmarks(string id)
         {
@@ -45,6 +45,12 @@ namespace DeltaDucks.Data.Repositories
         public Landmark GetLandmarkByNumber(int number)
         {
             return DbContext.Landmarks.FirstOrDefault(x => x.Number == number);
+        }
+
+        public void IncreaseVisits(int id)
+        {
+            this.GetLandmarkById(id).Visits++;
+            DbContext.Commit();
         }
 
         // Hardcode number 

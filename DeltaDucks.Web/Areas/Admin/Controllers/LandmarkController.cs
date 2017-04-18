@@ -9,6 +9,7 @@ using DeltaDucks.Models;
 using DeltaDucks.Service.IServices;
 using DeltaDucks.Web.Areas.Admin.ViewModels;
 using DeltaDucks.Web.ViewModels;
+using PagedList;
 
 namespace DeltaDucks.Web.Areas.Admin.Controllers
 {
@@ -31,20 +32,23 @@ namespace DeltaDucks.Web.Areas.Admin.Controllers
         }
         //
         //        // GET: Admin/Landmark
-        public ActionResult Index(int page = 1)
+        public ActionResult Index(int? page)  // int page = 1
         {
             IEnumerable<LandmarkViewModel> landmarksViewModel;
             IEnumerable<Landmark> landmarks;
             const int recordsOnPage = 10;
-            int landmarksCount = _landmarkService.LandmarksCount();
-            this.ViewBag.MaxPage = (landmarksCount / recordsOnPage) + (landmarksCount % recordsOnPage > 0 ? 1 : 0);
-            this.ViewBag.MinPage = 1;
-            this.ViewBag.Page = page;
+            //int landmarksCount = _landmarkService.LandmarksCount();
+            //this.ViewBag.MaxPage = (landmarksCount / recordsOnPage) + (landmarksCount % recordsOnPage > 0 ? 1 : 0);
+            //this.ViewBag.MinPage = 1;
+            //this.ViewBag.Page = page;
 
-            landmarks = _landmarkService.GetSinglePageLendmarks(page).ToList();
+            //landmarks = _landmarkService.GetSinglePageLendmarks(page).ToList();
 
+            landmarks = _landmarkService.GetLandmarks().ToList();
             landmarksViewModel = Mapper.Map<IEnumerable<Landmark>, IEnumerable<LandmarkViewModel>>(landmarks);
-            return View(landmarksViewModel);
+
+            int pageNumber = (page ?? 1);
+            return View(landmarksViewModel.ToPagedList(pageNumber, recordsOnPage));
         }
 
         public ActionResult Create()
