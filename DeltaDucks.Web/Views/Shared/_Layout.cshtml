@@ -60,6 +60,7 @@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/app")
     @RenderSection("scripts", required: false)
+
 <script type="text/notification-template" id="notification-template">
     <ul class="notifications">
         <%
@@ -67,13 +68,28 @@
                 if(notification.type === 1){ %>
                     <li>
                         <span>
-                            Нова забележителност с име <%= notification.landmark.name %> 
-                            беше <span class="label label-success">създадена</span> на <%= notification.dateTime %>,
+                            Нова забележителност с име <span class="highlighted"><%= notification.landmark.name %></span>
+                            <span class="label label-success">създадена</span> на <%= moment(notification.dateTime).format('D.MM.YYYY') %>,
                              носеща <%= notification.landmark.points %> точки.
                         </span>
                     </li>
                <% }
-        
+            else if(notification.type === 2){ %>
+                    <li>
+                        <span>
+                            Забележителността с име <span class="highlighted"><%= notification.landmark.name %></span>
+                            беше <span class="label label-danger">изтрита</span> на <%= moment(notification.dateTime).format('D.MM.YYYY') %>.
+                        </span>
+                    </li>
+               <% }
+             else if(notification.type === 3){ %>
+                  <li>
+                      <span>
+                          Забележителност с име <span class="highlighted"><%= notification.landmark.name %></span>
+                          беше <span class="label label-warning">обновена</span> на <%= moment(notification.dateTime).format('D.MM.YYYY') %>.
+                      </span>
+                  </li>
+                  <% }
             })
         %>
     </ul>
@@ -98,11 +114,18 @@
                         return compile({notifications:notifications})
                     },
                     placement: "bottom",
-                    template: '<div class="popover" role="tooltip">' +
+                    template: '<div class="popover popover-notifications" role="tooltip">' +
                         '<div class="arrow">' +
                         '</div><h3 class="popover-title">' +
                         '</h3><div class="popover-content">' +
                         '</div></div>'
+                }).on("shown.bs.popover",() => {
+                    $.post("/Api/Notifications").done(() => {
+                        $(".js-notifications-count")
+                         .text("")
+                         .addClass("hide")
+                         .addClass("animated swing")
+                    })
                 })
         })
     })

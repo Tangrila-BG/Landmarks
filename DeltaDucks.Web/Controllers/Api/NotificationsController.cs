@@ -20,13 +20,29 @@ namespace DeltaDucks.Web.Controllers.Api
         public IQueryable<NotificationDto> GetNotifications()
         {
             var userId = User.Identity.GetUserId();
-            var notifications = _userNotificationService
+            var userNotifications = _userNotificationService
                 .GetAll()
-                .Where(n=>n.UserId == userId)
+                .Where(n=>n.UserId == userId && !n.IsRead)
                 .Select(n=>n.Notification)
                 .AsQueryable()
                 .ProjectTo<NotificationDto>();
-            return notifications;
+            return userNotifications;
+        }
+        [HttpPost]
+        public IHttpActionResult MarkAsRead()
+        {
+            var userId = User.Identity.GetUserId();
+            var userNotifications = _userNotificationService
+                .GetAll()
+                .Where(n => n.UserId == userId && !n.IsRead)
+                .ToList();
+            foreach (var notification in userNotifications)
+            {
+                notification.IsRead = true;
+                _userNotificationService.Update(notification);
+            }
+            _userNotificationService.Save();
+            return Ok();
         }
     }
 }
