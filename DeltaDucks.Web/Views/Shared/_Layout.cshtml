@@ -44,6 +44,12 @@
                         <li>@Html.ActionLink("Класация на потребителите", "Index", "UserRanking")</li>
                     </ul>
                 }
+                @if (HttpContext.Current.User.IsInRole("Admin"))
+                {
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Admin", "Index", new { Area = "Admin", controller = "Home" })</li>
+                    </ul>
+                }
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
