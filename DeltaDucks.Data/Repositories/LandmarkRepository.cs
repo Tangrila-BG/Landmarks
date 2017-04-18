@@ -28,12 +28,14 @@ namespace DeltaDucks.Data.Repositories
         //    return DbContext.Landmarks.OrderBy(x => x.Number).Skip(skip).Take(take);
         //}
 
-        public IEnumerable<Landmark> GetUserVisitedLandmarks(string id)
+        public IQueryable<Landmark> GetUserVisitedLandmarks(string id)
         {
-            return DbContext.Users.FirstOrDefault(u => u.Id == id).VisitedLandmarks;
+            return DbContext.Users.FirstOrDefault(u => u.Id == id)
+                .VisitedLandmarks
+                .AsQueryable();
         }
 
-        public IEnumerable<Landmark> GetUserNotVisitedLandmarks(string id)
+        public IQueryable<Landmark> GetUserNotVisitedLandmarks(string id)
         {
             ApplicationUser user = DbContext.Users.FirstOrDefault(u => u.Id == id);
             var visitedLandmarks = user.VisitedLandmarks.Select(l => l.LandmarkId);

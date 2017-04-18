@@ -7,7 +7,7 @@ namespace DeltaDucks.Web.ViewModels
     {
         public int LandmarkId { get; set; }
 
-        public int Number { get; set; }
+        public byte Number { get; set; }
 
         public string Name { get; set; }
 
@@ -23,6 +23,6 @@ namespace DeltaDucks.Web.ViewModels
 
         public ICollection<Picture> Pictures { get; set; }
 
-        public ICollection<Comment> Comments { get; set; }
+        public List<Comment> Comments { get; set; }
     }
 }

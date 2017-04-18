@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using DeltaDucks.Data.IInfrastructure;
 using DeltaDucks.Data.Infrastructure;
 using DeltaDucks.Data.IRepositories;
@@ -19,7 +20,7 @@ namespace DeltaDucks.Service.Services
             this._unitOfWork = unitOfWork;
         }
 
-        public IEnumerable<ApplicationUser> GetUsers()
+        public IQueryable<ApplicationUser> GetUsers()
         {
             return _userRepository.GetAll();
         }
@@ -68,7 +69,7 @@ namespace DeltaDucks.Service.Services
             _userRepository.AddVisit(id, landmarkId);
         }
 
-        public IEnumerable<ApplicationUser> GetSinglePageUsers(int page, int limit)
+        public IQueryable<ApplicationUser> GetSinglePageUsers(int page, int limit)
         {
             int skip = (page - 1) * limit;
             return _userRepository.GetPageOfUsers(limit, skip);

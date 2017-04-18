@@ -25,7 +25,7 @@ namespace DeltaDucks.Service.Services
         {
             return _landmarkRepository.GetLandmarkById(id);
         }
-        public IEnumerable<Landmark> GetLandmarks()
+        public IQueryable<Landmark> GetLandmarks()
         {      
                 return _landmarkRepository.GetAll();    
         }
@@ -39,12 +39,12 @@ namespace DeltaDucks.Service.Services
         //    return _landmarkRepository.GetPageOfLendmarks(recordsOnPage, skip);
         //}
 
-        public IEnumerable<Landmark> GetUserVisitedLandmarks(string id)
+        public IQueryable<Landmark> GetUserVisitedLandmarks(string id)
         {
             return _landmarkRepository.GetUserVisitedLandmarks(id);
         }
 
-        public IEnumerable<Landmark> GetUserNotVisitedLandmarks(string id)
+        public IQueryable<Landmark> GetUserNotVisitedLandmarks(string id)
         {
             return _landmarkRepository.GetUserNotVisitedLandmarks(id);
         }

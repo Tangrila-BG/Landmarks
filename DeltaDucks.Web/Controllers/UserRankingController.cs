@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using DeltaDucks.Models;
 using DeltaDucks.Service.IServices;
 using DeltaDucks.Web.ViewModels;
@@ -20,10 +21,12 @@ namespace DeltaDucks.Web.Controllers
         // GET: UserRanking
         public ActionResult Index()
         {
-            IEnumerable<ApplicationUser> users = _userService.GetUsers().OrderByDescending(u => u.Score);
-            IEnumerable<UserRankingViewModel> userRankings;
-            userRankings = Mapper.Map<IEnumerable<ApplicationUser>, IEnumerable<UserRankingViewModel>>(users);
-            return View(userRankings);
+            var usersRankings = _userService.GetUsers()
+                .ProjectTo<UserRankingViewModel>()
+                .OrderByDescending(u => u.Score)
+                .ToList();
+
+            return View(usersRankings);
         }
     }
 }

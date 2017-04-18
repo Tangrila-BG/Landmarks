@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using DeltaDucks.Models;
 
 namespace DeltaDucks.Service.IServices
 {
     public interface IUserService
     {
-        IEnumerable<ApplicationUser> GetUsers();
-        IEnumerable<ApplicationUser> GetSinglePageUsers(int page,int limit);
+        IQueryable<ApplicationUser> GetUsers();
+        IQueryable<ApplicationUser> GetSinglePageUsers(int page,int limit);
         ApplicationUser GetUserByUserName(string userId);
         ApplicationUser GetUserById(string userId);
         void DeleteUser(ApplicationUser user);

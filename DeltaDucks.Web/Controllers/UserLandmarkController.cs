@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using DeltaDucks.Models;
 using DeltaDucks.Service.IServices;
 using DeltaDucks.Web.ViewModels;
@@ -48,19 +49,17 @@ namespace DeltaDucks.Web.Controllers
 
         public VisitedLandmarksViewModel GetVisitedLandmarks()
         {
-            VisitedLandmarksViewModel visitedLandmarksViewModel;
-            IEnumerable<Landmark> userVisitedLandmarks;
-
             string userId = User.Identity.GetUserId();
-            userVisitedLandmarks = _landmarkService.GetUserVisitedLandmarks(userId);
+            var userVisitedLandmarks = _landmarkService
+                .GetUserVisitedLandmarks(userId)
+                .ProjectTo<LandmarkViewModel>()
+                .ToList();
 
             var userScore = _userService.GetUserScore(userId);
-            var userVisitedLandmarkViewModels = Mapper.Map<IEnumerable<Landmark>, IEnumerable<LandmarkViewModel>>(userVisitedLandmarks);
-
-            visitedLandmarksViewModel = new VisitedLandmarksViewModel
+            var visitedLandmarksViewModel = new VisitedLandmarksViewModel
             {
                 Score = userScore,
-                VisitedLandmarks = userVisitedLandmarkViewModels.ToList()
+                VisitedLandmarks = userVisitedLandmarks
             };
 
             return visitedLandmarksViewModel;
@@ -68,19 +67,18 @@ namespace DeltaDucks.Web.Controllers
 
         public NotVisitedLandmarksViewModel GetNotVisitedLandmarks()
         {
-            NotVisitedLandmarksViewModel notVisitedLandmarksViewModel;
-            IEnumerable<Landmark> userNotVisitedLandmarks;
-
             string userId = User.Identity.GetUserId();
-            userNotVisitedLandmarks = _landmarkService.GetUserNotVisitedLandmarks(userId);
+            var userNotVisitedLandmarks = _landmarkService
+                .GetUserNotVisitedLandmarks(userId)
+                .ProjectTo<LandmarkViewModel>()
+                .ToList();
 
             var userScore = _userService.GetUserScore(userId);
-            var userNotVisitedLandmarkViewModels = Mapper.Map<IEnumerable<Landmark>, IEnumerable<LandmarkViewModel>>(userNotVisitedLandmarks);
 
-            notVisitedLandmarksViewModel = new NotVisitedLandmarksViewModel()
+            var notVisitedLandmarksViewModel = new NotVisitedLandmarksViewModel()
             {
                 Score = userScore,
-                NotVisitedLandmarks = userNotVisitedLandmarkViewModels.ToList()
+                NotVisitedLandmarks = userNotVisitedLandmarks
             };
 
             return notVisitedLandmarksViewModel;

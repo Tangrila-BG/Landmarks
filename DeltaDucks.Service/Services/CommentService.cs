@@ -37,7 +37,7 @@ namespace DeltaDucks.Service.Services
             _commentRepository.Delete(comment);
         }
 
-        public ICollection<Comment> GetCommentsByLandmarkId(int id)
+        public IQueryable<Comment> GetCommentsByLandmarkId(int id)
         {
             return _commentRepository.GetCommentsByLandmarkId(id);
         }
