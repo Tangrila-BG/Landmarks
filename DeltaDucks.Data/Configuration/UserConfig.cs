@@ -21,6 +21,10 @@ namespace DeltaDucks.Data.Configuration
             this.HasMany(u => u.Comments)
                 .WithRequired(c => c.Author)
                 .WillCascadeOnDelete(true);
+
+            this.HasMany(u => u.Notifications)
+                .WithRequired(n => n.User)
+                .HasForeignKey(un => un.UserId);
         }
     }
 }
