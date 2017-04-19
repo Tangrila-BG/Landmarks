@@ -88,9 +88,11 @@
   <ItemGroup>
     <Compile Include="Configuration\CommentConfig.cs" />
     <Compile Include="Configuration\LandmarkConfig.cs" />
+    <Compile Include="Configuration\NotificationConfig.cs" />
     <Compile Include="Configuration\PictureConfig.cs" />
     <Compile Include="Configuration\TownConfig.cs" />
     <Compile Include="Configuration\UserConfig.cs" />
+    <Compile Include="Configuration\UserNotificationConfig.cs" />
     <Compile Include="DeltaDucksContext.cs" />
     <Compile Include="Infrastructure\DbFactory.cs" />
     <Compile Include="Infrastructure\Disposable.cs" />
@@ -101,8 +103,10 @@
     <Compile Include="Infrastructure\UnitOfWork.cs" />
     <Compile Include="IRepositories\ICommentRepository.cs" />
     <Compile Include="IRepositories\ILocationRepository.cs" />
+    <Compile Include="IRepositories\INotificationRepository.cs" />
     <Compile Include="IRepositories\IPictureRepository.cs" />
     <Compile Include="IRepositories\ITownRepository.cs" />
+    <Compile Include="IRepositories\IUserNotificationRepository.cs" />
     <Compile Include="Migrations\201704161234382_InitialCreate.cs" />
     <Compile Include="Migrations\201704161234382_InitialCreate.Designer.cs">
       <DependentUpon>201704161234382_InitialCreate.cs</DependentUpon>
@@ -114,6 +118,11 @@
     <Compile Include="Migrations\201704190706347_NumberUniqueConstraint.cs" />
     <Compile Include="Migrations\201704190706347_NumberUniqueConstraint.Designer.cs">
       <DependentUpon>201704190706347_NumberUniqueConstraint.cs</DependentUpon>
+
+    <Compile Include="Migrations\201704171455042_AddedNotifications.cs" />
+    <Compile Include="Migrations\201704171455042_AddedNotifications.Designer.cs">
+      <DependentUpon>201704171455042_AddedNotifications.cs</DependentUpon>
+
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -128,8 +137,10 @@
     <Compile Include="Repositories\LandmarkRepository.cs" />
     <Compile Include="Repositories\ApplicationUserRepository.cs" />
     <Compile Include="Repositories\LocationRepository.cs" />
+    <Compile Include="Repositories\NotificationRepository.cs" />
     <Compile Include="Repositories\PictureRepository.cs" />
     <Compile Include="Repositories\TownRepository.cs" />
+    <Compile Include="Repositories\UserNotificationRepository.cs" />
     <Compile Include="SeedData.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -145,11 +156,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704190706347_NumberUniqueConstraint.resx">
       <DependentUpon>201704190706347_NumberUniqueConstraint.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201704171455042_AddedNotifications.resx">
+      <DependentUpon>201704171455042_AddedNotifications.cs</DependentUpon>
+
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+      
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DeltaDucks.Models\DeltaDucks.Models.csproj">
