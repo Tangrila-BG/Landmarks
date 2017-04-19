@@ -238,10 +238,10 @@ padding: 7px 20px;*/
   opacity: 1 !important;
   max-height: 600px;
 }
-.page-header {
+.landmark-header {
   padding-bottom: 30px;
 }
-.page-header h2 {
+.landmark-header h2 {
   font: 36px, 'Roboto', "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-align: center;
   position: relative;
@@ -257,22 +257,4 @@ padding: 7px 20px;*/
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ffffff', GradientType=1);
   /* IE6-9 */
-}
-.cnt {
-  background: black;
-  height: 400px;
-  overflow: hidden;
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  z-index: 1;
-  background: #A5A5Af;
-  width: 55px;
-  height: 55px;
-  padding: 12.5px 0;
-  border-radius: 100%;
-  color: white;
-  font-weight: 700;
-  text-align: center;
-  font-size: 18px;
 }
