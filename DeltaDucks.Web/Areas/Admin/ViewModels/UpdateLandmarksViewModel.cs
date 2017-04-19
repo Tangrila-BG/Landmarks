@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using DeltaDucks.Models;
 
 namespace DeltaDucks.Web.Areas.Admin.ViewModels
@@ -17,7 +18,9 @@ namespace DeltaDucks.Web.Areas.Admin.ViewModels
 
         [Required]
         [Display(Name = "Номер")]
-        [Range(0, int.MaxValue)]
+        [Range(0, byte.MaxValue)]
+        [Remote("IsNumberAvailableDuringUpdate", "Landmark", "Admin", 
+            AdditionalFields = "InitialNumber",ErrorMessage = "Номерът трябва да бъде уникален!")]
         public byte Number { get; set; }
 
         [Display(Name = "Описание")]
@@ -56,5 +59,8 @@ namespace DeltaDucks.Web.Areas.Admin.ViewModels
         public ICollection<Picture> Pictures { get; set; }
 
         public int LandmarkId { get; set; }
+
+        public byte InitialNumber => this.Number;
+
     }
 }

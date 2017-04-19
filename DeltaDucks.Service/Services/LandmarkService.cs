@@ -78,5 +78,11 @@ namespace DeltaDucks.Service.Services
         {
             _landmarkRepository.Delete(landmark);
         }
+
+        public bool IsLandmarkExists(byte number)
+        {
+            var landmark = _landmarkRepository.GetLandmarkByNumber(number);
+            return landmark != null;
+        }
     }
 }

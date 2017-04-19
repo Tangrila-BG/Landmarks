@@ -17,5 +17,6 @@ namespace DeltaDucks.Service.IServices
         void SaveLandmark();
         void IncreaseVisits(int id);
         Landmark GetLandmarkByNumber(int number);
+        bool IsLandmarkExists(byte number);
     }
 }
