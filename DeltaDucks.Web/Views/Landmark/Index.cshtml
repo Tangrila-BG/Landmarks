@@ -5,43 +5,45 @@
 }
 
 <div class="page-header">
-    <h2>Забележителностите на България</h2>    
+    <h2>Забележителностите на България</h2>
 </div>
-       
-        @foreach (var item in Model)
-        {
-                @Html.Partial("LandmarkPartial", item)    
-                
-        }
-        @*@if (ViewBag.Page > ViewBag.MinPage)
-        {
-        
-            <a href="@Url.Action("Index", new { page = ViewBag.Page - 1 })"
-               class="btn btn-default">
-                &laquo; Prev
-            </a>
-        }
-        @if (ViewBag.Page < ViewBag.MaxPage)
-        {
-            
-            <a href="@Url.Action("Index", new { page = ViewBag.Page + 1 })"
-               class="btn btn-default">
-                Next &raquo;
-            </a>
-        }*@
+
+@foreach (var item in Model)
+{
+    @Html.Partial("LandmarkPartial", item)
+
+}
+@*@if (ViewBag.Page > ViewBag.MinPage)
+    {
+
+        <a href="@Url.Action("Index", new { page = ViewBag.Page - 1 })"
+           class="btn btn-default">
+            &laquo; Prev
+        </a>
+    }
+    @if (ViewBag.Page < ViewBag.MaxPage)
+    {
+
+        <a href="@Url.Action("Index", new { page = ViewBag.Page + 1 })"
+           class="btn btn-default">
+            Next &raquo;
+        </a>
+    }*@
         Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
         @Html.PagedListPager(Model, page => Url.Action("Index",
                  new { page }))
-<script>
-    $(window).on('load',function () {
-        $('.title').hover(function (e) {
-            console.log(this);
-            console.log(e);
-            $(this).find('.description').stop().animate({
-                height: "toggle",
-                opacity: "toggle"
-            }, 300);
-        });
-    });
-</script>
+        @section scripts {
+            <script>
+                $(document).ready(() => {
+                    $('.title').hover(function () {
+                        $(this).find('.description').stop().animate({
+                            height: "toggle",
+                            opacity: "toggle"
+                        },
+                            300);
+                    });
+                });
+            </script>
+        }
+
