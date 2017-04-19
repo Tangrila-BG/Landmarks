@@ -55,7 +55,13 @@ namespace DeltaDucks.Web
                     .ForMember(dest => dest.Longitude, opt => opt.MapFrom(src => src.Longitude))
                     .ForMember(dest => dest.Town, opt => opt.Ignore());
 
-                cfg.CreateMap<ApplicationUser, UserRankingViewModel>();
+                cfg.CreateMap<ApplicationUser, UserRankingViewModel>()
+                .ForMember(dest=>dest.VistedLandmarks, opt => opt.MapFrom(src => src.VisitedLandmarks.Count))
+                .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.UserName))
+                .ForMember(dest => dest.Score, opt => opt.MapFrom(src => src.Score))
+                 .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.FirstName))
+                  .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.LastName));
+
 
                 cfg.CreateMap<Comment, CommentViewModel>()
                     .ForMember(dest => dest.LandmarkNumber, opt => opt.MapFrom(src => src.Landmark.Number));
