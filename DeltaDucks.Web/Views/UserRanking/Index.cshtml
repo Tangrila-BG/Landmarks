@@ -2,18 +2,32 @@
 @{
     ViewBag.Title = "Index";
 }
+<div class="page-header">
+    <h2>Класация на потребителите</h2>
+</div>
 
-<h2>Класация на потребителите</h2>
 
-@{
-    int cnt = 1; 
-    foreach (var item in Model)
-    {
+<div class="row">
+    @{
+        var cnt = 1;
+        foreach (var item in Model)
+        {
 
-        <p>@cnt.      Username : @item.Username</p>
-        <p>Score : @item.Score </p>
-        <br>
-        cnt++;
+            <div class="col s6">
+                <div class="card blue-grey darken-1" style="background-color: #57BC90 !important">
+                    <div class="card-content white-text" style="text-align: center; ">
+                        <span class="cnt">@cnt</span>
+                        <span class="card-title" style="color: #015249;">@item.Username - </span>
+                        <span class="card-title" style="color: #015249;">@item.FirstName @item.LastName</span>
+                    </div>
+                    <div class="card-action" style="background-color: #A5A5Af">
+                        <a style="color: white; text-decoration: none">Точки: @item.Score</a>
+                        <a style="float: right; color: white; text-decoration: none">Посетени забележителности: @item.VistedLandmarks</a>
+                    </div>
+                </div>
+            </div>
+            cnt++;
+        }
     }
 
-}
+</div>
