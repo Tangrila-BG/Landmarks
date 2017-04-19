@@ -41,13 +41,13 @@ textarea {
     .notifications {
         position: relative;
 
-        .badge {
-            position: absolute;
-            top: 8px;
-            right: -5px;
-            background: #a80a0a;
-        }
-    }
+		.badge {
+			position: absolute;
+			top: 8px;
+			right: -5px;
+			background: seagreen;
+		}
+	}
 
     .navbar-brand {
         color: #fff;
@@ -78,8 +78,16 @@ textarea {
 }
 
 .dropdown-menu {
-    -webkit-box-shadow: none;
-    box-shadow: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+
+	> li {
+		> a:hover, > a:focus {
+			color: #ffffff;
+			text-decoration: none;
+			background-color: mediumseagreen;
+		}
+	}
 }
 
 body {
@@ -252,4 +260,29 @@ padding: 7px 20px;*/
             opacity: 1 !important;
         }
     
+}
+.popover-notifications {
+	.popover-content {
+		padding: 0;
+	}
+
+	.highlighted {
+		font-weight: bold;
+	}
+
+	ul.notifications {
+		list-style: none;
+		padding-left: 0;
+
+		> li {
+			line-height: 20px;
+			border-bottom: 1px solid #ddd;
+			font-size: 16px;
+			padding: 10px;
+
+			:last-child {
+				border-bottom: none;
+			}
+		}
+	}
 }
