@@ -1,22 +1,23 @@
 ﻿@model DeltaDucks.Web.ViewModels.LandmarkViewModel
 
+
+<script src="../../Scripts/sweetalert.min.js"></script>
+<script src="../../Scripts/js/enterCode.js"></script>
+<script src="../../Scripts/jquery-3.1.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../../Content/sweetalert.css">
+
+
 <div class="landmark-container">
-    <div class="post-content">
-        <div class="media-body">
-            <p class="thumbnail">@Model.Number</p>
-            @if (Model.Pictures.Count > 0)
+    <div class="media-body">
+        <p class="thumbnail">@Model.Number</p>
+        @if (Model.Pictures.Count > 0)
             {
-                <img class="landmark-img" src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Model.Pictures.ElementAt(0).ImageData))" />
-            }
-        </div>
+            <img class="landmark-img" src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Model.Pictures.ElementAt(0).ImageData))" />
+        }
+    </div>
+    <div class="post-content">
         <h1 class="title">@Html.Label(Model.Name)</h1>
-        <div class="description">
-            <p>@Model.Description</p>
-            <div>
-                <a href="@Url.Action("Details", "Landmark", new {number = Model.Number})" 
-                   class="btn btn-default more-btn">Още</a>
-            </div>
-        </div>
+        <p class="description" id="landm-desc">@Model.Description</p>
         <div class="post-meta">
             <span class="points">
                 <i class="material-icons">star</i>
@@ -28,5 +29,12 @@
             </span>
         </div>
     </div>
-    <hr/>
+    @*</div>*@
+    <a href="@Url.Action("Details", "Landmark", new {number = Model.Number})" class="btn btn-default more-btn"
+       style="margin: 15px">Още</a>
+    <hr style="border-top: 3px double #8c8b8b" />
 </div>
+
+
+
+

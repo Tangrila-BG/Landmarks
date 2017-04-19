@@ -18,7 +18,9 @@
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="accountDropDownMenu">
-                    <li>@Html.ActionLink("Профил", "Index", "Manage")</li>
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
                     @if (User.IsInRole("Admin"))
                     {
                         <li role="separator" class="divider"></li>

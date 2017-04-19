@@ -33,17 +33,15 @@
 
         @Html.PagedListPager(Model, page => Url.Action("Index",
                  new { page }))
-@section scripts {
-    <script>
-        $(document).ready(() => {
-            $('.title').hover(function() {
-                $(this).find('.description').stop().animate({
-                        height: "toggle",
-                        opacity: "toggle"
-                    },
-                    300);
-            });
+<script>
+    $(window).on('load',function () {
+        $('.title').hover(function (e) {
+            console.log(this);
+            console.log(e);
+            $(this).find('.description').stop().animate({
+                height: "toggle",
+                opacity: "toggle"
+            }, 300);
         });
-    </script>
-}
-
+    });
+</script>

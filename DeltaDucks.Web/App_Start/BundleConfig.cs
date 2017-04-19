@@ -13,14 +13,12 @@ namespace DeltaDucks.Web
                 "~/Scripts/app/landmarksMap.js",
                 "~/Scripts/app/services/mapService.js",
                 "~/Scripts/app/controllers/mapsController.js",
-                "~/Scripts/app/controlMap.js",
-                "~/Scripts/app/enterCode.js"
+                "~/Scripts/app/controlMap.js"
             ));
 
             bundles.Add(new ScriptBundle("~/bundles/lib").Include(
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/underscore-min.js",
-                        "~/Scripts/sweetalert.min.js",
                         "~/Scripts/moment.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -38,8 +36,7 @@ namespace DeltaDucks.Web
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
-                      "~/Content/animate.css",
-                      "~/Content/sweetalert.css"));
+                      "~/Content/animate.css"));
 
         }
     }
