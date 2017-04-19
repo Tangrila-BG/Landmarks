@@ -1,4 +1,6 @@
-﻿using System.Data.Entity.ModelConfiguration;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.Infrastructure.Annotations;
+using System.Data.Entity.ModelConfiguration;
 using DeltaDucks.Models;
 
 namespace DeltaDucks.Data.Configuration
@@ -22,6 +24,9 @@ namespace DeltaDucks.Data.Configuration
             HasMany(x => x.Pictures)
                 .WithRequired(x => x.Landmark)
                 .WillCascadeOnDelete(true);
+
+            Property(t => t.Number).HasColumnAnnotation("Index",
+                    new IndexAnnotation(new IndexAttribute("IX_Number") { IsUnique = true }));
 
             this.HasMany(l => l.UsersVisited)
                 .WithMany(u => u.VisitedLandmarks)
