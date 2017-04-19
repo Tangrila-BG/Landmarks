@@ -8,7 +8,7 @@ namespace DeltaDucks.Service.IServices
     {
         IQueryable<Landmark> GetLandmarks();
         Landmark GetLandmarkById(int id);
-        // IEnumerable<Landmark> GetSinglePageLendmarks(int page);
+        IQueryable<Landmark> GetSinglePageLendmarks(int page);
         IQueryable<Landmark> GetUserVisitedLandmarks(string id);
         IQueryable<Landmark> GetUserNotVisitedLandmarks(string id);
         void Add(Landmark landmark);
@@ -17,5 +17,6 @@ namespace DeltaDucks.Service.IServices
         void SaveLandmark();
         void IncreaseVisits(int id);
         Landmark GetLandmarkByNumber(int number);
+        bool IsLandmarkExists(byte number);
     }
 }

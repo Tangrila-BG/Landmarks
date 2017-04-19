@@ -43,22 +43,23 @@ namespace DeltaDucks.Web.Areas.Admin.Controllers
         }
         //
         //        // GET: Admin/Landmark
-        public ActionResult Index(int? page)  // int page = 1
+        public ActionResult Index(int page = 1)  // int page = 1
         {
             const int recordsOnPage = 10;
-            //int landmarksCount = _landmarkService.LandmarksCount();
-            //this.ViewBag.MaxPage = (landmarksCount / recordsOnPage) + (landmarksCount % recordsOnPage > 0 ? 1 : 0);
-            //this.ViewBag.MinPage = 1;
-            //this.ViewBag.Page = page;
 
-            //landmarks = _landmarkService.GetSinglePageLendmarks(page).ToList();
-
-            var landmarks = _landmarkService.GetLandmarks()
-                .ProjectTo<LandmarkViewModel>()
-                .ToList();
-
-            int pageNumber = (page ?? 1);
-            return View(landmarks.ToPagedList(pageNumber, recordsOnPage));
+            int landmarksCount = _landmarkService.LandmarksCount();
+            this.ViewBag.MaxPage = (landmarksCount / recordsOnPage) + (landmarksCount % recordsOnPage > 0 ? 1 : 0);
+            this.ViewBag.MinPage = 1;
+            this.ViewBag.Page = page;
+            var landmarks = _landmarkService.GetSinglePageLendmarks(page)
+                .ProjectTo<LandmarkViewModel>().ToList();
+            return View(landmarks);
+            //            var landmarks = _landmarkService.GetLandmarks()
+            //                .ProjectTo<LandmarkViewModel>()
+            //                .ToList();
+            //
+            //            int pageNumber = (page ?? 1);
+            //            return View(landmarks.ToPagedList(pageNumber, recordsOnPage));
         }
 
         public ActionResult Create()
@@ -110,10 +111,9 @@ namespace DeltaDucks.Web.Areas.Admin.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public JsonResult IsNumberAvailable(int number)
+        public JsonResult IsNumberAvailable(byte number)
         {
-            var landmark = _landmarkService.GetLandmarkByNumber(number);
-            if (landmark == null)
+            if (!_landmarkService.IsLandmarkExists(number))
             {
                 return Json(true, JsonRequestBehavior.AllowGet);
             }
@@ -228,6 +228,15 @@ namespace DeltaDucks.Web.Areas.Admin.Controllers
             users.ForEach(u=>u.Notify(notification));
             _userNotificationService.Save();
             return RedirectToAction("Index");
+        }
+
+        public JsonResult IsNumberAvailableDuringUpdate(byte number, byte initialNumber)
+        {
+            if (!_landmarkService.IsLandmarkExists(number) || number == initialNumber)
+            {
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+            return Json(false, JsonRequestBehavior.AllowGet);
         }
 
         private void SetLandmarkProps(Landmark landmark, UpdateLandmarksViewModel model)
