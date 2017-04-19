@@ -4,20 +4,13 @@
     ViewBag.Title = "Landmarks";
 }
 
-<h2>Landmarks</h2>
+<h2>Забележителностите на България</h2>
 
-<div class="container">
-    <div class="jumbotron">
-        @*TODO : PAGING *@
-
-        @*TODO : NAME , NUMBER, TOWN*@
-        @*TODO : PARTIAL VIEW WITH MORE INFORMATION AND PEOPLE VISITED AND ACTION LINK(TO PAGE) 
-        ---- BUTTON FOR CODE --- SCORE WHICH THIS PLACE GIVES  *@
-        @*TODO : ADD PICTURE TABLE *@
-
+       
         @foreach (var item in Model)
         {
-                @Html.Partial("LandmarkPartial", item)        
+                @Html.Partial("LandmarkPartial", item)    
+                
         }
         @*@if (ViewBag.Page > ViewBag.MinPage)
         {
@@ -39,5 +32,15 @@
 
         @Html.PagedListPager(Model, page => Url.Action("Index",
                  new { page }))
-    </div>
-</div>
+<script>
+    $(window).on('load',function () {
+        $('.title').hover(function (e) {
+            console.log(this);
+            console.log(e);
+            $(this).find('.description').stop().animate({
+                height: "toggle",
+                opacity: "toggle"
+            }, 300);
+        });
+    });
+</script>
