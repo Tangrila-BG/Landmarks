@@ -12,10 +12,24 @@
                     <span class="badge hide js-notifications-count"></span>
                 </a>
             </li>
-            <li>
-                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new {title = "Manage"})
+            <li class="dropdown">
+                <a href="" class="dropdown-toggle" id="accountDropDownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    @User.Identity.GetUserName()
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="accountDropDownMenu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li role="separator" class="divider"></li>
+                        <li>@Html.ActionLink("Администраторски панел", "Index", new { Area = "Admin", controller = "Home" })</li>
+                    }
+                    <li role="separator" class="divider"></li>
+                    <li><a href="javascript:document.getElementById('logoutForm').submit()">Излез</a></li>
+                </ul>
             </li>
-            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
         </ul>
     }
 }

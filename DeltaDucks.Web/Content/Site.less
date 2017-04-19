@@ -45,7 +45,7 @@ textarea {
 			position: absolute;
 			top: 8px;
 			right: -5px;
-			background: #a80a0a;
+			background: seagreen;
 		}
 	}
 
@@ -62,7 +62,7 @@ textarea {
 			> a,
 			> a:hover,
 			> a:focus {
-				background-color: rgb(241, 42, 40);
+				background-color: mediumseagreen;
 			}
 		}
 
@@ -80,6 +80,14 @@ textarea {
 .dropdown-menu {
 	-webkit-box-shadow: none;
 	box-shadow: none;
+
+	> li {
+		> a:hover, > a:focus {
+			color: #ffffff;
+			text-decoration: none;
+			background-color: mediumseagreen;
+		}
+	}
 }
 
 body {
@@ -136,4 +144,30 @@ padding: 7px 20px;*/
 .map-fullsize {
 	width: 100%;
 	height: 80vh;
+}
+
+.popover-notifications {
+	.popover-content {
+		padding: 0;
+	}
+
+	.highlighted {
+		font-weight: bold;
+	}
+
+	ul.notifications {
+		list-style: none;
+		padding-left: 0;
+
+		> li {
+			line-height: 20px;
+			border-bottom: 1px solid #ddd;
+			font-size: 16px;
+			padding: 10px;
+
+			:last-child {
+				border-bottom: none;
+			}
+		}
+	}
 }
