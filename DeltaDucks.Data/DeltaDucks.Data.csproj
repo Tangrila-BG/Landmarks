@@ -115,14 +115,9 @@
     <Compile Include="Migrations\201704161556567_cascadeAdded.Designer.cs">
       <DependentUpon>201704161556567_cascadeAdded.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201704190706347_NumberUniqueConstraint.cs" />
-    <Compile Include="Migrations\201704190706347_NumberUniqueConstraint.Designer.cs">
-      <DependentUpon>201704190706347_NumberUniqueConstraint.cs</DependentUpon>
-
-    <Compile Include="Migrations\201704171455042_AddedNotifications.cs" />
-    <Compile Include="Migrations\201704171455042_AddedNotifications.Designer.cs">
-      <DependentUpon>201704171455042_AddedNotifications.cs</DependentUpon>
-
+    <Compile Include="Migrations\201704190843186_DaSiEbe.cs" />
+    <Compile Include="Migrations\201704190843186_DaSiEbe.Designer.cs">
+      <DependentUpon>201704190843186_DaSiEbe.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -154,17 +149,13 @@
     <EmbeddedResource Include="Migrations\201704161556567_cascadeAdded.resx">
       <DependentUpon>201704161556567_cascadeAdded.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704190706347_NumberUniqueConstraint.resx">
-      <DependentUpon>201704190706347_NumberUniqueConstraint.cs</DependentUpon>
-    <EmbeddedResource Include="Migrations\201704171455042_AddedNotifications.resx">
-      <DependentUpon>201704171455042_AddedNotifications.cs</DependentUpon>
-
+    <EmbeddedResource Include="Migrations\201704190843186_DaSiEbe.resx">
+      <DependentUpon>201704190843186_DaSiEbe.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-      
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DeltaDucks.Models\DeltaDucks.Models.csproj">

@@ -7,13 +7,13 @@ namespace DeltaDucks.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class NumberUniqueConstraint : IMigrationMetadata
+    public sealed partial class DaSiEbe : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(NumberUniqueConstraint));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(DaSiEbe));
         
         string IMigrationMetadata.Id
         {
-            get { return "201704190706347_NumberUniqueConstraint"; }
+            get { return "201704190843186_DaSiEbe"; }
         }
         
         string IMigrationMetadata.Source
