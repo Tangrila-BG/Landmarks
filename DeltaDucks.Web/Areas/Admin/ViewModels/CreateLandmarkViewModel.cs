@@ -1,4 +1,6 @@
-﻿namespace DeltaDucks.Web.Areas.Admin.ViewModels
+﻿using System.Web.Mvc;
+
+namespace DeltaDucks.Web.Areas.Admin.ViewModels
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -15,6 +17,7 @@
         [Required]
         [Display(Name = "Номер")]
         [Range(0, int.MaxValue)]
+        [Remote("IsNumberAvailable", "Landmark", ErrorMessage = "Номерът трябва да бъде уникален!")]
         public int Number { get; set; }
 
         [Display(Name = "Описание")]

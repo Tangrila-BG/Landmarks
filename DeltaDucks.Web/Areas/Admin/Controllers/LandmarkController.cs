@@ -87,6 +87,16 @@ namespace DeltaDucks.Web.Areas.Admin.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        public JsonResult IsNumberAvailable(int number)
+        {
+            var landmark = _landmarkService.GetLandmarkByNumber(number);
+            if (landmark == null)
+            {
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+            return Json(false, JsonRequestBehavior.AllowGet);
+        }
+
         private Picture CreatePictures(byte[] picture, string name)
         {
             var image = new Picture()
