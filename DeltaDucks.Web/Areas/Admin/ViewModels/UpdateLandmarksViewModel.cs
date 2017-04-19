@@ -13,18 +13,18 @@ namespace DeltaDucks.Web.Areas.Admin.ViewModels
     {
         [Required]
         [Display(Name = "Име")]
-        [StringLength(100, ErrorMessage = "{0}то трябва да бъде поне {2} знака.", MinimumLength = 2)]
+        [StringLength(100, MinimumLength = 2)]
         public string Name { get; set; }
 
         [Required]
         [Display(Name = "Номер")]
-        [Range(0, byte.MaxValue)]
+        [Range(1, 100)]
         [Remote("IsNumberAvailableDuringUpdate", "Landmark", "Admin", 
             AdditionalFields = "InitialNumber",ErrorMessage = "Номерът трябва да бъде уникален!")]
         public byte Number { get; set; }
 
         [Display(Name = "Описание")]
-        [StringLength(500, ErrorMessage = "{0}то трябва да бъде поне {2} знака.")]
+        [StringLength(500)]
         public string Description { get; set; }
 
         [Display(Name = "Информация")]

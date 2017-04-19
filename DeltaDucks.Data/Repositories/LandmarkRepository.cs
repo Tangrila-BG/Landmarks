@@ -23,10 +23,10 @@ namespace DeltaDucks.Data.Repositories
             return DbContext.Landmarks.FirstOrDefault(l => l.Name == landmarkName);
         }
 
-        //public IEnumerable<Landmark> GetPageOfLendmarks(int take, int skip)
-        //{
-        //    return DbContext.Landmarks.OrderBy(x => x.Number).Skip(skip).Take(take);
-        //}
+        public IQueryable<Landmark> GetPageOfLendmarks(int take, int skip)
+        {
+            return DbContext.Landmarks.OrderBy(x => x.Number).Skip(skip).Take(take);
+        }
 
         public IQueryable<Landmark> GetUserVisitedLandmarks(string id)
         {
