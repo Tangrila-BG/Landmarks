@@ -40,23 +40,23 @@ namespace DeltaDucks.Web.Controllers
         //            return View(landmarksViewModel);
         //        }
 
-        public ActionResult Index(int? page)
+        public ActionResult Index(int page = 1)
         {
             const int recordsOnPage = 10;
 
-            //int landmarksCount = _landmarkService.LandmarksCount();
-            //this.ViewBag.MaxPage = (landmarksCount / recordsOnPage) + (landmarksCount % recordsOnPage > 0 ? 1 : 0);
-            //this.ViewBag.MinPage = 1;
-            //this.ViewBag.Page = page;
-
-            //landmarks = _landmarkService.GetSinglePageLendmarks(page).ToList();
-
-            var landmarks = _landmarkService.GetLandmarks()
-                .ProjectTo<LandmarkViewModel>()
-                .ToList();
-
-            int pageNumber = (page ?? 1);
-            return View(landmarks.ToPagedList(pageNumber, recordsOnPage));
+            int landmarksCount = _landmarkService.LandmarksCount();
+            this.ViewBag.MaxPage = (landmarksCount / recordsOnPage) + (landmarksCount % recordsOnPage > 0 ? 1 : 0);
+            this.ViewBag.MinPage = 1;
+            this.ViewBag.Page = page;
+            var landmarks = _landmarkService.GetSinglePageLendmarks(page)
+                .ProjectTo<LandmarkViewModel>().ToList();
+            return View(landmarks);
+//            var landmarks = _landmarkService.GetLandmarks()
+//                .ProjectTo<LandmarkViewModel>()
+//                .ToList();
+//
+//            int pageNumber = (page ?? 1);
+//            return View(landmarks.ToPagedList(pageNumber, recordsOnPage));
         }
 
         public ActionResult Details(int number)

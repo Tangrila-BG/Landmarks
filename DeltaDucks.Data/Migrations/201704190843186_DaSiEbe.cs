@@ -3,7 +3,7 @@ namespace DeltaDucks.Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class AddedNotifications : DbMigration
+    public partial class DaSiEbe : DbMigration
     {
         public override void Up()
         {
@@ -34,6 +34,7 @@ namespace DeltaDucks.Data.Migrations
                 .ForeignKey("dbo.Landmarks", t => t.LandmarkId, cascadeDelete: true)
                 .Index(t => t.LandmarkId);
             
+            CreateIndex("dbo.Landmarks", "Number", unique: true);
         }
         
         public override void Down()
@@ -41,6 +42,7 @@ namespace DeltaDucks.Data.Migrations
             DropForeignKey("dbo.UsersNotifications", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.UsersNotifications", "NotificationId", "dbo.Notifications");
             DropForeignKey("dbo.Notifications", "LandmarkId", "dbo.Landmarks");
+            DropIndex("dbo.Landmarks", new[] { "Number" });
             DropIndex("dbo.Notifications", new[] { "LandmarkId" });
             DropIndex("dbo.UsersNotifications", new[] { "NotificationId" });
             DropIndex("dbo.UsersNotifications", new[] { "UserId" });

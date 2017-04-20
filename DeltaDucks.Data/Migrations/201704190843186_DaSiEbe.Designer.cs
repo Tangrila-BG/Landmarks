@@ -7,13 +7,13 @@ namespace DeltaDucks.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddedNotifications : IMigrationMetadata
+    public sealed partial class DaSiEbe : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedNotifications));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(DaSiEbe));
         
         string IMigrationMetadata.Id
         {
-            get { return "201704171455042_AddedNotifications"; }
+            get { return "201704190843186_DaSiEbe"; }
         }
         
         string IMigrationMetadata.Source
