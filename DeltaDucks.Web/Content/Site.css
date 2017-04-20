@@ -365,3 +365,35 @@ details-pictures .details-img {
   padding-left: 50px;
   font-size: 24px;
 }
+/* Card */
+.app-card {
+  background-color: #57BC90 !important;
+  border-radius: 10px;
+}
+.app-card .app-card-block {
+  text-align: center;
+}
+.app-card .app-card-block .app-card-title {
+  color: #015249;
+}
+.app-card .app-card-content {
+  text-align: center;
+  padding: 20px;
+  color: white;
+}
+.app-card .app-card-content .cnt {
+  top: 3px;
+  right: 28px;
+}
+.app-card .app-card-action {
+  background-color: #A5A5Af;
+  padding: 10px;
+}
+.app-card .app-card-action > a {
+  color: white;
+  text-decoration: none;
+}
+.col-centered {
+  margin: auto;
+  float: none;
+}
