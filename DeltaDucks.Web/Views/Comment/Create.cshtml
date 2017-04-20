@@ -28,15 +28,15 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Добави" class="btn btn-default" />
+                <input type="submit" value="Добави" class="btn btn-default"/>
+                <div class="btn btn-default">
+                    <a href="@Url.Action("Details", "Landmark", new { number = Model.LandmarkNumber })" style="text-decoration: none; color:black">Назад</a>
+                </div>
             </div>
         </div>
     </div>
 }
 
-<div class ="btn btn-default">
-    <a href="@Url.Action("Details", "Landmark", new { number = Model.LandmarkNumber })" style="text-decoration: none; color:black">Назад</a>
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
