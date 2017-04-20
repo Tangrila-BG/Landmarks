@@ -21,11 +21,12 @@
           $.post(
           "/Landmark/CheckCode", { id: number, code: inputValue }
           ).then(() => {
-              swal('Страхотно!', 'Написахте: ' + inputValue, 'success');
+              swal('Страхотно!','Посещението е въведено', 'success');
                   window.location.href = '/UserLandmark/Visited';
               }
           ).fail(() => {
-              swal('Грешка!', 'Кодът не е валиден!', 'success');
+              swal('Грешка!', 'Кодът не е валиден!', 'error');
+              
           })
           
       });

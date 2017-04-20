@@ -1,32 +1,31 @@
 ﻿@model DeltaDucks.Web.ViewModels.LandmarkViewModel
 
 @{
-	ViewBag.Title = "Home Page";
+    ViewBag.Title = "Home Page";
 }
 
-@*<p>@Model.Name</p>*@
 
 <div id="landmarks-map" class="map"></div>
 @section scripts {
 
-	<script src="http://maps.google.com/maps/api/js?key=AIzaSyA-HJM4VHOVVADcsDYGT6JLBdCM79roIqA"
-			type="text/javascript"></script>
+    <script src="http://maps.google.com/maps/api/js?key=AIzaSyA-HJM4VHOVVADcsDYGT6JLBdCM79roIqA"
+            type="text/javascript"></script>
 
-	<script type="text/javascript">
-		$(document).ready(() => {
-			var element = document.getElementById('landmarks-map');
-			var mapService = new App.Services.MapService();
-			var mapsController = new App.Controllers.MapsController(mapService);
+    <script type="text/javascript">
+        $(document).ready(() => {
+            var element = document.getElementById('landmarks-map');
+            var mapService = new App.Services.MapService();
+            var mapsController = new App.Controllers.MapsController(mapService);
 
-			mapsController.initializeMap(element).then(() => {
-				var control = new App.GoogleMap.ControlMap();
-				var resizeControlDiv = document.createElement('div');
-				control.resizeControl(resizeControlDiv, mapsController.map);
-				$(resizeControlDiv).click((e) => {
-					mapsController.toggleMapSize($("#landmarks-map"), $(e.target));
-				});
-			});
-		});
-	</script>
+            mapsController.initializeMap(element).then(() => {
+                var control = new App.GoogleMap.ControlMap();
+                var resizeControlDiv = document.createElement('div');
+                control.resizeControl(resizeControlDiv, mapsController.map);
+                $(resizeControlDiv).click((e) => {
+                    mapsController.toggleMapSize($("#landmarks-map"), $(e.target));
+                });
+            });
+        });
+    </script>
 
 }

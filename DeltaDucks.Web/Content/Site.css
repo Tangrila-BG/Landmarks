@@ -1,5 +1,9 @@
 ﻿@import url('https://fonts.googleapis.com/css?family=Lato|Roboto');
+html {
+  height: 100%;
+}
 body {
+  height: 100%;
   padding-top: 50px;
   padding-bottom: 20px;
   font-family: 'Lato', "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -123,11 +127,12 @@ padding: 7px 20px;*/
 /* Page-level styles */
 .map {
   width: 80%;
-  height: 50vh;
+  height: 70vh;
+  margin: auto;
 }
 .map-fullsize {
   width: 100%;
-  height: 80vh;
+  height: 90vh;
 }
 /* Landmark styles */
 .landmark-container {
@@ -141,7 +146,7 @@ padding: 7px 20px;*/
 }
 .landmark-container .post-content .title {
   margin: 0;
-  padding: 0 0 10px;
+  padding: 10px 0 10px;
   color: #015249;
   font-size: 26px;
   font-weight: 700;
@@ -275,4 +280,88 @@ padding: 7px 20px;*/
   font-weight: 700;
   text-align: center;
   font-size: 18px;
+}
+.profile-picture {
+  width: 160px;
+  height: 160px;
+  background: #FFFFFF;
+  margin: auto;
+  -moz-border-radius: 60px;
+  border-radius: 100px;
+  padding: 6px;
+  box-shadow: 0px 0px 20px #888;
+}
+.profile-picture {
+  margin-bottom: 15px;
+}
+.custom-label {
+  border-radius: 0px;
+  background-color: #57BC90;
+  font-size: 26px !important;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-top: 10px;
+  width: 100%;
+}
+.profile-containers {
+  display: inline-grid;
+  text-align: center;
+}
+.page-wrap {
+  min-height: 100%;
+  margin-bottom: -56px;
+}
+.page-wrap:after {
+  content: "";
+  display: block;
+}
+footer,
+.page-wrap:after {
+  height: 56px;
+}
+footer {
+  background: #57BC90;
+  color: #ffffff;
+  font-size: 22px;
+  text-align: center;
+  margin: auto;
+  font-weight: 900;
+}
+.user-score-heading {
+  text-align: center;
+  font-weight: 900;
+  padding-bottom: 30px;
+  text-decoration: underline;
+}
+.details-heading {
+  font: 42px, 'Roboto', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-align: center;
+  color: #015249;
+}
+.details-number {
+  font: 50px, 'Roboto', "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  background-color: #015249;
+  text-align: center;
+  color: white;
+}
+details-pictures {
+  margin: auto;
+  display: flex;
+}
+details-pictures .details-img {
+  width: 450px;
+  height: 320px;
+  background: #FFFFFF;
+  margin: auto;
+  padding-left: 6px;
+  box-shadow: 0px 0px 20px #888;
+}
+.details-information {
+  margin: 50px;
+  font: 14px, 'Lato', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-align: center;
+}
+.details-comments {
+  padding-left: 50px;
+  font-size: 24px;
 }

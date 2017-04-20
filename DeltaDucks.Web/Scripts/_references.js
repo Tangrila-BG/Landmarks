@@ -7,7 +7,6 @@
 /// <reference path="jquery-3.1.1.js" />
 /// <reference path="jquery-3.1.1.slim.js" />
 /// <reference path="less-1.5.1.min.js" />
-/// <reference path="materialize/materialize.min.js" />
 /// <reference path="modernizr-2.6.2.js" />
 /// <reference path="moment.min.js" />
 /// <reference path="moment-with-locales.min.js" />

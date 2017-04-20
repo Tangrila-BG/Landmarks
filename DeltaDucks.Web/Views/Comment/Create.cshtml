@@ -4,7 +4,7 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create Comment</h2>
+<h2>Добави коментар</h2>
 
 
 @using (Html.BeginForm())
@@ -18,7 +18,7 @@
 
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.Text, htmlAttributes: new { @class = "control-label col-md-2" })
+            <span class="control-label col-md-2">Коментар</span>
             <div class="col-md-10">
                 @Html.TextAreaFor(model => model.Text, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
@@ -28,16 +28,14 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Добави" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
-<div>
-    <a href="
-       @Url.Action("Details", "Landmark", new { number = Model.LandmarkNumber })
-       ">Назад</a>
+<div class ="btn btn-default">
+    <a href="@Url.Action("Details", "Landmark", new { number = Model.LandmarkNumber })" style="text-decoration: none; color:black">Назад</a>
 </div>
 
 @section Scripts {
