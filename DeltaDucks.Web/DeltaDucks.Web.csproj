@@ -344,6 +344,7 @@
     <Content Include="Areas\Admin\Views\Shared\Landmark.cshtml" />
     <Content Include="Areas\Admin\Views\Landmark\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Landmark\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_LogoutPartial.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
